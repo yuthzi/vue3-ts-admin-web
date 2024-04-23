@@ -18,6 +18,7 @@ export default defineConfig((config) => {
       viteMockServe({
         // 只在开发阶段开启 mock 服务,mock和后端服务器接口能共存，可以通过配置来区分
         localEnabled: command === 'serve',
+        mockPath: 'mock',
       }),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
@@ -48,9 +49,9 @@ export default defineConfig((config) => {
       port: Number(env.VITE_APP_PORT),
       proxy: {
         [env.VITE_APP_BASE_API]: {
-          target: 'http://yuth.cn',
-          // changeOrigin: true,
-          // rewrite: (path) => path.replace(/^\/dev-api/, ''),
+          target: 'http://localhost:6001/tower',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/dev-api/, ''),
         },
       },
     },

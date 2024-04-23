@@ -18,9 +18,9 @@ import type { AclUser } from './types'
  * @returns {<PageRes<AclUser.ResAclUserList>>}
  */
 export function getAclUserList(params: AclUser.ReqAclUserListParams) {
-  return http.get<PageRes<AclUser.ResAclUserList>>(
-    `/admin/acl/user/${params.pageNum}/${params.pageSize}`,
-    { username: params.username },
+  return http.post<PageRes<AclUser.ResAclUserList>>(
+    `/admin/acl/user/list`,
+    params,
   )
 }
 
@@ -32,7 +32,7 @@ export function getAclUserList(params: AclUser.ReqAclUserListParams) {
  * @returns {<PageRes<any>>}
  */
 export function addAclUser(params: AclUser.ReqAclAddUser) {
-  return http.post<PageRes<any>>(`/admin/acl/user/save`, params)
+  return http.post<PageRes<any>>(`/admin/acl/user/add`, params)
 }
 
 /**

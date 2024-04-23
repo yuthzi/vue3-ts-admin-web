@@ -36,6 +36,8 @@ service.interceptors.request.use(
     if (token) {
       config.headers.token = token
     }
+
+    // config.data.orgId = '1'
     return config
   },
   (error: AxiosError) => {
