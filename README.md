@@ -94,3 +94,5 @@ guiug-sph-mall-admin
 ├─ STANDARD.md            # 项目编码规范说明书
 ├─ tsconfig.json          # typescript 全局配置
 └─ vite.config.ts         # vite 全局配置文件
+
+```
