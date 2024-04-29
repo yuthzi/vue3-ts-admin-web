@@ -1,8 +1,4 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-02-24 15:32:50
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-25 17:34:27
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -16,7 +12,7 @@ import { dynamicRoutes } from './dynamicRoutes'
 import { notFoundRouter, staticRoutes } from './constantRoutes'
 import { RESEETSTORE } from '@/utils/reset'
 /**
- * @description 路由拦截
+ * @description 路由拦截。
  */
 router.beforeEach(async (to, from, next) => {
   NProgress.start()

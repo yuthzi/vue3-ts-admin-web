@@ -12,7 +12,7 @@ import type { LoginData, UserRes } from './types'
  * 登录
  */
 export function login(data: LoginData) {
-  return http.post<string>('/admin/acl/index/login', data)
+  return http.post<string>('/admin/login', data)
 }
 
 /**

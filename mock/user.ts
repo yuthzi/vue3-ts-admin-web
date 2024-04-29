@@ -28,21 +28,23 @@ function createUserList() {
         'ASD',
         'CouponEdit',
         'OrderShow',
-        '111',
         'Permission',
         'Spu',
-        'UserList',
         'ClientUser',
+        'UserList',
+        'ClientLabel',
         'Order',
+        'Report',
         'Coupon',
         'permision',
-        '6123',
         'Acl',
         'ActivityRule',
         'Role',
         'RoleAuth',
-        'Refund',
+        'RefundList',
         'OrderList',
+        'OrderStatList',
+        'SkuSellStatList',
         'Sku',
       ],
       buttons: [
@@ -111,7 +113,7 @@ function createUserList() {
 export default [
   // 用户登录
   {
-    url: '/dev-api/admin/acl/index/login',
+    url: '/dev-api/admin/login',
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body

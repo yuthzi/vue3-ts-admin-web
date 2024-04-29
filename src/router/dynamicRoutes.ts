@@ -1,9 +1,5 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-02-25 09:19:28
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-21 14:27:41
- * @Description: 动态路由
+ * @Description: 动态路由。图标：https://element-plus.gitee.io/zh-CN/component/icon.html
  */
 
 import { RouteRecordRaw } from 'vue-router'
@@ -170,7 +166,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'Label',
+        name: 'ClientLabel',
         path: '/client-user/label',
         component: () => import('@/views/client-user/label/index.vue'),
         meta: {
@@ -210,11 +206,43 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'Label',
-        path: '/order/label',
+        name: 'RefundList',
+        path: '/order/refundList',
         component: () => import('@/views/order/refund/index.vue'),
         meta: {
           title: '退款管理',
+          icon: 'Grid',
+        },
+      },
+    ],
+  },
+  // 报表管理
+  {
+    name: 'Report',
+    path: '/report',
+    component: LAYOUT,
+    redirect: '/report/order/statList',
+    meta: {
+      title: '报表管理',
+      // icon: 'report',
+      customIcon: 'report',
+    },
+    children: [
+      {
+        name: 'OrderStatList',
+        path: '/report/order/statList',
+        component: () => import('@/views/order/list/index.vue'),
+        meta: {
+          title: '订单统计',
+          customIcon: 'report',
+        },
+      },
+      {
+        name: 'SkuSellStatList',
+        path: '/report/order/skuSellStatList',
+        component: () => import('@/views/order/list/index.vue'),
+        meta: {
+          title: '订单分析',
           icon: 'Grid',
         },
       },

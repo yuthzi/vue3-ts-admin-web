@@ -5,9 +5,14 @@
       :index="subItem.path"
     >
       <template #title>
-        <el-icon>
-          <component :is="subItem.meta.icon"></component>
-        </el-icon>
+        <div v-if="subItem.meta.icon">
+          <el-icon>
+            <component :is="subItem.meta.icon"></component>
+          </el-icon>
+        </div>
+        <div v-else>
+          <svg-icon :name="subItem.meta.customIcon"></svg-icon>
+        </div>
         <span>{{ subItem.meta.title }}</span>
       </template>
       <!-- 有children递归本次组件 -->
@@ -18,9 +23,17 @@
       :index="subItem.children[0].path"
       @click="handleClickMenu(subItem.children[0])"
     >
-      <el-icon>
+      <!-- <el-icon>
         <component :is="subItem.children[0].meta.icon"></component>
-      </el-icon>
+      </el-icon> -->
+      <div v-if="subItem.children[0].meta.icon">
+        <el-icon>
+          <component :is="subItem.children[0].meta.icon"></component>
+        </el-icon>
+      </div>
+      <div v-else>
+        <svg-icon :name="subItem.children[0].meta.customIcon"></svg-icon>
+      </div>
       <template #title>
         <span>{{ subItem.children[0].meta.title }}</span>
       </template>
@@ -30,9 +43,14 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <el-icon>
-        <component :is="subItem.meta.icon"></component>
-      </el-icon>
+      <div v-if="subItem.meta.icon">
+        <el-icon>
+          <component :is="subItem.meta.icon"></component>
+        </el-icon>
+      </div>
+      <div v-else>
+        <svg-icon :name="subItem.meta.customIcon"></svg-icon>
+      </div>
       <template #title>
         <span>{{ subItem.meta.title }}</span>
       </template>
@@ -44,6 +62,7 @@
 import { Menu } from '@element-plus/icons-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+import SvgIcon from '@/components/SvgIcon.vue'
 
 export default defineComponent({
   name: 'SubMenu',
