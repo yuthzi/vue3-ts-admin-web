@@ -112,28 +112,27 @@ function createUserList() {
 
 export default [
   // 用户登录
-  {
-    url: '/dev-api/admin/login',
-    method: 'post',
-    response: ({ body }) => {
-      const { username, password } = body
-      const checkUser = createUserList().find(
-        (item) => item.username === username && item.password === password,
-      )
-      if (!checkUser) {
-        return resultError('Incorrect username or password！')
-      }
-      const { token } = checkUser
-      return resultSuccess(token)
-    },
-  },
+  // {
+  //   url: '/dev-api/admin/login',
+  //   method: 'post',
+  //   response: ({ body }) => {
+  //     const { username, password } = body
+  //     const checkUser = createUserList().find(
+  //       (item) => item.username === username && item.password === password,
+  //     )
+  //     if (!checkUser) {
+  //       return resultError('Incorrect username or password！')
+  //     }
+  //     const { token } = checkUser
+  //     return resultSuccess(token)
+  //   },
+  // },
   // 获取用户信息
   {
     url: '/dev-api/admin/acl/index/info',
     method: 'get',
     response: (request) => {
       const token = getRequestToken(request)
-      // const token = 'Admin_Token'
       console.log('info' + token)
       const checkUser = createUserList().find((item) => item.token === token)
       if (!checkUser) {

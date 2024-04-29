@@ -49,9 +49,10 @@ export default defineConfig((config) => {
       port: Number(env.VITE_APP_PORT),
       proxy: {
         [env.VITE_APP_BASE_API]: {
+          // target: 'http://localhost:8081/tower',
           target: 'http://localhost:6001/tower',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/dev-api/, ''),
+          // changeOrigin: true,
+          // rewrite: (path) => path.replace(/^\/dev-api/, ''),
         },
       },
     },
