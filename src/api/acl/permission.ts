@@ -49,7 +49,7 @@ export function getPermissionList() {
  * @returns
  */
 export function deletePermission(id: string) {
-  return http.delete<PageRes<any>>(`admin/acl/permission/remove/${id}`)
+  return http.get<PageRes<any>>(`admin/acl/permission/remove/${id}`)
 }
 
 /**
@@ -58,14 +58,14 @@ export function deletePermission(id: string) {
  * @returns
  */
 export function addPermission(data: Permission.ResPermisionList) {
-  return http.post<PageRes<any>>(`admin/acl/permission/save`, data)
+  return http.post<PageRes<any>>(`admin/acl/permission/add`, data)
 }
 
 /**
  * @description 修改权限
- * @param { string } id
+ * @param { string } menuId
  * @returns
  */
 export function updatePermission(data: Permission.ResPermisionList) {
-  return http.put<PageRes<any>>(`admin/acl/permission/update`, data)
+  return http.post<PageRes<any>>(`admin/acl/permission/modify`, data)
 }

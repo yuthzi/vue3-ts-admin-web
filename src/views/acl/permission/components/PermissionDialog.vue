@@ -12,9 +12,9 @@
       :rules="rules"
       :model="permissionData"
     >
-      <el-form-item label="名称" prop="name">
+      <el-form-item label="名称" prop="menuName">
         <el-input
-          v-model="permissionData!.name"
+          v-model="permissionData!.menuName"
           placeholder="请填写名称"
           clearable
         ></el-input>
@@ -23,6 +23,13 @@
         <el-input
           v-model="permissionData!.code"
           placeholder="请填写权限值"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="URL" prop="pattern">
+        <el-input
+          v-model="permissionData!.pattern"
+          placeholder="请填写URL"
           clearable
         ></el-input>
       </el-form-item>
@@ -52,13 +59,15 @@ interface DialogProps {
 }
 
 let permissionData = ref<Permission.ResPermisionList>({
-  name: '',
+  menuName: '',
   code: '',
+  pattern: '',
 })
 
 const rules = reactive({
-  name: [{ required: true, message: '请填写名称' }],
+  menuName: [{ required: true, message: '请填写名称' }],
   code: [{ required: true, message: '请填写权限值' }],
+  pattern: [{ required: true, message: '请填写URL值' }],
 })
 
 const dialogVisible = ref(false)

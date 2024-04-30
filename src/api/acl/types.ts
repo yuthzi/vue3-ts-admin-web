@@ -66,20 +66,22 @@ export namespace Permission {
   export interface ReqAddPermission {
     code: string
     level: number
-    name: string
+    menuName: string
     pid: string
     toCode: string
+    pattern: string
     type: string
   }
 
   export interface ResPermisionList {
-    id?: string
+    menuId?: string
     pid?: string // 父级权限菜单的id
     level?: number // 菜单层级
-    name?: string
+    menuName?: string
     select?: boolean // 菜单是否选中
     children?: ResPermisionList[]
     code?: string // 权限值
     type?: number // 权限类型，type=1为菜单 type=2为按钮
+    pattern?: string // URL
   }
 }

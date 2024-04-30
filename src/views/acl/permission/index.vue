@@ -2,6 +2,7 @@
   <div>
     <ProTable
       ref="proTable"
+      :selectId="`menuId`"
       :pagination="false"
       :toolButton="false"
       :columns="columns"
@@ -17,7 +18,7 @@
           :disabled="scope.row.level === 3"
           @click="openDialog(1, scope.row)"
         >
-          {{ scope.row.level === 3 ? '添加功能' : '添加菜单' }}
+          {{ scope.row.level >= 2 ? '添加功能' : '添加菜单' }}
         </el-button>
         <el-button
           type="primary"
@@ -59,9 +60,9 @@ import { useAuthButtons } from '@/hooks/useAuthButtons'
 const { BUTTONS } = useAuthButtons()
 
 const columns = [
-  { prop: 'name', label: '名称', align: 'left' },
+  { prop: 'menuName', label: '名称', align: 'left' },
   { prop: 'code', label: '权限值' },
-  // { prop: 'toCode', label: '跳转权限值' },
+  { prop: 'pattern', label: 'URL' },
   { prop: 'gmtModified', label: '修改时间' },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
@@ -81,7 +82,7 @@ const openDialog = (type: number, rowData: Permission.ResPermisionList) => {
 }
 // *根据id删除菜单
 const handleDelete = async (row: Partial<Permission.ResPermisionList> = {}) => {
-  await useHandleData(deletePermission, row?.id as string, `删除${row.name}`)
+  await useHandleData(deletePermission, row?.menuId as string, `删除${row.menuName}`)
   proTable.value.getTableList()
 }
 </script>
