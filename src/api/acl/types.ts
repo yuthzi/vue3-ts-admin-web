@@ -50,7 +50,7 @@ export namespace Role {
     deleted?: boolean
     gmtCreate?: string
     gmtModified?: string
-    id: string
+    roleId: string
     remark?: any
     roleName: string
   }

@@ -2,6 +2,7 @@
   <div>
     <ProTable
       ref="proTable"
+      :selectId="`roleId`"
       :columns="columns"
       :requestApi="getRoleList"
       :dataCallback="dataCallback"
@@ -72,7 +73,7 @@ import { Auth } from '@/components/Auth'
 
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
-  { prop: 'id', label: 'id' },
+  { prop: 'roleId', label: 'id' },
   {
     prop: 'roleName',
     label: '角色名称',
@@ -111,7 +112,7 @@ const openDrawer = async (title: string, rowData: Role.ResRoleList) => {
   const params = {
     title: title,
     rowData,
-    list: await getRolePermission(rowData!.id),
+    list: await getRolePermission(rowData!.roleId),
     api: assignRolePermission,
     getTableList: proTable.value.getTableList,
   }
@@ -120,7 +121,7 @@ const openDrawer = async (title: string, rowData: Role.ResRoleList) => {
 
 // *根据id删除角色
 const handleDelete = async (row: Role.ResRoleList) => {
-  await useHandleData(deleteRole, row.id, `删除${row.roleName}角色`)
+  await useHandleData(deleteRole, row.roleId, `删除${row.roleName}角色`)
   proTable.value.getTableList()
 }
 </script>

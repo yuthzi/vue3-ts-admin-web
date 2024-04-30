@@ -80,7 +80,7 @@ const getCheckedIds = (
 ): string[] => {
   auths.forEach((item: Permission.ResPermisionList) => {
     if (item.select) {
-      initArr.push(item.id as string)
+      initArr.push(item.menuId as string)
     }
     if (item.children) {
       getCheckedIds(item.children, initArr)
