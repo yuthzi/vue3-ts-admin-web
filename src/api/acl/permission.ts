@@ -39,7 +39,7 @@ export function assignRolePermission(data: Permission.ReqAssignPermision) {
  */
 export function getPermissionList() {
   return http.get<PageRes<Permission.ResPermisionList[]>>(
-    `admin/acl/permission`,
+    `admin/acl/permission/list`,
   )
 }
 

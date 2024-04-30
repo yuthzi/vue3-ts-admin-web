@@ -12,7 +12,6 @@ function createUserList() {
       desc: '平台管理员',
       roles: ['平台管理员'],
       routes: [
-        'aaa',
         'User',
         'Category',
         'Discount',
@@ -22,7 +21,6 @@ function createUserList() {
         'Activity',
         'CouponAdd',
         'Trademark',
-        'test1',
         'Attr',
         'ActivityAdd',
         'ASD',

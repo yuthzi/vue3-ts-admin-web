@@ -116,6 +116,9 @@ function filterAsyncRoutes(
   dynamicRoutes: RouteRecordRaw[],
   authRouterList: string[],
 ) {
+  // debug
+  // console.log(JSON.stringify(dynamicRoutes))
+  //
   return dynamicRoutes.filter((route) => {
     // 1.如果route的name在routeNames中没有, 直接过滤掉
     if (!authRouterList.includes(route.name as string)) return false
