@@ -41,7 +41,7 @@ export function addAclUser(params: AclUser.ReqAclAddUser) {
  * @returns {<PageRes<any>>}
  */
 export function updateAclUser(params: AclUser.ResAclUserList) {
-  return http.put<PageRes<any>>(`/admin/acl/user/update`, params)
+  return http.put<PageRes<any>>(`/admin/acl/user/modify`, params)
 }
 
 /**
@@ -69,7 +69,7 @@ export function batchAclUser(ids: string[]) {
  */
 export function getUserRolesList(userId: string) {
   return http.get<PageRes<AclUser.ResUserRolesList>>(
-    `/admin/acl/user/toAssign/${userId}`,
+    `/admin/acl/user/roleList/${userId}`,
   )
 }
 

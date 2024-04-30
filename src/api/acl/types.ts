@@ -4,7 +4,7 @@ export interface Roles {
   deleted?: boolean
   gmtCreate?: string
   gmtModified?: string
-  id: string
+  roleId: string
   remark?: null
   roleName: string
 }
@@ -15,7 +15,7 @@ export namespace AclUser {
   }
   export interface ReqAclAddUser {
     username: string
-    name?: string
+    nickname?: string
     password: string
   }
   export interface ReqAssignRoles {
@@ -26,8 +26,8 @@ export namespace AclUser {
     deleted: boolean
     gmtCreate: string
     gmtModified: string
-    id: string
-    name: string
+    userId: string
+    nickname: string
     password: string
     roleName: string
     salt: null

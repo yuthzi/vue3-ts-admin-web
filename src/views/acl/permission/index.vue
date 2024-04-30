@@ -82,7 +82,11 @@ const openDialog = (type: number, rowData: Permission.ResPermisionList) => {
 }
 // *根据id删除菜单
 const handleDelete = async (row: Partial<Permission.ResPermisionList> = {}) => {
-  await useHandleData(deletePermission, row?.menuId as string, `删除${row.menuName}`)
+  await useHandleData(
+    deletePermission,
+    row?.menuId as string,
+    `删除${row.menuName}`,
+  )
   proTable.value.getTableList()
 }
 </script>

@@ -22,11 +22,11 @@
       </el-form-item>
       <el-form-item
         label="用户昵称"
-        prop="name"
+        prop="nickname"
         v-if="drawerProps.title !== '分配角色'"
       >
         <el-input
-          v-model="drawerProps.rowData!.name"
+          v-model="drawerProps.rowData!.nickname"
           placeholder="请填写用户昵称"
           clearable
         ></el-input>
@@ -60,8 +60,8 @@
         >
           <el-checkbox
             v-for="item in state.allRolesList"
-            :key="item.id"
-            :label="item.id"
+            :key="item.roleId"
+            :label="item.roleId"
           >
             {{ item.roleName }}
           </el-checkbox>
@@ -126,7 +126,7 @@ const state: RolesState = reactive({
 // 全选
 const handleCheckAllChange = (val: CheckboxValueType) => {
   state.assignRoles = val
-    ? state.allRolesList.map((item: Roles) => item.id)
+    ? state.allRolesList.map((item: Roles) => item.roleId)
     : []
   console.log(state.assignRoles)
 
@@ -146,7 +146,7 @@ const acceptParams = (params: DrawerProps): void => {
   if (params.title === '分配角色') {
     const { list } = params
     state.allRolesList = list.data.allRolesList
-    state.assignRoles = list.data.assignRoles.map((item: Roles) => item.id)
+    state.assignRoles = list.data.assignRoles.map((item: Roles) => item.roleId)
     state.isIndeterminate = state.assignRoles.length > 0 ? true : false
   }
   drawerProps.value = params
@@ -161,7 +161,7 @@ const handleSubmit = () => {
       loading.value = true
       if (drawerProps.value.title === '分配角色') {
         const params = {
-          userId: drawerProps.value.rowData.id,
+          userId: drawerProps.value.rowData.userId,
           roleIdList: state.assignRoles,
         }
         await drawerProps.value.api!(params)

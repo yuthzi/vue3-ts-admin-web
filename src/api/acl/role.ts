@@ -38,7 +38,7 @@ export function deleteRole(id: string) {
  * @returns {<PageRes<any>>}
  */
 export function addRole(roleName: object) {
-  return http.post<PageRes<any>>(`/admin/acl/role/save`, roleName)
+  return http.post<PageRes<any>>(`/admin/acl/role/add`, roleName)
 }
 
 /**
@@ -47,5 +47,5 @@ export function addRole(roleName: object) {
  * @returns {<PageRes<any>>}
  */
 export function updateRole(role: object) {
-  return http.put<PageRes<any>>(`/admin/acl/role/update`, role)
+  return http.put<PageRes<any>>(`/admin/acl/role/modify`, role)
 }

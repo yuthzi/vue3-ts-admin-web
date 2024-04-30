@@ -34,7 +34,7 @@ export function saveBanner(data: Banner.ReqBannerData) {
  * @returns {*}
  */
 export function updateBanner(data: Banner.ReqBannerData) {
-  return http.put<PageRes<any>>(`/admin/cms/banner/update`, data)
+  return http.put<PageRes<any>>(`/admin/cms/banner/modify`, data)
 }
 
 /**

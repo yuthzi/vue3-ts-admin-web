@@ -49,7 +49,7 @@ export function getPermissionList() {
  * @returns
  */
 export function deletePermission(id: string) {
-  return http.get<PageRes<any>>(`admin/acl/permission/remove/${id}`)
+  return http.delete<PageRes<any>>(`admin/acl/permission/remove/${id}`)
 }
 
 /**
@@ -67,5 +67,5 @@ export function addPermission(data: Permission.ResPermisionList) {
  * @returns
  */
 export function updatePermission(data: Permission.ResPermisionList) {
-  return http.post<PageRes<any>>(`admin/acl/permission/modify`, data)
+  return http.put<PageRes<any>>(`admin/acl/permission/modify`, data)
 }
