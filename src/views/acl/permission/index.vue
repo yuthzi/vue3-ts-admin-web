@@ -14,7 +14,7 @@
           link
           v-if="BUTTONS['btn.Permission.add']"
           icon="UserFilled"
-          :disabled="scope.row.level === 4"
+          :disabled="scope.row.level === 3"
           @click="openDialog(1, scope.row)"
         >
           {{ scope.row.level === 3 ? '添加功能' : '添加菜单' }}
@@ -24,7 +24,6 @@
           link
           v-if="BUTTONS['btn.Permission.update']"
           icon="Edit"
-          :disabled="scope.row.level === 1"
           @click="openDialog(2, scope.row)"
         >
           编辑
@@ -34,7 +33,6 @@
           link
           icon="Delete"
           v-if="BUTTONS['btn.Permission.remove']"
-          :disabled="scope.row.level === 1"
           @click="handleDelete(scope.row)"
         >
           删除
@@ -64,7 +62,7 @@ const columns = [
   { prop: 'name', label: '名称', align: 'left' },
   { prop: 'code', label: '权限值' },
   // { prop: 'toCode', label: '跳转权限值' },
-  { prop: 'updateTime', label: '修改时间' },
+  { prop: 'gmtModified', label: '修改时间' },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
