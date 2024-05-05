@@ -5,6 +5,7 @@
       :selectId="`userId`"
       :dataCallback="dataCallback"
       :columns="columns"
+      :searchCol="searchCol"
       :requestApi="getAclUserList"
       :initParam="initParam"
     >
@@ -90,7 +91,10 @@ const columns: ColumnProps[] = [
   {
     prop: 'username',
     label: '用户名',
-    search: { el: 'input', props: { placeholder: '输入用户名' } },
+    search: {
+      el: 'input',
+      props: { placeholder: '输入用户名' },
+    },
   },
   {
     prop: 'nickname',
@@ -102,6 +106,10 @@ const columns: ColumnProps[] = [
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
+
+// 搜索项宽度
+// const searchCol = { xl: 4 }
+const searchCol = 5
 
 // *查询参数
 const initParam = reactive({})
