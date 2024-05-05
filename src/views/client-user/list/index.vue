@@ -51,6 +51,15 @@ const columns: ColumnProps[] = [
   { prop: 'name', label: '姓名' },
   { prop: 'phoneNum', label: '手机号' },
   {
+    prop: 'address',
+    label: '地址',
+    _children: [
+      { prop: 'province', label: '省份' },
+      { prop: 'city', label: '城市' },
+      { prop: 'county', label: '区' },
+    ],
+  },
+  {
     prop: 'status',
     label: '状态',
     render: ({ row }) => {
