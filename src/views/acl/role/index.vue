@@ -79,8 +79,8 @@ const columns: ColumnProps[] = [
     label: '角色名称',
     search: { el: 'input', props: { placeholder: '输入角色名称' } },
   },
-  { prop: 'createTime', label: '创建时间', sortable: true },
-  { prop: 'updateTime', label: '更新时间', sortable: true },
+  { prop: 'gmtCreate', label: '创建时间', sortable: true },
+  { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 

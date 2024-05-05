@@ -79,6 +79,5 @@ export function getUserRolesList(userId: string) {
  * @returns {<PageRes<any>>}
  */
 export function assignUserRoles(params: AclUser.ReqAssignRoles) {
-  // Post方法传递get参数的方式需要下面这么写
   return http.post<PageRes<any>>(`/admin/acl/user/doAssignRole`, params)
 }

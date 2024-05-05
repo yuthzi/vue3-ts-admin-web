@@ -16,7 +16,7 @@ import type { Permission } from './types'
  */
 export function getRolePermission(roleId: string | number) {
   return http.get<PageRes<Permission.ResPermisionList[]>>(
-    `/admin/acl/permission/toAssign/${roleId}`,
+    `/admin/acl/permission/getRolePermission/${roleId}`,
   )
 }
 
@@ -25,12 +25,8 @@ export function getRolePermission(roleId: string | number) {
  * @param { Permission.ReqAssignPermision } data
  * @returns {<PageRes<any>>}
  */
-export function assignRolePermission(data: Permission.ReqAssignPermision) {
-  return http.post<PageRes<any>>(
-    `/admin/acl/permission/doAssign`,
-    {},
-    { params: data },
-  )
+export function assignRolePermission(params: Permission.ReqAssignPermision) {
+  return http.post<PageRes<any>>(`/admin/acl/permission/assign`, params)
 }
 
 /**

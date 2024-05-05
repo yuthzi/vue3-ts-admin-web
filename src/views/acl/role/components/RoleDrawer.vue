@@ -18,7 +18,7 @@
         <div class="tree-border">
           <el-tree
             ref="treeRef"
-            node-key="id"
+            node-key="menuId"
             show-checkbox
             default-expand-all
             :default-checked-keys="checkedKeys"
@@ -57,7 +57,7 @@ const drawerProps = ref<DrawerProps>({
 
 const defaultProps = {
   children: 'children',
-  label: 'name',
+  label: 'menuName',
 }
 const allPermission = ref<Permission.ResPermisionList[]>([])
 const checkedKeys = ref<string[]>([])
@@ -94,8 +94,8 @@ const handleSubmit = async () => {
     // 获取selectdKeys
     const checkedKeys = treeRef.value?.getCheckedKeys() || []
     const params = {
-      roleId: drawerProps.value.rowData.id,
-      permissionId: checkedKeys?.join(','),
+      roleId: drawerProps.value.rowData.roleId,
+      menuIdList: checkedKeys,
     }
     loading.value = true
     await drawerProps.value.api!(params)

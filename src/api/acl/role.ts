@@ -17,10 +17,7 @@ import type { Role } from './types'
  * @returns {<PageRes<Role.ResRoleList>>}
  */
 export function getRoleList(params: Role.ReqRoleListParams) {
-  return http.get<PageRes<Role.ResRoleList>>(
-    `/admin/acl/role/${params.pageNum}/${params.pageSize}`,
-    { roleName: params.roleName },
-  )
+  return http.post<PageRes<Role.ResRoleList>>(`/admin/acl/role/list`, params)
 }
 
 /**
