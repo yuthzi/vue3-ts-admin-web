@@ -14,8 +14,8 @@ import { ClientUser } from './types'
  * @returns {*}
  */
 export function getClientUserList(params: ReqPage) {
-  return http.get<PageRes<ClientUser.ResClientUserList>>(
-    `/admin/user/${params.pageNum}/${params.pageSize}`,
+  return http.post<PageRes<ClientUser.ResClientUserList>>(
+    `/admin/customer/list`,
     params,
   )
 }
