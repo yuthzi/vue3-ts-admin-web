@@ -27,11 +27,17 @@ const initChart = (data: any): ECharts => {
     '#9270CA',
   ]
   const option: EChartsOption = {
-    color: colors,
+    // color: colors,
     // tooltip: {
     //   show: true,
     //   trigger: 'item',
     // },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
     grid: {
       left: '3%',
       right: '4%',
@@ -55,7 +61,7 @@ const initChart = (data: any): ECharts => {
     ],
     series: [
       {
-        name: 'Direct',
+        name: '',
         type: 'bar',
         barWidth: '30%',
         label: {
