@@ -100,32 +100,6 @@ const initChart = (data: any): ECharts => {
           }
         }),
       },
-      {
-        name: '',
-        type: 'pie',
-        selectedMode: 'single',
-        radius: [50, 90],
-        center: ['35%', '50%'],
-        startAngle: 60,
-        data: [
-          {
-            value: 1000,
-            name: '',
-            label: {
-              show: true,
-              formatter: '{a|本日总数}',
-              rich: {
-                a: {
-                  align: 'center',
-                  color: 'rgb(98,137,169)',
-                  fontSize: 14,
-                },
-              },
-              position: 'center',
-            },
-          },
-        ],
-      },
     ],
   }
   charEch.setOption(option)
