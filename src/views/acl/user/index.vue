@@ -1,60 +1,26 @@
 <template>
   <div>
-    <ProTable
-      ref="proTable"
-      :selectId="`userId`"
-      :dataCallback="dataCallback"
-      :columns="columns"
-      :searchCol="searchCol"
-      :requestApi="getAclUserList"
-      :initParam="initParam"
-    >
+    <ProTable ref="proTable" :selectId="`userId`" :dataCallback="dataCallback" :columns="columns" :searchCol="searchCol"
+      :requestApi="getAclUserList" :initParam="initParam">
       <template #tableHeader="scope">
-        <el-button
-          type="primary"
-          icon="Plus"
-          v-auth="['btn.User.add']"
-          @click="openDrawer('新增')"
-        >
+        <el-button type="primary" icon="Plus" v-auth="['btn.User.add']" @click="openDrawer('新增')">
           添加
         </el-button>
-        <el-button
-          type="danger"
-          icon="Delete"
-          plain
-          v-auth="['btn.User.remove']"
-          @click="batchDelete(scope.selectedListIds)"
-          :disabled="!scope.isSelected"
-        >
+        <el-button type="danger" icon="Delete" plain v-auth="['btn.User.remove']"
+          @click="batchDelete(scope.selectedListIds)" :disabled="!scope.isSelected">
           批量删除
         </el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          icon="UserFilled"
-          v-auth="['btn.User.assgin']"
+        <el-button type="primary" link icon="UserFilled" v-auth="['btn.User.assgin']"
           @click="openDrawer('分配角色', scope.row)">
           分配角色
         </el-button>
-        <el-button
-          type="primary"
-          link
-          icon="Edit"
-          v-auth="['btn.User.update']"
-          @click="openDrawer('编辑', scope.row)"
-        >
+        <el-button type="primary" link icon="Edit" v-auth="['btn.User.update']" @click="openDrawer('编辑', scope.row)">
           编辑
         </el-button>
-        <el-button
-          type="primary"
-          link
-          icon="Delete"
-          v-auth="'btn.User.remove'"
-          @click="handleDelete(scope.row)"
-        >
+        <el-button type="primary" link icon="Delete" v-auth="'btn.User.remove'" @click="handleDelete(scope.row)">
           删除
         </el-button>
       </template>
@@ -63,7 +29,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import { reactive, ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import UserDrawer from './components/UserDrawer.vue'
@@ -102,6 +68,20 @@ const columns: ColumnProps[] = [
     search: { el: 'input', props: { placeholder: '输入用户昵称' } },
   },
   { prop: 'roleName', label: '角色列表' },
+  {
+    prop: 'enable',
+    label: '状态',
+    render: ({ row }) => {
+      return (
+        <el-switch
+          v-model={row.enable}
+          onChange={(e)=>{onChangeEnable(e, row)}}
+          style="--el-switch-on-color: #13ce66;"
+        >
+        </el-switch>
+      );
+    },
+  },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
@@ -137,8 +117,8 @@ const openDrawer = async (
       title === '新增'
         ? addAclUser
         : title === '编辑'
-        ? updateAclUser
-        : assignUserRoles,
+          ? updateAclUser
+          : assignUserRoles,
     getTableList: proTable.value.getTableList,
   }
   drawerRef.value.acceptParams(params)
@@ -163,4 +143,10 @@ const batchDelete = async (ids: string[]) => {
   proTable.value.clearSelection()
   proTable.value.getTableList()
 }
+
+const onChangeEnable = async (val, row) => {
+  console.log(val, row.userId)
+}
+
+
 </script>

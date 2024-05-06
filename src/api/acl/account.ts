@@ -18,10 +18,18 @@ import type { AclUser } from './types'
  * @returns {<PageRes<AclUser.ResAclUserList>>}
  */
 export function getAclUserList(params: AclUser.ReqAclUserListParams) {
-  return http.post<PageRes<AclUser.ResAclUserList>>(
-    `/admin/acl/user/list`,
-    params,
-  )
+  return http
+    .post<PageRes<AclUser.ResAclUserList>>(`/admin/acl/user/list`, params).then(rsp => {
+      if (rsp.code == 200) {
+        const d = rsp.data?.records
+        for (let i = 0; i < d.length; i++) {
+          const e = d[i]
+          e.enable = e.enable == 1 ? true : false
+        }
+      }
+
+      return rsp
+    })
 }
 
 /**
