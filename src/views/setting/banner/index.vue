@@ -1,39 +1,17 @@
 <template>
   <div>
-    <ProTable
-      ref="proTable"
-      :dataCallback="dataCallback"
-      :columns="columns"
-      :requestApi="getBannerList"
-    >
+    <ProTable ref="proTable" :dataCallback="dataCallback" :columns="columns" :requestApi="getBannerList">
       <template #tableHeader>
-        <el-button
-          type="primary"
-          icon="Plus"
-          @click="openDrawer('新增')"
-          v-auth="['Banner.Btn.Add']"
-        >
+        <el-button type="primary" icon="Plus" @click="openDrawer('新增')" v-auth="['Banner.Btn.Add']">
           添加
         </el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          icon="Edit"
-          v-auth="['Banner.Btn.Edit']"
-          @click="openDrawer('编辑', scope.row)"
-        >
+        <el-button type="primary" link icon="Edit" v-auth="['Banner.Btn.Edit']" @click="openDrawer('编辑', scope.row)">
           修改
         </el-button>
-        <el-button
-          type="danger"
-          link
-          icon="Delete"
-          v-auth="['Banner.Btn.Delete']"
-          @click="handleDelete(scope.row)"
-        >
+        <el-button type="danger" link icon="Delete" v-auth="['Banner.Btn.Delete']" @click="handleDelete(scope.row)">
           删除
         </el-button>
       </template>
