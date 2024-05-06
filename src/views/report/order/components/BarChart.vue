@@ -8,24 +8,10 @@
 // EChartsOption 为 option 的类型
 import { init } from 'echarts'
 import type { ECharts, EChartsOption } from 'echarts'
-import { dataType } from 'element-plus/es/components/table-v2/src/common'
 
-interface ChartProp {
-  value: string
-  name: string
-}
 const initChart = (data: any): ECharts => {
   const charEle = document.getElementById('BarChart') as HTMLElement
   const charEch: ECharts = init(charEle)
-  /* echarts colors */
-  const colors = [
-    '#F6C95C',
-    '#EF7D33',
-    '#1F9393',
-    '#184EA1',
-    '#81C8EF',
-    '#9270CA',
-  ]
   const option: EChartsOption = {
     // color: colors,
     // tooltip: {
