@@ -9,6 +9,8 @@ import pinia from './store/index'
 import router from './router'
 import registerGlobComp from './components'
 import directives from '@/directives/index'
+// import Echarts from "vue-echarts"
+// import * as echarts from "echarts"
 
 // element默认主题
 import 'element-plus/dist/index.css'
@@ -35,5 +37,8 @@ app.use(registerGlobComp)
 app.use(pinia)
 app.use(router)
 app.use(directives)
+// 注册echarts
+// app.component('v-chart', Echarts)
+// app.config.globalProperties.$echarts = echarts
 
 app.mount('#app')
