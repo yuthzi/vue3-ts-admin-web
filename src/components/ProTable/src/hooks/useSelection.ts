@@ -28,8 +28,6 @@ export const useSelection = (selectId = 'id') => {
    * @return void
    */
   const selectionChange = (rowArr: any) => {
-    console.log(rowArr)
-
     rowArr.length === 0 ? (isSelected.value = false) : (isSelected.value = true)
     selectedList.value = rowArr
   }
