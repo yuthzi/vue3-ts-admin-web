@@ -33,7 +33,6 @@ export namespace AclUser {
     salt: null
     token: null
     enable: number
-    lock: number
     username: string
   }
   export interface ResUserRolesList {

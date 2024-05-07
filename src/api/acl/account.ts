@@ -9,6 +9,7 @@
 import http from '@/utils/http'
 import type { PageRes } from '../types'
 import type { AclUser } from './types'
+import { ResultEnum } from '@/enums/httpEnums'
 
 /**
  * @description 获取后台用户分页列表(带搜索)
@@ -20,7 +21,7 @@ import type { AclUser } from './types'
 export function getAclUserList(params: AclUser.ReqAclUserListParams) {
   return http
     .post<PageRes<AclUser.ResAclUserList>>(`/admin/acl/user/list`, params).then(rsp => {
-      if (rsp.code == 200) {
+      if (rsp.code == ResultEnum.SUCCESS) {
         const d = rsp.data?.records
         for (let i = 0; i < d.length; i++) {
           const e = d[i]
@@ -49,6 +50,7 @@ export function addAclUser(params: AclUser.ReqAclAddUser) {
  * @returns {<PageRes<any>>}
  */
 export function updateAclUser(params: AclUser.ResAclUserList) {
+  params.enable = params.enable ? 1 : 0
   return http.put<PageRes<any>>(`/admin/acl/user/modify`, params)
 }
 
