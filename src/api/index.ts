@@ -20,6 +20,8 @@ export {
   updatePermission,
 } from './acl/permission'
 
+export { getLoginLogList } from './log/loginLog'
+
 export { getCategorys1, getCategorys2, getCategorys3 } from './product/category'
 
 export {

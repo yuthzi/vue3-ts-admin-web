@@ -279,4 +279,26 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  // 日志管理
+  {
+    name: 'Log',
+    path: '/log',
+    component: LAYOUT,
+    redirect: '/log/login',
+    meta: {
+      title: '日志管理',
+      icon: 'Setting',
+    },
+    children: [
+      {
+        name: 'LoginLog',
+        path: '/log/login',
+        component: () => import('@/views/log/login/index.vue'),
+        meta: {
+          title: '登录日志',
+          icon: 'Grid',
+        },
+      },
+    ],
+  },
 ]
