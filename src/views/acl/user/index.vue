@@ -195,7 +195,7 @@ const beforeChangeEnable = (val: boolean, row: any) => {
 }
 
 const onChangeEnable = async (val: boolean, row: any) => {
-  const params: AclUser.ResAclUserList = {
+  const params: any = {
     userId: row.userId,
     enable: val ? 1 : 0,
   }
