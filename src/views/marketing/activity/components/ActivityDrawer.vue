@@ -71,7 +71,7 @@ const acceptParams = (params: DrawerProps): void => {
   if (params.title === '分配角色') {
     const { list } = params
     state.allRolesList = list.data.allRolesList
-    state.assignRoles = list.data.assignRoles.map((item: Roles) => item.id)
+    state.assignRoles = list.data.assignRoles.map((item: Roles) => item.roleId)
     state.isIndeterminate = state.assignRoles.length > 0 ? true : false
   }
   drawerProps.value = params
