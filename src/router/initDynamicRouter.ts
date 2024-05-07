@@ -18,16 +18,16 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
   const userStore = useUserStore()
-  // 1.判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由并放行到登陆页
+  // 1.判断是访问登录页，有 Token 就在当前页面，没有 Token 重置路由并放行到登录页
   if (to.path === LOGIN_URL) {
     if (userStore.token) return next(from.fullPath)
     return next()
   }
 
-  // 2.判断访问页面是否在路由白名单(不需要登陆)地址中，如果存在直接放行
+  // 2.判断访问页面是否在路由白名单(不需要登录)地址中，如果存在直接放行
   if (ROUTER_WHITE_LIST.includes(to.path)) return next()
 
-  // 3.判断是否有 Token，没有token跳转到登陆页面并且携带原目标路径
+  // 3.判断是否有 Token，没有token跳转到登录页面并且携带原目标路径
   if (!userStore.token) {
     return next({ path: LOGIN_URL, query: { redirect: to.fullPath } })
   }
@@ -102,7 +102,7 @@ const initDynamicRouter = async () => {
     ] as unknown as Menu.MenuOptions[])
     authStore.setAuthMenuList(menuList)
   } catch (error) {
-    // 当按钮 || 菜单请求出错时，重定向到登陆页
+    // 当按钮 || 菜单请求出错时，重定向到登录页
     RESEETSTORE()
     router.replace(LOGIN_URL)
     return Promise.reject(error)

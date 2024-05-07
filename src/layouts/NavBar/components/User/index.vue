@@ -11,7 +11,7 @@
       <el-dropdown-menu>
         <el-dropdown-item command="logout">
           <svg-icon name="logout" size="16px" />
-          <span>退出登陆</span>
+          <span>退出登录</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -48,7 +48,7 @@ export default defineComponent({
       }
     }
 
-    // 退出登陆
+    // 退出登录
     function logout() {
       ElMessageBox.confirm('您确定要退出吗？', '提示', {
         confirmButtonText: '确认',

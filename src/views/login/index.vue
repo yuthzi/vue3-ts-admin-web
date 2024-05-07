@@ -49,7 +49,7 @@
               :loading="loading"
               @click="submitForm(ruleFormRef)"
             >
-              登陆
+              登录
             </el-button>
           </el-form-item>
         </el-form>
