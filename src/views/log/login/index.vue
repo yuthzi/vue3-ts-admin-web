@@ -41,7 +41,7 @@ const columns: ColumnProps[] = [
   { prop: 'msg', label: '消息' },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
-  { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
+  // { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
 const proTable = ref()
