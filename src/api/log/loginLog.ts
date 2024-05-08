@@ -18,5 +18,8 @@ import type { LoginLog } from './types'
  * @returns {<PageRes<AclUser.ResAclUserList>>}
  */
 export function getLoginLogList(params: LoginLog.ReqLoginLogListParams) {
-  return http.post<PageRes<LoginLog.ResLoginLogList>>(`/log/login/list`, params)
+  return http.post<PageRes<LoginLog.ResLoginLogList>>(
+    `/admin/log/login/list`,
+    params,
+  )
 }
