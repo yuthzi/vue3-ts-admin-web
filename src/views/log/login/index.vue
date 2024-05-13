@@ -3,8 +3,6 @@
     <ProTable ref="proTable" :selectId="`logId`" :columns="columns" :requestApi="getLoginLogList"
       :dataCallback="dataCallback">
     </ProTable>
-    <RoleDialog ref="DialogRef" />
-    <DoleDrawer ref="DrawerRef" />
   </div>
 </template>
 
