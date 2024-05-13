@@ -33,6 +33,13 @@
           clearable
         ></el-input>
       </el-form-item>
+      <el-form-item label="排序值" prop="seq">
+        <el-input
+          v-model="permissionData!.seq"
+          placeholder="请填写排序值"
+          clearable
+        ></el-input>
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -62,6 +69,7 @@ let permissionData = ref<Permission.ResPermisionList>({
   menuName: '',
   code: '',
   pattern: '',
+  seq: '',
 })
 
 const rules = reactive({
@@ -82,7 +90,7 @@ const acceptParams = (params: DialogProps): void => {
   const row: any = params.rowData
   if (params.type === 1) {
     permissionData.value = {
-      pid: row.id, // pid ==> parentId 父权限数据的id
+      pid: row.menuId, // pid ==> parentId 父权限数据的id
       level: row.level! + 1,
       type: row.level == 3 ? 2 : 1,
     }
@@ -116,7 +124,7 @@ const getDialogTitle = (params: DialogProps): string => {
     if (level === 2 || level === 3) {
       title = '修改二级菜单'
     }
-    if (level === 4) {
+    if (level === 3) {
       title = '修改功能'
     }
   }

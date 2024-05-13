@@ -83,6 +83,7 @@ export namespace Permission {
     children?: ResPermisionList[]
     code?: string // 权限值
     type?: number // 权限类型，type=1为菜单 type=2为按钮
+    seq?: number // 序号
     pattern?: string // URL
   }
 }
