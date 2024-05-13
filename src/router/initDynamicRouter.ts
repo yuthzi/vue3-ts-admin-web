@@ -82,10 +82,9 @@ const initDynamicRouter = async () => {
     }
 
     // 2.过滤路由
-    const routerList = filterAsyncRoutes(
-      dynamicRoutes,
-      authStore.authRouterList,
-    )
+    let routerList = filterAsyncRoutes(dynamicRoutes, authStore.authRouterList)
+
+    routerList = sort(routerList, authStore.authRouterList)
 
     // 3.添加动态路由
     routerList.forEach((route) => {
@@ -138,4 +137,22 @@ function getMenuList(menuList: Menu.MenuOptions[]) {
     item.children?.length && (item.children = getMenuList(item.children))
     return !item.meta?.isHide
   })
+}
+
+/**
+ * 根据服务器返回的菜单顺序排序
+ * @param routerList 路由信息
+ * @param seqList 顺序。元素是路由名
+ */
+function sort(dynamicRoutes: RouteRecordRaw[], seqList: string[]) {
+  const result = []
+
+  for (let i = 0; i < seqList.length; i++) {
+    const res = dynamicRoutes.find((item) => item.name == seqList[i])
+    if (res) {
+      result.push(res)
+    }
+  }
+
+  return result
 }
