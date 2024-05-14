@@ -69,7 +69,7 @@ let permissionData = ref<Permission.ResPermisionList>({
   menuName: '',
   code: '',
   pattern: '',
-  seq: '',
+  seq: 1,
 })
 
 const rules = reactive({

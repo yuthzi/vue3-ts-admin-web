@@ -46,7 +46,6 @@ const { BUTTONS } = useAuthButtons()
 const columns = [
   { prop: 'menuName', label: '名称', align: 'left' },
   { prop: 'code', label: '权限值' },
-  { type: 'index', label: '#', isShow: false },
   { prop: 'seq', label: '排序值' },
   { prop: 'pattern', label: 'URL' },
   { prop: 'gmtModified', label: '修改时间' },
@@ -78,8 +77,8 @@ const handleDelete = async (row: Partial<Permission.ResPermisionList> = {}) => {
 
 function moveupOrmovedown(row: any, isUp: boolean) {
   // debugger
-  console.log(row.index)
-  
+  // console.log(row.index)
+
   // selectedList
   let data = proTable.value.tableData
   // 1 is first level
@@ -96,13 +95,22 @@ function moveupOrmovedown(row: any, isUp: boolean) {
   }
 }
 
-function moveRow(data: any[], row: any, idx: number, isUp: boolean) {
+function moveRow(
+  data: Permission.ResPermisionList[],
+  row: any,
+  idx: number,
+  isUp: boolean,
+) {
   if (isUp) {
     data.splice(idx, 1)
     data.splice(idx - 1, 0, row)
   } else {
     data.splice(idx, 1)
     data.splice(idx + 1, 0, row)
+  }
+
+  for (let i = 0; i < data.length; i++) {
+    data[i].seq = i + 1
   }
 }
 </script>
