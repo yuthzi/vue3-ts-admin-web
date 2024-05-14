@@ -56,5 +56,13 @@ export default defineConfig((config) => {
         },
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: `assets/[name].[hash].js`, // 入口文件名格式
+          chunkFileNames: `assets/[name].[hash].js`, // 代码块文件名格式
+        },
+      },
+    },
   }
 })
