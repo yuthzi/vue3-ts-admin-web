@@ -151,6 +151,10 @@ function sort(dynamicRoutes: RouteRecordRaw[], seqList: string[]) {
     const res = dynamicRoutes.find((item) => item.name == seqList[i])
     if (res) {
       result.push(res)
+      // children
+      if (res.children && res.children.length > 0) {
+        res.children = sort(res.children, seqList)
+      }
     }
   }
 
