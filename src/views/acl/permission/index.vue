@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import { useHandleData } from '@/hooks/useHandleData'
 import {
   getPermissionList,
@@ -103,9 +104,19 @@ function moveRow(
   isUp: boolean,
 ) {
   if (isUp) {
+    if (idx === 0) {
+      ElMessage.success({ message: `已是最顶` })
+      return
+    }
+
     data.splice(idx, 1)
     data.splice(idx - 1, 0, row)
   } else {
+    if (idx === data.length - 1) {
+      ElMessage.success({ message: `已是最底` })
+      return
+    }
+
     data.splice(idx, 1)
     data.splice(idx + 1, 0, row)
   }
