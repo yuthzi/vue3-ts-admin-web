@@ -74,6 +74,12 @@ export namespace Permission {
     type: string
   }
 
+  export interface ReqShiftSeq {
+    menuId: string
+    pid: string
+    isUp: number // 0: false; 1 true
+  }
+
   export interface ResPermisionList {
     menuId?: string
     pid?: string // 父级权限菜单的id

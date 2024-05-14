@@ -65,3 +65,12 @@ export function addPermission(data: Permission.ResPermisionList) {
 export function updatePermission(data: Permission.ResPermisionList) {
   return http.put<PageRes<any>>(`admin/acl/permission/modify`, data)
 }
+
+/**
+ * @description 修改权限
+ * @param { string } menuId
+ * @returns
+ */
+export function shiftSeq(data: Permission.ReqShiftSeq) {
+  return http.put<PageRes<any>>(`admin/acl/permission/shiftSeq`, data)
+}

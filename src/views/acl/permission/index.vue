@@ -36,6 +36,7 @@ import {
   deletePermission,
   updatePermission,
   addPermission,
+  shiftSeq,
 } from '@/api'
 import type { Permission } from '@/api/acl/types'
 import PermissonDialog from './components/PermissionDialog.vue'
@@ -112,6 +113,12 @@ function moveRow(
   for (let i = 0; i < data.length; i++) {
     data[i].seq = i + 1
   }
+
+  shiftSeq({
+    menuId: row.menuId,
+    pid: row.pid,
+    isUp: isUp ? 1 : 0,
+  })
 }
 </script>
 

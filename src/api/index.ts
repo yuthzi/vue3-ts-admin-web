@@ -18,6 +18,7 @@ export {
   deletePermission,
   addPermission,
   updatePermission,
+  shiftSeq,
 } from './acl/permission'
 
 export { getLoginLogList } from './log/loginLog'
