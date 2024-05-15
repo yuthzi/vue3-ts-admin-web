@@ -166,15 +166,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'ClientLabel',
-        path: '/client-user/label',
-        component: () => import('@/views/client-user/label/index.vue'),
-        meta: {
-          title: '客户标签',
-          icon: 'Grid',
-        },
-      },
-      {
         name: 'Level',
         path: '/client-user/level',
         component: () => import('@/views/client-user/level/index.vue'),

@@ -1,17 +1,16 @@
 export namespace ClientUser {
   export interface ResClientUserList {
-    createTime: string
+    customerId: string
+    username: string
+    nickname: string
     gender: string
-    headImg: string
-    id: number
-    loginName: string
-    name: string
-    nickName: string
-    operateTime: string
-    passwd: string
-    phoneNum: string
+    levelScore: number
+    levelName: string
+    password: string
+    phone: string
+    avatar: string
     status: number
-    updateTime: string
-    userLevel: string
+    gmtCreate: string
+    gmtModified: string
   }
 }
