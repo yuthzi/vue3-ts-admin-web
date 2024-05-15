@@ -66,7 +66,7 @@ const columns: ColumnProps[] = [
       )
     },
   },
-  { prop: 'gmtCreate', label: '创建时间', sortable: true, width: 110 },
+  { prop: 'gmtCreate', label: '创建时间', sortable: true, width: 180 },
   { prop: 'operation', label: '操作', fixed: 'right', width: 100 },
 ]
 // *获取 ProTable 元素，调用其获取刷新数据方法

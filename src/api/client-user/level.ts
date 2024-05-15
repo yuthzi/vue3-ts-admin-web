@@ -55,5 +55,5 @@ export function updateCustomerLevel(params: ClientUser.ResLevelList) {
  * @returns {<PageRes<any>>}
  */
 export function deleteCustomerLevelById(id: string) {
-  return http.delete<PageRes<any>>(`/admin/customer/level/${id}`)
+  return http.delete<PageRes<any>>(`/admin/customer/level/remove/${id}`)
 }

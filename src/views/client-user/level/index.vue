@@ -12,12 +12,16 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <!-- <el-button type="primary" link icon="Edit" v-auth="['btn.Level.update']" @click="openDrawer('编辑', scope.row)">
-          编辑
-        </el-button>
-        <el-button type="primary" link icon="Delete" v-auth="'btn.Level.remove'" @click="handleDelete(scope.row)">
-          删除
-        </el-button> -->
+        <Auth :value="['btn.CustomerLevel.update']">
+          <el-button type="primary" link icon="Edit" @click="openDialog('编辑', scope.row)">
+            编辑
+          </el-button>
+        </Auth>
+        <Auth :value="['btn.CustomerLevel.remove']">
+          <el-button type="primary" link icon="Delete" @click="handleDelete(scope.row)">
+            删除
+          </el-button>
+        </Auth>
       </template>
     </ProTable>
     <LevelDialog ref="DialogRef" />
@@ -30,6 +34,7 @@ import {
   getCustomerLevelList,
   addCustomerLevel,
   updateCustomerLevel,
+  deleteCustomerLevelById,
 } from '@/api'
 import type { ClientUser } from '@/api/client-user/types'
 import { ColumnProps } from '@/components/ProTable/src/types'
@@ -77,7 +82,7 @@ const dataCallback = (data: any) => {
 const DialogRef = ref()
 const openDialog = (
   title: string,
-  rowData: Partial<ClientUser.ResCustomerLelvelList> = {},
+  rowData: Partial<ClientUser.ResLevelList> = {},
 ) => {
   const params = {
     title: title,
@@ -101,6 +106,16 @@ const onChangeEnable = async (val: boolean, row: any) => {
     params,
     val ? `启用${row.levelName}` : `禁用${row.levelName}`,
   )
+}
+
+// *根据id删除
+const handleDelete = async (row: ClientUser.ResLevelList) => {
+  await useHandleData(
+    deleteCustomerLevelById,
+    row.levelId,
+    `删除${row.levelName}`,
+  )
+  proTable.value.getTableList()
 }
 </script>
 
