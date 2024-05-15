@@ -150,14 +150,14 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     name: 'ClientUser',
     path: '/client-user',
     component: LAYOUT,
-    redirect: '/client-user/attr',
+    redirect: '/client-user/list',
     meta: {
       title: '客户管理',
       icon: 'User',
     },
     children: [
       {
-        name: 'UserList',
+        name: 'CustomerList',
         path: '/client-user/list',
         component: () => import('@/views/client-user/list/index.vue'),
         meta: {
@@ -166,7 +166,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'Level',
+        name: 'CustomerLevel',
         path: '/client-user/level',
         component: () => import('@/views/client-user/level/index.vue'),
         meta: {

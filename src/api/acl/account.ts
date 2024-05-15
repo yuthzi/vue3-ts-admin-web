@@ -20,7 +20,8 @@ import { ResultEnum } from '@/enums/httpEnums'
  */
 export function getAclUserList(params: AclUser.ReqAclUserListParams) {
   return http
-    .post<PageRes<AclUser.ResAclUserList>>(`/admin/acl/user/list`, params).then(rsp => {
+    .post<PageRes<AclUser.ResAclUserList>>(`/admin/acl/user/list`, params)
+    .then((rsp) => {
       if (rsp.code == ResultEnum.SUCCESS) {
         const d = rsp.data?.records
         for (let i = 0; i < d.length; i++) {

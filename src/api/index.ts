@@ -39,6 +39,12 @@ export { getOrderList } from './order/order-list'
 export { getRefundList } from './order/refund-list'
 
 export { getClientUserList, lockClientUser } from './client-user/user-list'
+export {
+  getCustomerLevelList,
+  addCustomerLevel,
+  updateCustomerLevel,
+  deleteCustomerLevelById,
+} from './client-user/level'
 
 export {
   getBannerList,
