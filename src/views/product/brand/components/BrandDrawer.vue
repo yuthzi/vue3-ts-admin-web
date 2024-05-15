@@ -12,9 +12,9 @@
       :rules="rules"
       :model="drawerProps.rowData"
     >
-      <el-form-item label="品牌名称" prop="tmName">
+      <el-form-item label="品牌名称" prop="brandName">
         <el-input
-          v-model="drawerProps.rowData!.tmName"
+          v-model="drawerProps.rowData!.brandName"
           placeholder="请填写品牌名称"
           clearable
         ></el-input>
@@ -48,7 +48,7 @@
   </el-drawer>
 </template>
 
-<script setup lang="ts" name="UserDrawer">
+<script setup lang="ts" name="BrandDrawer">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance, UploadProps } from 'element-plus'
 interface DrawerProps {
@@ -60,9 +60,9 @@ interface DrawerProps {
 }
 
 const rules = reactive({
-  tmName: [
+  brandName: [
     { required: true, message: '请填写品牌名称' },
-    { min: 2, message: '用户名不能小于2位' },
+    { min: 2, message: '品牌名称不能小于2位' },
   ],
   logoUrl: [{ required: true, message: '请上传品牌Logo' }],
 })

@@ -1,3 +1,5 @@
+import type { ReqPage } from '../types'
+
 export namespace Category {
   export interface ReqSaveCateGroty {
     id?: number
@@ -13,18 +15,29 @@ export namespace Category {
   }
 }
 
-export namespace Trademark {
-  export interface ReqTradeMark {
-    id?: number
-    logoUrl: string
-    tmName: string
+/**
+ * 品牌
+ */
+export namespace Brand {
+  /**
+   * 编辑
+   */
+  export interface ReqBrand {
+    brandId?: number
+    brandName?: string
   }
-  export interface ResTradeMarkList {
-    createTime: string
-    id: number
+
+  export interface ReqBrandList extends ReqPage {
+    brandName?: string
+  }
+
+  export interface ResBrandList {
+    brandId: number
+    brandName?: string
+    initial: string // 品牌名首字母
     logoUrl: string
-    tmName: string
-    updateTime: string
+    gmtCreate: string
+    gmtModified: string
   }
 }
 

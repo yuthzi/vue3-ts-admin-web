@@ -68,9 +68,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'Trademark',
-        path: '/product/trademark',
-        component: () => import('@/views/product/trademark/index.vue'),
+        name: 'Brand',
+        path: '/product/brand',
+        component: () => import('@/views/product/brand/index.vue'),
         meta: {
           title: '品牌列表',
           icon: 'Grid',

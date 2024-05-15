@@ -26,11 +26,11 @@ export { getLoginLogList } from './log/loginLog'
 export { getCategorys1, getCategorys2, getCategorys3 } from './product/category'
 
 export {
-  getTrademarkList,
-  removeTrademark,
-  addTrademark,
-  updateTrademark,
-} from './product/trademark'
+  getBrandList,
+  removeBrand,
+  addBrand,
+  updateBrand,
+} from './product/brand'
 
 export { getActivityList } from './marketing/activity'
 export { getCouponList, removeCoupon } from './marketing/coupon'

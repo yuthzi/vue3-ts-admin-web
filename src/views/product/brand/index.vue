@@ -1,14 +1,9 @@
 <template>
   <div>
-    <ProTable
-      ref="proTable"
-      :columns="columns"
-      :requestApi="getTrademarkList"
-      :dataCallback="dataCallback"
-    >
+    <ProTable ref="proTable" :id="`brandId`" :columns="columns" :requestApi="getBrandList" :dataCallback="dataCallback">
       <!-- Expand -->
       <template #tableHeader>
-        <Auth :value="['btn.Role.add']">
+        <Auth :value="['btn.Brand.add']">
           <el-button type="primary" icon="Plus" @click="openDrawer('新增')">
             添加
           </el-button>
@@ -16,29 +11,19 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <Auth :value="['btn.Role.update']">
-          <el-button
-            type="primary"
-            link
-            icon="Edit"
-            @click="openDrawer('修改', scope.row)"
-          >
+        <Auth :value="['btn.Brand.update']">
+          <el-button type="primary" link icon="Edit" @click="openDrawer('修改', scope.row)">
             编辑
           </el-button>
         </Auth>
-        <Auth :value="['btn.Role.remove']">
-          <el-button
-            type="primary"
-            link
-            icon="Delete"
-            @click="handleDelete(scope.row)"
-          >
+        <Auth :value="['btn.Brand.remove']">
+          <el-button type="primary" link icon="Delete" @click="handleDelete(scope.row)">
             删除
           </el-button>
         </Auth>
       </template>
     </ProTable>
-    <MarkDrawer ref="DrawerRef" />
+    <BrandDrawer ref="DrawerRef" />
   </div>
 </template>
 
@@ -47,21 +32,17 @@ import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
 
 import { useHandleData } from '@/hooks/useHandleData'
-import type { Trademark } from '@/api/product/types'
-import MarkDrawer from './components/MarkDrawer.vue'
+import type { Brand } from '@/api/product/types'
+import BrandDrawer from './components/BrandDrawer.vue'
 
-import {
-  getTrademarkList,
-  removeTrademark,
-  addTrademark,
-  updateTrademark,
-} from '@/api'
+import { getBrandList, removeBrand, addBrand, updateBrand } from '@/api'
 
 const columns: ColumnProps[] = [
-  { prop: 'id', label: 'id' },
+  { prop: 'brandId', label: 'id' },
   {
-    prop: 'tmName',
+    prop: 'brandName',
     label: '品牌名称',
+    search: { el: 'input', props: { placeholder: '输入品牌名称' } },
   },
   {
     prop: 'logoUrl',
@@ -78,7 +59,7 @@ const columns: ColumnProps[] = [
       )
     },
   },
-  { prop: 'updateTime', label: '更新时间', sortable: true },
+  { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
@@ -93,8 +74,8 @@ const dataCallback = (data: any) => {
 }
 
 // *根据id删除品牌
-const handleDelete = async (row: Trademark.ResTradeMarkList) => {
-  await useHandleData(removeTrademark, row.id, `删除${row.tmName}角色`)
+const handleDelete = async (row: Brand.ResBrandList) => {
+  await useHandleData(removeBrand, row.brandId, `删除${row.brandName}品牌`)
   proTable.value.getTableList()
 }
 
@@ -102,12 +83,12 @@ const handleDelete = async (row: Trademark.ResTradeMarkList) => {
 const DrawerRef = ref()
 const openDrawer = async (
   title: string,
-  rowData: Partial<Trademark.ResTradeMarkList> = {},
+  rowData: Partial<Brand.ResBrandList> = {},
 ) => {
   const params = {
     title,
     rowData: { ...rowData },
-    api: title === '新增' ? addTrademark : updateTrademark,
+    api: title === '新增' ? addBrand : updateBrand,
     getTableList: proTable.value.getTableList,
   }
   DrawerRef.value.acceptParams(params)
