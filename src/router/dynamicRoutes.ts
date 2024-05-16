@@ -162,7 +162,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/client-user/list/index.vue'),
         meta: {
           title: '客户列表',
-          icon: 'Grid',
+          icon: 'User',
         },
       },
       {
@@ -171,7 +171,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/client-user/level/index.vue'),
         meta: {
           title: '客户等级',
-          icon: 'Grid',
+          // icon: 'Grid',
+          customIcon: 'level',
         },
       },
     ],
@@ -215,8 +216,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/report/order/statList',
     meta: {
       title: '报表管理',
-      // icon: 'report',
-      customIcon: 'report',
+      icon: 'PieChart',
+      // customIcon: 'report',
     },
     children: [
       {
