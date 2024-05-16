@@ -275,7 +275,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     name: 'Log',
     path: '/log',
     component: LAYOUT,
-    redirect: '/log/login',
+    redirect: '/log/loginLog',
     meta: {
       title: '日志管理',
       icon: 'Setting',
@@ -283,7 +283,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     children: [
       {
         name: 'LoginLog',
-        path: '/log/login',
+        path: '/log/loginLog',
         component: () => import('@/views/log/login/index.vue'),
         meta: {
           title: '登录日志',
