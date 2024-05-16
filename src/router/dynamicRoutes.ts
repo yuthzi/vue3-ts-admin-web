@@ -226,7 +226,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/report/order/index.vue'),
         meta: {
           title: '订单统计',
-          customIcon: 'report',
+          icon: 'Histogram',
         },
       },
       {
