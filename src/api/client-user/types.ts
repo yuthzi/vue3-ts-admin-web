@@ -36,7 +36,7 @@ export namespace ClientUser {
     levelName: string //等级名称
     levelDesc: string //等级描述
     minScore: number //所需最小积分
-    status: number //状态。0禁用；1启用
+    status: number | boolean //状态。0禁用；1启用
     gmtCreate: string // 创建时间
     gmtModified: string //更新时间
   }
