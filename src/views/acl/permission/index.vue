@@ -1,25 +1,61 @@
 <template>
   <div>
-    <ProTable ref="proTable" :selectId="`menuId`" :pagination="false" :toolButton="false" :columns="columns"
-      :requestApi="getPermissionList">
+    <ProTable
+      ref="proTable"
+      :selectId="`menuId`"
+      :pagination="false"
+      :toolButton="false"
+      :columns="columns"
+      :requestApi="getPermissionList"
+    >
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button text size="large" class="arrow" type="primary" title="下移" @click="moveupOrmovedown(scope.row, false)"
-          icon="Bottom" v-if="scope.row.level < 3">
-        </el-button>
-        <el-button text size="large" class="arrow" type="primary" title="上移" @click="moveupOrmovedown(scope.row, true)"
-          icon="Top" v-if="scope.row.level < 3">
-        </el-button>
-        <el-button type="primary" link v-if="BUTTONS['btn.Permission.add']" icon="UserFilled"
-          :disabled="scope.row.level === 3" @click="openDialog(1, scope.row)">
+        <el-button
+          text
+          size="large"
+          class="arrow"
+          type="primary"
+          title="下移"
+          @click="moveupOrmovedown(scope.row, false)"
+          icon="Bottom"
+          v-if="scope.row.level < 3"
+        ></el-button>
+        <el-button
+          text
+          size="large"
+          class="arrow"
+          type="primary"
+          title="上移"
+          @click="moveupOrmovedown(scope.row, true)"
+          icon="Top"
+          v-if="scope.row.level < 3"
+        ></el-button>
+        <el-button
+          type="primary"
+          link
+          v-if="BUTTONS['btn.Permission.add']"
+          icon="UserFilled"
+          :disabled="scope.row.level === 3"
+          @click="openDialog(1, scope.row)"
+        >
           {{ scope.row.level >= 2 ? '添加功能' : '添加菜单' }}
         </el-button>
-        <el-button type="primary" link v-if="BUTTONS['btn.Permission.update']" icon="Edit"
-          @click="openDialog(2, scope.row)">
+        <el-button
+          type="primary"
+          link
+          v-if="BUTTONS['btn.Permission.update']"
+          icon="Edit"
+          @click="openDialog(2, scope.row)"
+        >
           编辑
         </el-button>
-        <el-button type="primary" link icon="Delete" v-if="BUTTONS['btn.Permission.remove']"
-          @click="handleDelete(scope.row)">
+        <el-button
+          type="primary"
+          link
+          icon="Delete"
+          v-if="BUTTONS['btn.Permission.remove']"
+          @click="handleDelete(scope.row)"
+        >
           删除
         </el-button>
       </template>

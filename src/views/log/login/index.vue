@@ -1,8 +1,13 @@
+<!-- 登录日志 -->
 <template>
   <div>
-    <ProTable ref="proTable" :selectId="`logId`" :columns="columns" :requestApi="getLoginLogList"
-      :dataCallback="dataCallback">
-    </ProTable>
+    <ProTable
+      ref="proTable"
+      :selectId="`logId`"
+      :columns="columns"
+      :requestApi="getLoginLogList"
+      :dataCallback="dataCallback"
+    ></ProTable>
   </div>
 </template>
 
@@ -51,5 +56,4 @@ const dataCallback = (data: any) => {
     total: data?.total,
   }
 }
-
 </script>

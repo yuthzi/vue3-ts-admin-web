@@ -1,14 +1,32 @@
 <template>
   <div>
-    <ProTable ref="proTable" :dataCallback="dataCallback" :id="`customerId`" :columns="columns"
-      :requestApi="getClientUserList">
+    <ProTable
+      ref="proTable"
+      :dataCallback="dataCallback"
+      :id="`customerId`"
+      :columns="columns"
+      :requestApi="getClientUserList"
+    >
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button type="danger" link icon="Lock" v-auth="['btn.User.update']" v-if="scope.row.status"
-          @click="handleLock(scope.row)">
+        <el-button
+          type="danger"
+          link
+          icon="Lock"
+          v-auth="['btn.User.update']"
+          v-if="scope.row.status"
+          @click="handleLock(scope.row)"
+        >
           封禁
         </el-button>
-        <el-button type="primary" link icon="Unlock" v-else v-auth="['btn.User.update']" @click="handleLock(scope.row)">
+        <el-button
+          type="primary"
+          link
+          icon="Unlock"
+          v-else
+          v-auth="['btn.User.update']"
+          @click="handleLock(scope.row)"
+        >
           启用
         </el-button>
       </template>

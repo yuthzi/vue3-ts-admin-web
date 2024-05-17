@@ -36,7 +36,8 @@
           link
           icon="UserFilled"
           v-auth="['btn.User.assgin']"
-          @click="openDrawer('分配角色', scope.row)">
+          @click="openDrawer('分配角色', scope.row)"
+        >
           分配角色
         </el-button>
         <el-button
@@ -155,8 +156,8 @@ const openDrawer = async (
       title === '新增'
         ? addAclUser
         : title === '编辑'
-          ? updateAclUser
-          : assignUserRoles,
+        ? updateAclUser
+        : assignUserRoles,
     getTableList: proTable.value.getTableList,
   }
   drawerRef.value.acceptParams(params)

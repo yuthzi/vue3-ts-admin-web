@@ -1,7 +1,12 @@
 <template>
   <div>
-    <ProTable ref="proTable" :id="`levelId`" :columns="columns" :requestApi="getCustomerLevelList"
-      :dataCallback="dataCallback">
+    <ProTable
+      ref="proTable"
+      :id="`levelId`"
+      :columns="columns"
+      :requestApi="getCustomerLevelList"
+      :dataCallback="dataCallback"
+    >
       <!-- Expand -->
       <template #tableHeader>
         <Auth :value="['btn.CustomerLevel.add']">
@@ -13,12 +18,22 @@
       <!-- 表格操作 -->
       <template #operation="scope">
         <Auth :value="['btn.CustomerLevel.update']">
-          <el-button type="primary" link icon="Edit" @click="openDialog('编辑', scope.row)">
+          <el-button
+            type="primary"
+            link
+            icon="Edit"
+            @click="openDialog('编辑', scope.row)"
+          >
             编辑
           </el-button>
         </Auth>
         <Auth :value="['btn.CustomerLevel.remove']">
-          <el-button type="primary" link icon="Delete" @click="handleDelete(scope.row)">
+          <el-button
+            type="primary"
+            link
+            icon="Delete"
+            @click="handleDelete(scope.row)"
+          >
             删除
           </el-button>
         </Auth>

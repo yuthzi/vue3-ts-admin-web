@@ -1,6 +1,12 @@
 <template>
   <div>
-    <ProTable ref="proTable" :id="`brandId`" :columns="columns" :requestApi="getBrandList" :dataCallback="dataCallback">
+    <ProTable
+      ref="proTable"
+      :id="`brandId`"
+      :columns="columns"
+      :requestApi="getBrandList"
+      :dataCallback="dataCallback"
+    >
       <!-- Expand -->
       <template #tableHeader>
         <Auth :value="['btn.Brand.add']">
@@ -12,12 +18,22 @@
       <!-- 表格操作 -->
       <template #operation="scope">
         <Auth :value="['btn.Brand.update']">
-          <el-button type="primary" link icon="Edit" @click="openDrawer('修改', scope.row)">
+          <el-button
+            type="primary"
+            link
+            icon="Edit"
+            @click="openDrawer('修改', scope.row)"
+          >
             编辑
           </el-button>
         </Auth>
         <Auth :value="['btn.Brand.remove']">
-          <el-button type="primary" link icon="Delete" @click="handleDelete(scope.row)">
+          <el-button
+            type="primary"
+            link
+            icon="Delete"
+            @click="handleDelete(scope.row)"
+          >
             删除
           </el-button>
         </Auth>

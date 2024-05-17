@@ -67,7 +67,7 @@ const initCharts = (): void => {
   flex-direction: row;
 }
 
-.box>div {
+.box > div {
   height: 400px;
   flex: 1;
 }

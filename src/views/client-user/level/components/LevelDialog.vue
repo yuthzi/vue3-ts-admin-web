@@ -1,14 +1,37 @@
 <template>
-  <el-dialog v-model="dialogVisible" :title="dialogProps.title" :destroy-on-close="true" width="580px">
-    <el-form ref="ruleFormRef" label-width="100px" label-suffix=" :" :rules="rules" :model="dialogProps.rowData">
+  <el-dialog
+    v-model="dialogVisible"
+    :title="dialogProps.title"
+    :destroy-on-close="true"
+    width="580px"
+  >
+    <el-form
+      ref="ruleFormRef"
+      label-width="100px"
+      label-suffix=" :"
+      :rules="rules"
+      :model="dialogProps.rowData"
+    >
       <el-form-item label="等级名称" prop="levelName">
-        <el-input v-model="dialogProps.rowData!.levelName" placeholder="请填写等级名称" clearable></el-input>
+        <el-input
+          v-model="dialogProps.rowData!.levelName"
+          placeholder="请填写等级名称"
+          clearable
+        ></el-input>
       </el-form-item>
       <el-form-item label="等级描述" prop="levelDesc">
-        <el-input v-model="dialogProps.rowData!.levelDesc" placeholder="请填写等级描述" clearable></el-input>
+        <el-input
+          v-model="dialogProps.rowData!.levelDesc"
+          placeholder="请填写等级描述"
+          clearable
+        ></el-input>
       </el-form-item>
       <el-form-item label="所需积分" prop="minScore">
-        <el-input v-model="dialogProps.rowData!.minScore" placeholder="请填写所需积分" clearable></el-input>
+        <el-input
+          v-model="dialogProps.rowData!.minScore"
+          placeholder="请填写所需积分"
+          clearable
+        ></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -36,7 +59,7 @@ const rules = reactive({
     { required: true, message: '请填写等级名称' },
     { min: 2, message: '等级名不能小于2位' },
   ],
-  minScore: [{ required: true, message: '请填写所需积分' },],
+  minScore: [{ required: true, message: '请填写所需积分' }],
 })
 
 const dialogVisible = ref(false)
