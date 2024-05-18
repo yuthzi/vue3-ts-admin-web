@@ -23,7 +23,15 @@ export {
 
 export { getLoginLogList } from './log/loginLog'
 
-export { getCategorys1, getCategorys2, getCategorys3 } from './product/category'
+export {
+  getCategorys1,
+  getCategorys2,
+  getCategorys3,
+  getCategoryList,
+  addCategory,
+  updateCategory,
+  deleteCategoryById,
+} from './product/category'
 
 export {
   getBrandList,
