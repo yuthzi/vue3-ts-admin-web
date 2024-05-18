@@ -51,7 +51,7 @@ import {
   addCategory,
   updateCategory,
   deleteCategoryById,
-} from '@/api/product/category'
+} from '@/api'
 import type { Category } from '@/api/product/types'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
@@ -122,7 +122,7 @@ const handleDelete = async (row: Category.ResCategoryList) => {
   await useHandleData(
     deleteCategoryById,
     row.categoryId,
-    `删除${row.categoryName}`,
+    `删除\$\{row.categoryName\}`,
   )
   proTable.value.getTableList()
 }
