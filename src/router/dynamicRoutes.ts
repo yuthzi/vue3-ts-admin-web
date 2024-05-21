@@ -49,12 +49,12 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   },
   // 商品管理
   {
-    name: 'Product',
-    path: '/product',
+    name: 'Product0',
+    path: '/product0',
     component: LAYOUT,
     redirect: '/product/attr',
     meta: {
-      title: '商品管理',
+      title: '商品0管理',
       icon: 'Goods',
     },
     children: [
@@ -173,6 +173,46 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           title: '客户等级',
           // icon: 'Grid',
           customIcon: 'level',
+        },
+      },
+    ],
+  },
+  {
+    // 商品管理
+    name: 'Goods',
+    path: '/goods',
+    component: LAYOUT,
+    redirect: '/goods/sku/index',
+    meta: {
+      title: '商品管理',
+      icon: 'User',
+    },
+    children: [
+      {
+        name: 'GoodsSkuList',
+        path: '/goods/sku/index',
+        component: () => import('@/views/goods/sku/index.vue'),
+        meta: {
+          title: 'SKU列表',
+          icon: 'User',
+        },
+      },
+      {
+        name: 'GoodsSpecList',
+        path: '/goods/spec/index',
+        component: () => import('@/views/goods/spec/index.vue'),
+        meta: {
+          title: '规格列表',
+          icon: 'User',
+        },
+      },
+      {
+        name: 'GoodsSpuList',
+        path: '/goods/spu/index',
+        component: () => import('@/views/goods/spu/index.vue'),
+        meta: {
+          title: 'SPU列表',
+          icon: 'User',
         },
       },
     ],
