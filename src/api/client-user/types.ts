@@ -1,3 +1,5 @@
+import type { ReqPage } from '../types'
+
 /**
  * 客户相关模型定义
  */
