@@ -1,4 +1,3 @@
-
 <!-- 商品规格管理视图页面 -->
 <template>
   <div>
@@ -102,11 +101,7 @@ const proTable = ref()
 
 // *根据id删除
 const handleDelete = async (row: GoodsSpec.ResGoodsSpecList) => {
-  await useHandleData(
-    deleteGoodsSpecById,
-    row.specId,
-    `删除\$\{row.goodsSpecName\}`,
-  )
+  await useHandleData(deleteGoodsSpecById, row.specId, `删除${row.specName}`)
   proTable.value.getTableList()
 }
 </script>

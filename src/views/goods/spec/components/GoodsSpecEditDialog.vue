@@ -1,4 +1,3 @@
-
 <!-- 编辑商品规格 -->
 <template>
   <el-dialog
@@ -14,27 +13,27 @@
       :rules="rules"
       :model="dialogProps.rowData"
     >
-     <el-form-item label="规格名" prop="specName">
+      <el-form-item label="规格名" prop="specName">
         <el-input
           v-model="dialogProps.rowData!.specName"
           placeholder="请填写规格名"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="分类ID" prop="categoryId">
+      </el-form-item>
+      <el-form-item label="分类ID" prop="categoryId">
         <el-input
           v-model="dialogProps.rowData!.categoryId"
           placeholder="请填写分类ID"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="排序值" prop="seq">
+      </el-form-item>
+      <el-form-item label="排序值" prop="seq">
         <el-input
           v-model="dialogProps.rowData!.seq"
           placeholder="请填写排序值"
           clearable
         ></el-input>
-       </el-form-item>
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -58,9 +57,9 @@ interface DialogProps {
 }
 
 const rules = reactive({
-     specName: [{ required: true, message: '请填写规格名' }],
-     categoryId: [{ required: true, message: '请填写分类ID' }],
-     seq: [{ required: true, message: '请填写排序值' }],
+  specName: [{ required: true, message: '请填写规格名' }],
+  categoryId: [{ required: true, message: '请填写分类ID' }],
+  seq: [{ required: true, message: '请填写排序值' }],
 })
 
 const dialogVisible = ref(false)
