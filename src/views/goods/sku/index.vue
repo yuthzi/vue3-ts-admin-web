@@ -1,4 +1,3 @@
-
 <!-- SKU管理视图页面 -->
 <template>
   <div>
