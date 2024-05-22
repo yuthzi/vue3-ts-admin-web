@@ -55,6 +55,18 @@
         </el-form>
       </el-col>
     </el-row>
+    <div
+      style="text-align: center; width: 100%; position: absolute; bottom: 5px"
+    >
+      <a
+        style="text-decoration: none; color: #ffffff"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://beian.miit.gov.cn/"
+      >
+        粤ICP备2024253401号
+      </a>
+    </div>
   </div>
 </template>
 
