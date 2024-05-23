@@ -1,11 +1,10 @@
-
 /*
  * SKU模型定义
  * @Author: yuth
  * @Date: 2024-05-21 22:27:32
  * @Description: SKU
  */
-import type { ReqPage } from '../types'
+import type { ReqPage } from '@/api/types'
 
 /*
  * SKU管理模块
@@ -20,7 +19,7 @@ export namespace GoodsSku {
     quantity?: string
     lockQuantity?: string
     version?: string
-          }
+  }
 
   export interface ReqUpdateGoodsSku {
     skuId: string
@@ -32,7 +31,7 @@ export namespace GoodsSku {
     quantity?: string
     lockQuantity?: string
     version?: string
-          }
+  }
 
   export interface ReqGoodsSkuList extends ReqPage {
     skuId?: string
