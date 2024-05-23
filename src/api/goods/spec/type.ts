@@ -1,11 +1,10 @@
-
 /*
  * 商品规格模型定义
  * @Author: yuth
  * @Date: 2024-05-21 22:27:31
  * @Description: 商品规格
  */
-import type { ReqPage } from '../types'
+import type { ReqPage } from '@/api/types'
 
 /*
  * 商品规格管理模块
@@ -16,7 +15,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
-          }
+  }
 
   export interface ReqUpdateGoodsSpec {
     specId: string
@@ -24,7 +23,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
-          }
+  }
 
   export interface ReqGoodsSpecList extends ReqPage {
     specId?: string

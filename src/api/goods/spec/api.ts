@@ -1,11 +1,10 @@
-
 /*
  * @Author: yuth
  * @Date: 2024-05-21 22:27:32
  * @Description: 商品规格
  */
 import http from '@/utils/http'
-import type { PageRes } from '../types'
+import type { PageRes } from '@/api/types'
 import type { GoodsSpec } from './type'
 
 /**

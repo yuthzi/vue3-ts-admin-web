@@ -1,11 +1,10 @@
-
 /*
  * SPU模型定义
  * @Author: yuth
  * @Date: 2024-05-21 22:27:32
  * @Description: SPU
  */
-import type { ReqPage } from '../types'
+import type { ReqPage } from '@/api/types'
 
 /*
  * SPU管理模块
@@ -27,7 +26,7 @@ export namespace GoodsSpu {
     picUrl?: string
     isAudited?: string
     seq?: number
-          }
+  }
 
   export interface ReqUpdateGoodsSpu {
     spuId: string
@@ -46,7 +45,7 @@ export namespace GoodsSpu {
     picUrl?: string
     isAudited?: string
     seq?: number
-          }
+  }
 
   export interface ReqGoodsSpuList extends ReqPage {
     spuId?: string
