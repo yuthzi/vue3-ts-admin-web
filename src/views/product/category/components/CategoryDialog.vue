@@ -34,13 +34,6 @@
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-input
-          v-model="dialogProps.rowData!.status"
-          placeholder="请填写状态"
-          clearable
-        ></el-input>
-      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -67,7 +60,6 @@ const rules = reactive({
   pid: [{ required: true, message: '请填写父级分类ID' }],
   categoryName: [{ required: true, message: '请填写分类名称' }],
   seq: [{ required: true, message: '请填写排序值' }],
-  status: [{ required: true, message: '请填写状态' }],
 })
 
 const dialogVisible = ref(false)
