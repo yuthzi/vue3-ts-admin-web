@@ -15,6 +15,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
+    values?: string[] // 属性值
   }
 
   export interface ReqUpdateGoodsSpec {
@@ -23,6 +24,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
+    values?: string[] // 属性值
   }
 
   export interface ReqGoodsSpecList extends ReqPage {
@@ -43,5 +45,6 @@ export namespace GoodsSpec {
     seq?: string
     gmtCreate?: string
     gmtModified?: string
+    values?: string[] // 属性值
   }
 }

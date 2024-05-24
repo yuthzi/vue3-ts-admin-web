@@ -68,6 +68,7 @@ const columns: ColumnProps[] = [
   },
   { prop: 'categoryId', label: '分类ID' },
   { prop: 'seq', label: '排序值' },
+  { prop: 'values', label: '属性值' },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },

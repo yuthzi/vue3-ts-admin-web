@@ -34,6 +34,15 @@
           clearable
         ></el-input>
       </el-form-item>
+      <el-form-item label="属性值" prop="values">
+        <MutilTextInput
+          name="item-input"
+          ref="refValues"
+          :values="['a', 'b', 'c']"
+          :label="``"
+          :placeholder="`回车确定`"
+        />
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -73,8 +82,13 @@ const acceptParams = (params: DialogProps): void => {
   dialogVisible.value = true
 }
 
+const refValues = ref()
 const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
+  // debug
+  console.log('s=' + refValues.value.values)
+
+  //
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
     try {

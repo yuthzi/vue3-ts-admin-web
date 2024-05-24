@@ -8,6 +8,13 @@
             {{ timeFix() }}{{ userInfo?.name }}，{{ welcome() }}
           </p>
           <p class="page-header-tip-desc">灯塔管理系统</p>
+          <MutilTextInput
+            name="item-input"
+            ref="multiTextInput"
+            :values="['a', 'b', 'c']"
+            :label="`尺寸`"
+            :placeholder="`输入任意字符，每个元素之间用回车分割`"
+          />
         </div>
       </div>
     </el-card>
@@ -19,11 +26,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import { timeFix, welcome } from '@/utils/index'
 import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
+
 const userStore = useUserStore()
 const userInfo = userStore.userInfo
+
+/// debug
+const multiTextInput = ref()
+// multiTextInputItem.value.val = 'yuth'
 </script>
 
 <style scoped lang="scss">
