@@ -36,9 +36,8 @@
       </el-form-item>
       <el-form-item label="属性值" prop="values">
         <MutilTextInput
-          name="item-input"
-          ref="refValues"
-          :values="dialogProps.rowData!.values"
+          ref="mutilInputRef"
+          :data="dialogProps.rowData!.values"
           :label="``"
           :dataKey="`specVal`"
           :placeholder="`回车确定`"
@@ -72,6 +71,7 @@ const rules = reactive({
   seq: [{ required: true, message: '请填写排序值' }],
 })
 
+const mutilInputRef = ref()
 const dialogVisible = ref(false)
 const loading = ref<boolean>(false)
 // props定义
@@ -83,19 +83,17 @@ const acceptParams = (params: DialogProps): void => {
   dialogVisible.value = true
 }
 
-const refValues = ref()
 const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
-  // debug
-  console.log('s=' + refValues.value.values)
-
-  //
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
+
+    dialogProps.value.rowData!.values = mutilInputRef.value.data
+
     try {
       loading.value = true
       await dialogProps.value.api!(dialogProps.value.rowData)
-      ElMessage.success({ message: `${dialogProps.value.title}商品规格成功！` })
+      ElMessage.success({ message: `${dialogProps.value.title}规格成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
       loading.value = false

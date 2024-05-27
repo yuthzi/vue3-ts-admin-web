@@ -1,6 +1,6 @@
 <template>
   <div class="multiple-value-text-input">
-    <div class="label" :class="labelClassName">{{ label }}</div>
+    <div class="label" :class="labelClassName" v-if="label">{{ label }}</div>
     <div class="values">
       <span
         v-for="item in valuesRef"
@@ -16,18 +16,20 @@
         />
       </span>
     </div>
-    <input
-      :name="name"
-      :placeholder="placeholder"
-      :value="inputRef"
-      type="text"
-      @keyup.enter="handleEnter"
-      @keypress="handleKeypress"
-      @paste="handlePaste"
-      @blur="handleBlur"
-      class="inputElement"
-      :class="className"
-    />
+    <div class="input__wrapper">
+      <input
+        :name="name"
+        :placeholder="placeholder"
+        :value="inputRef"
+        type="text"
+        @keyup.enter="handleEnter"
+        @keypress="handleKeypress"
+        @paste="handlePaste"
+        @blur="handleBlur"
+        class="inputElement"
+        :class="className"
+      />
+    </div>
   </div>
 </template>
 
@@ -39,7 +41,7 @@ import MultiTextInputItem from './components/MultiTextInputItem.vue'
  * props类型定义
  */
 export interface MultiTextInputProps {
-  values: any // 数据
+  data: any // 数据
   dataKey?: string
   onItemAdded?: (newValue: any, all: any) => any // 添加元素之后的数据响应
   onItemDeleted?: (e: any) => any // 删除元素之后的数据响应
@@ -57,7 +59,7 @@ export interface MultiTextInputProps {
 
 // 组件props
 const props = withDefaults(defineProps<MultiTextInputProps>(), {
-  values: [],
+  data: [],
   dataKey: 'data',
   idKey: 'id',
   onItemAdded: (newValue: any, all: any) => {
@@ -66,7 +68,7 @@ const props = withDefaults(defineProps<MultiTextInputProps>(), {
   onItemDeleted: (e: any) => {
     console.log(e)
   },
-  label: '值',
+  label: '',
   name: 'name',
   placeholder: '输入任意字符，按回车确定',
   submitKeys: ['Enter', ','],
@@ -78,7 +80,7 @@ const props = withDefaults(defineProps<MultiTextInputProps>(), {
 })
 
 // 接收 columns 并设置为响应式
-const valuesRef = ref<string[]>(props.values)
+const valuesRef = ref<string[]>(props.data)
 const inputRef = ref()
 const nonCharacterKeyLabels: string[] = ['Enter', 'Tab']
 const delimiters: string[] = props.submitKeys.filter(
@@ -171,16 +173,19 @@ function splitMulti(str: string) {
   }
   return result.split(tempChar)
 }
+
+defineExpose({
+  data: props.data,
+})
 </script>
 
 <style scoped lang="css">
-.label {
-  margin: 10px;
+.multiple-value-text-input {
+  width: 100%;
 }
 
 .values {
   width: 100%;
-  margin: 10px;
 }
 
 .item {
@@ -192,7 +197,32 @@ function splitMulti(str: string) {
   width: 100%;
 }
 
-.inputElement {
+.input__wrapper {
   width: 100%;
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--el-input-bg-color, var(--el-fill-color-blank));
+  background-image: none;
+  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+  transition: var(--el-transition-box-shadow);
+  box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color))
+    inset;
+}
+
+.inputElement {
+  --el-input-inner-height: calc(var(--el-input-height, 32px) - 2px);
+  width: 100%;
+  flex-grow: 1;
+  color: var(--el-input-text-color, var(--el-text-color-regular));
+  font-size: inherit;
+  height: var(--el-input-inner-height);
+  line-height: var(--el-input-inner-height);
+  padding-left: 10px;
+  outline: 0;
+  border: none;
+  background: 0 0;
+  box-sizing: border-box;
 }
 </style>

@@ -40,7 +40,7 @@ export namespace GoodsSpec {
   export interface ResGoodsSpecList {
     specId: string
     tenantId?: string
-    specName?: string
+    specName: string
     categoryId?: string
     seq?: string
     gmtCreate?: string
@@ -66,7 +66,7 @@ export namespace GoodsSpecValue {
     specValId: string
     tenantId?: string
     specId?: string
-    specVal?: string
+    specVal: string
     seq?: string
     gmtCreate?: string
     gmtModified?: string
