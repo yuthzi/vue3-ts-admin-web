@@ -1,6 +1,6 @@
 <template>
   <span class="inputItem" :class="itemClassName">
-    <span>{{ val }}</span>
+    <span>{{ val[dataKey] }}</span>
     <span class="deleteButton" v-on:click="handleItemRemove(val)">
       <slot name="deleteButton">
         <!-- 默认内容 -->
@@ -15,23 +15,26 @@
  * @description: props类型定义
  * @param value               - 值       ==> 必传
  * @param handleItemRemove    - 删除     ==> 必传
- * @param deleteButton        - 删除按钮 ==> 必传
  */
 export interface ItemProps {
-  val: string
+  val: any
+  dataKey?: string
   itemClassName?: string
   handleItemRemove?: (data: any) => any
 }
 
 // 组件props的ts定义必须在组件中声明
 withDefaults(defineProps<ItemProps>(), {
-  val: 'hi',
+  val: {
+    data: 'hi',
+  },
+  dataKey: 'data',
   itemClassName: '',
   handleItemRemove: (e: any) => console.log('remove ' + e),
 })
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="css">
 .inputItem {
   padding: 5px;
   background: #ccc;

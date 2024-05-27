@@ -10,6 +10,7 @@
       >
         <MultiTextInputItem
           :val="item"
+          :dataKey="dataKey"
           :handleItemRemove="handleItemRemove"
           :itemClassName="itemClassName"
         />
@@ -30,7 +31,7 @@
   </div>
 </template>
 
-<script setup lang="tsx" name="MutilTextInput">
+<script setup lang="ts" name="MutilTextInput">
 import { ref } from 'vue'
 import MultiTextInputItem from './components/MultiTextInputItem.vue'
 
@@ -39,6 +40,7 @@ import MultiTextInputItem from './components/MultiTextInputItem.vue'
  */
 export interface MultiTextInputProps {
   values: any // 数据
+  dataKey?: string
   onItemAdded?: (newValue: any, all: any) => any // 添加元素之后的数据响应
   onItemDeleted?: (e: any) => any // 删除元素之后的数据响应
   label?: string // 数据标签
@@ -56,6 +58,8 @@ export interface MultiTextInputProps {
 // 组件props
 const props = withDefaults(defineProps<MultiTextInputProps>(), {
   values: [],
+  dataKey: 'data',
+  idKey: 'id',
   onItemAdded: (newValue: any, all: any) => {
     console.log(newValue, all)
   },
@@ -82,12 +86,10 @@ const delimiters: string[] = props.submitKeys.filter(
 )
 
 function setValue(value: string) {
-  console.log('setValue: ' + value)
   inputRef.value = value
 }
 
 function handleItemRemove(data: any) {
-  console.log('handleItemRemove=' + data)
   const currentValues = valuesRef.value
   // 只删除一个
   const idx = currentValues.indexOf(data)
@@ -97,11 +99,9 @@ function handleItemRemove(data: any) {
 
   currentValues.splice(idx, 1)
   props.onItemDeleted(data)
-  console.log('handleItemRemove, after remove: ' + valuesRef.value)
 }
 
 function handleKeypress(e: any) {
-  console.log('handleKeypress=' + e.key)
   // Defaults: Enter, Comma (e.key === 'Enter' or ',')
   if (props.submitKeys.includes(e.key)) {
     e.preventDefault()
@@ -110,16 +110,18 @@ function handleKeypress(e: any) {
 }
 
 function handleEnter(e: any) {
-  console.log('handleEnter=' + e.key)
   // Defaults: Enter, Comma (e.key === 'Enter' or ',')
   if (props.submitKeys.includes(e.key)) {
     e.preventDefault()
     handleItemAdd(e.currentTarget.value)
   }
+
+  // debug
+  console.log('dataKey=' + props.dataKey)
+  console.log('values=' + JSON.stringify(props.values))
 }
 
 function handlePaste(e: any) {
-  console.log('handlePaste=' + e)
   const pastedText = e.clipboardData.getData('text/plain')
   const areSubmitKeysPresent = delimiters.some((d: any) =>
     pastedText.includes(d),
@@ -141,13 +143,14 @@ function handleBlur(e: any) {
 }
 
 function handleItemAdd(addedValue: string) {
-  console.log('handleItemAdd, ' + addedValue)
   if (!addedValue) {
     setValue('')
     return
   }
 
-  valuesRef.value.push(addedValue)
+  let row = {}
+  row[props.dataKey] = addedValue
+  valuesRef.value.push(row)
   setValue('')
   props.onItemAdded(addedValue, valuesRef.value)
 }
@@ -157,7 +160,6 @@ function handleItemAdd(addedValue: string) {
  * @param datas
  */
 function handleItemsAdd(datas: string[]) {
-  console.log('handleItemsAdd, ' + datas)
   datas.forEach((d) => handleItemAdd(d))
 }
 
@@ -169,13 +171,9 @@ function splitMulti(str: string) {
   }
   return result.split(tempChar)
 }
-
-defineExpose({
-  values: props.values,
-})
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="css">
 .label {
   margin: 10px;
 }

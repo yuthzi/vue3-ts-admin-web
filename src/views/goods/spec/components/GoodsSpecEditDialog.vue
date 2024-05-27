@@ -38,8 +38,9 @@
         <MutilTextInput
           name="item-input"
           ref="refValues"
-          :values="['a', 'b', 'c']"
+          :values="dialogProps.rowData!.values"
           :label="``"
+          :dataKey="`specVal`"
           :placeholder="`回车确定`"
         />
       </el-form-item>

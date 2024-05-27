@@ -15,7 +15,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
-    values?: string[] // 属性值
+    values?: GoodsSpecValue.ReqAddGoodsSpecValue[] // 属性值
   }
 
   export interface ReqUpdateGoodsSpec {
@@ -24,7 +24,7 @@ export namespace GoodsSpec {
     specName?: string
     categoryId?: string
     seq?: string
-    values?: string[] // 属性值
+    values?: GoodsSpecValue.ReqUpdateGoodsSpecValue[] // 属性值
   }
 
   export interface ReqGoodsSpecList extends ReqPage {
@@ -45,6 +45,30 @@ export namespace GoodsSpec {
     seq?: string
     gmtCreate?: string
     gmtModified?: string
-    values?: string[] // 属性值
+    values?: GoodsSpecValue.ResGoodsSpecValueList[] // 属性值
+  }
+}
+
+/*
+ * 商品规格值管理模块
+ */
+export namespace GoodsSpecValue {
+  export interface ReqAddGoodsSpecValue {
+    specVal?: string
+  }
+
+  export interface ReqUpdateGoodsSpecValue {
+    specValId: string
+    specVal?: string
+  }
+
+  export interface ResGoodsSpecValueList {
+    specValId: string
+    tenantId?: string
+    specId?: string
+    specVal?: string
+    seq?: string
+    gmtCreate?: string
+    gmtModified?: string
   }
 }
