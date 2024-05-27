@@ -114,9 +114,6 @@ const handleDelete = async (row: Partial<Permission.ResPermisionList> = {}) => {
 }
 
 function moveupOrmovedown(row: any, isUp: boolean) {
-  // debugger
-  // console.log(row.index)
-
   // selectedList
   let data = proTable.value.tableData
   // 1 is first level
