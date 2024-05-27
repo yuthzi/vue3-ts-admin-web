@@ -1,6 +1,8 @@
 <template>
   <div class="multiple-value-text-input">
-    <div class="label" :class="labelClassName" v-if="label">{{ label }}</div>
+    <div class="label" :class="labelClassName" v-if="label">
+      {{ label }}&#58;
+    </div>
     <div class="values">
       <span
         v-for="item in valuesRef"
@@ -117,10 +119,6 @@ function handleEnter(e: any) {
     e.preventDefault()
     handleItemAdd(e.currentTarget.value)
   }
-
-  // debug
-  console.log('dataKey=' + props.dataKey)
-  console.log('values=' + JSON.stringify(props.values))
 }
 
 function handlePaste(e: any) {
@@ -186,6 +184,7 @@ defineExpose({
 
 .values {
   width: 100%;
+  padding: 10px 0px;
 }
 
 .item {
@@ -203,22 +202,20 @@ defineExpose({
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  background-color: var(--el-input-bg-color, var(--el-fill-color-blank));
+  background-color: #ffffff;
   background-image: none;
-  border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
-  transition: var(--el-transition-box-shadow);
-  box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color))
-    inset;
+  border-radius: 4px;
+  transition: box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  box-shadow: 0 0 0 1px #dcdfe6 inset;
 }
 
 .inputElement {
-  --el-input-inner-height: calc(var(--el-input-height, 32px) - 2px);
   width: 100%;
   flex-grow: 1;
-  color: var(--el-input-text-color, var(--el-text-color-regular));
+  color: #606266;
   font-size: inherit;
-  height: var(--el-input-inner-height);
-  line-height: var(--el-input-inner-height);
+  height: 30px;
+  line-height: 30px;
   padding-left: 10px;
   outline: 0;
   border: none;
