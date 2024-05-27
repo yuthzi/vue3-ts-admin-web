@@ -58,6 +58,7 @@
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import type { Permission } from '@/api/acl/types'
+
 interface DialogProps {
   type: number
   rowData?: Permission.ResPermisionList

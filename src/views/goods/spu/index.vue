@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :id="`spuId`"
+      :selectId="`spuId`"
       :columns="columns"
       :requestApi="getGoodsSpuList"
       :dataCallback="dataCallback"

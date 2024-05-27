@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :id="`categoryId`"
+      :selectId="'categoryId'"
       :columns="columns"
       :requestApi="getCategoryList"
       :dataCallback="dataCallback"
@@ -11,19 +11,33 @@
       <!-- Expand -->
       <template #tableHeader>
         <Auth :value="['btn.Category.add']">
-          <el-button type="primary" icon="Plus" @click="openDialog('新增')">
+          <el-button
+            type="primary"
+            icon="Plus"
+            @click="openDialog(true, '新增')"
+          >
             添加
           </el-button>
         </Auth>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
+        <Auth :value="['btn.Category.add']">
+          <el-button
+            type="primary"
+            link
+            icon="CirclePlus"
+            @click="openDialog(true, '添加子分类', scope.row)"
+          >
+            添加子分类
+          </el-button>
+        </Auth>
         <Auth :value="['btn.Category.update']">
           <el-button
             type="primary"
             link
             icon="Edit"
-            @click="openDialog('编辑', scope.row)"
+            @click="openDialog(false, '编辑', scope.row)"
           >
             编辑
           </el-button>
@@ -88,7 +102,7 @@ const columns: ColumnProps[] = [
     label: '更新时间',
     sortable: true,
   },
-  { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
+  { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
 // 处理返回的数据格式
@@ -102,13 +116,15 @@ const dataCallback = (data: any) => {
 // 打开Dialog
 const DialogRef = ref()
 const openDialog = (
+  isAdd: boolean,
   title: string,
   rowData: Partial<Category.ResCategoryList> = {},
 ) => {
   const params = {
+    isAdd: isAdd,
     title: title,
     rowData: { ...rowData },
-    api: title === '新增' ? addCategory : updateCategory,
+    api: isAdd ? addCategory : updateCategory,
     getTableList: proTable.value.getTableList,
   }
   DialogRef.value.acceptParams(params)

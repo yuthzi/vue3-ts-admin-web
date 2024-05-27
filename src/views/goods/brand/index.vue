@@ -2,7 +2,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :id="`brandId`"
+      :selectId="`brandId`"
       :columns="columns"
       :requestApi="getBrandList"
       :dataCallback="dataCallback"
