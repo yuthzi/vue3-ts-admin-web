@@ -73,12 +73,7 @@ import CategoryDialog from './components/CategoryDialog.vue'
 
 // *表格配置项
 const columns: ColumnProps[] = [
-  { type: 'index', label: '#', width: 80 },
   { prop: 'categoryId', label: 'id' },
-  {
-    prop: 'pid',
-    label: '父级分类ID',
-  },
   {
     prop: 'categoryName',
     label: '分类名称',

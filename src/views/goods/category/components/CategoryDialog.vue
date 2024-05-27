@@ -11,25 +11,18 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
-      <el-form-item label="父级分类ID" prop="pid">
-        <el-input
-          v-model="dialogProps.rowData!.pid"
-          placeholder="请填写父级分类ID"
-          clearable
-        ></el-input>
-      </el-form-item>
       <el-form-item label="分类名称" prop="categoryName">
         <el-input
-          v-model="dialogProps.rowData!.categoryName"
+          v-model="formData!.categoryName"
           placeholder="请填写分类名称"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="seq">
         <el-input
-          v-model="dialogProps.rowData!.seq"
+          v-model="formData!.seq"
           placeholder="请填写排序值"
           clearable
         ></el-input>
@@ -50,11 +43,17 @@ import { ElMessage, FormInstance } from 'element-plus'
 import type { Category } from '@/api/product/types'
 
 interface DialogProps {
+  isAdd?: boolean
   title: string
   rowData?: Category.ResCategoryList
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
 }
+
+let formData = ref<Category.ReqAddCategory>({
+  categoryName: '',
+  seq: 1,
+})
 
 const rules = reactive({
   pid: [{ required: true, message: '请填写父级分类ID' }],
@@ -71,15 +70,26 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+
+  const row: any = params.rowData
+  if (params.isAdd) {
+    formData.value = {
+      pid: row.categoryId,
+      seq: row.children ? row.children.length + 1 : 1,
+    }
+  } else {
+    formData.value = row
+  }
 }
 
 const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
+  console.log('value=' + JSON.stringify(formData.value))
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
+      await dialogProps.value.api!(formData.value)
       ElMessage.success({ message: `${dialogProps.value.title}分类成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
