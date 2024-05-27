@@ -1,4 +1,3 @@
-
 <!-- 编辑SKU -->
 <template>
   <el-dialog
@@ -14,55 +13,55 @@
       :rules="rules"
       :model="dialogProps.rowData"
     >
-     <el-form-item label="SPU ID" prop="spuId">
+      <el-form-item label="SPU ID" prop="spuId">
         <el-input
           v-model="dialogProps.rowData!.spuId"
           placeholder="请填写SPU ID"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="规格" prop="spec">
+      </el-form-item>
+      <el-form-item label="规格" prop="spec">
         <el-input
           v-model="dialogProps.rowData!.spec"
           placeholder="请填写规格"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="计量单位" prop="unit">
+      </el-form-item>
+      <el-form-item label="计量单位" prop="unit">
         <el-input
           v-model="dialogProps.rowData!.unit"
           placeholder="请填写计量单位"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="销售价" prop="sellingPrice">
+      </el-form-item>
+      <el-form-item label="销售价" prop="sellingPrice">
         <el-input
           v-model="dialogProps.rowData!.sellingPrice"
           placeholder="请填写销售价"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="数量" prop="quantity">
+      </el-form-item>
+      <el-form-item label="数量" prop="quantity">
         <el-input
           v-model="dialogProps.rowData!.quantity"
           placeholder="请填写数量"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="下单锁定数量" prop="lockQuantity">
+      </el-form-item>
+      <el-form-item label="下单锁定数量" prop="lockQuantity">
         <el-input
           v-model="dialogProps.rowData!.lockQuantity"
           placeholder="请填写下单锁定数量"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="版本号（用于乐观锁）" prop="version">
+      </el-form-item>
+      <el-form-item label="版本号（用于乐观锁）" prop="version">
         <el-input
           v-model="dialogProps.rowData!.version"
           placeholder="请填写版本号（用于乐观锁）"
           clearable
         ></el-input>
-       </el-form-item>
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -76,7 +75,7 @@
 <script setup lang="ts" name="GoodsSkuEditDialog">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import type { GoodsSku } from '@/api//goods/sku/type'
+import type { GoodsSku } from '@/api/goods/sku/type'
 
 interface DialogProps {
   title: string
@@ -86,13 +85,13 @@ interface DialogProps {
 }
 
 const rules = reactive({
-     spuId: [{ required: true, message: '请填写SPU ID' }],
-     spec: [{ required: true, message: '请填写规格' }],
-     unit: [{ required: true, message: '请填写计量单位' }],
-     sellingPrice: [{ required: true, message: '请填写销售价' }],
-     quantity: [{ required: true, message: '请填写数量' }],
-     lockQuantity: [{ required: true, message: '请填写下单锁定数量' }],
-     version: [{ required: true, message: '请填写版本号（用于乐观锁）' }],
+  spuId: [{ required: true, message: '请填写SPU ID' }],
+  spec: [{ required: true, message: '请填写规格' }],
+  unit: [{ required: true, message: '请填写计量单位' }],
+  sellingPrice: [{ required: true, message: '请填写销售价' }],
+  quantity: [{ required: true, message: '请填写数量' }],
+  lockQuantity: [{ required: true, message: '请填写下单锁定数量' }],
+  version: [{ required: true, message: '请填写版本号（用于乐观锁）' }],
 })
 
 const dialogVisible = ref(false)

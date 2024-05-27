@@ -57,7 +57,7 @@
 <script setup lang="ts" name="GoodsSpecEditDialog">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import type { GoodsSpec } from '@/api//goods/spec/type'
+import type { GoodsSpec } from '@/api/goods/spec/type'
 
 interface DialogProps {
   title: string

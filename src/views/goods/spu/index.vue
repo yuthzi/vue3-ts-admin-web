@@ -1,4 +1,3 @@
-
 <!-- SPU管理视图页面 -->
 <template>
   <div>
@@ -52,8 +51,8 @@ import {
   addGoodsSpu,
   updateGoodsSpu,
   deleteGoodsSpuById,
-} from '@/api//goods/spu/api'
-import type { GoodsSpu } from '@/api//goods/spu/type'
+} from '@/api/goods/spu/api'
+import type { GoodsSpu } from '@/api/goods/spu/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import GoodsSpuEditDialog from './components/GoodsSpuEditDialog.vue'

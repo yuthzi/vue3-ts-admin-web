@@ -51,8 +51,8 @@ import {
   addGoodsSku,
   updateGoodsSku,
   deleteGoodsSkuById,
-} from '@/api//goods/sku/api'
-import type { GoodsSku } from '@/api//goods/sku/type'
+} from '@/api/goods/sku/api'
+import type { GoodsSku } from '@/api/goods/sku/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import GoodsSkuEditDialog from './components/GoodsSkuEditDialog.vue'

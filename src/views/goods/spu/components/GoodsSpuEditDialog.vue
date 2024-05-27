@@ -1,4 +1,3 @@
-
 <!-- 编辑SPU -->
 <template>
   <el-dialog
@@ -14,104 +13,104 @@
       :rules="rules"
       :model="dialogProps.rowData"
     >
-     <el-form-item label="商品名称" prop="goodsName">
+      <el-form-item label="商品名称" prop="goodsName">
         <el-input
           v-model="dialogProps.rowData!.goodsName"
           placeholder="请填写商品名称"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="顾客端的名称" prop="goodsTitle">
+      </el-form-item>
+      <el-form-item label="顾客端的名称" prop="goodsTitle">
         <el-input
           v-model="dialogProps.rowData!.goodsTitle"
           placeholder="请填写顾客端的名称"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="分类ID" prop="categoryId">
+      </el-form-item>
+      <el-form-item label="分类ID" prop="categoryId">
         <el-input
           v-model="dialogProps.rowData!.categoryId"
           placeholder="请填写分类ID"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="品牌ID" prop="brandId">
+      </el-form-item>
+      <el-form-item label="品牌ID" prop="brandId">
         <el-input
           v-model="dialogProps.rowData!.brandId"
           placeholder="请填写品牌ID"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="品牌名称" prop="brandName">
+      </el-form-item>
+      <el-form-item label="品牌名称" prop="brandName">
         <el-input
           v-model="dialogProps.rowData!.brandName"
           placeholder="请填写品牌名称"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="助记码" prop="mneCode">
+      </el-form-item>
+      <el-form-item label="助记码" prop="mneCode">
         <el-input
           v-model="dialogProps.rowData!.mneCode"
           placeholder="请填写助记码"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="货号" prop="artNo">
+      </el-form-item>
+      <el-form-item label="货号" prop="artNo">
         <el-input
           v-model="dialogProps.rowData!.artNo"
           placeholder="请填写货号"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="规格ID" prop="specId">
+      </el-form-item>
+      <el-form-item label="规格ID" prop="specId">
         <el-input
           v-model="dialogProps.rowData!.specId"
           placeholder="请填写规格ID"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="计量单位" prop="unit">
+      </el-form-item>
+      <el-form-item label="计量单位" prop="unit">
         <el-input
           v-model="dialogProps.rowData!.unit"
           placeholder="请填写计量单位"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="商品售价" prop="sellingPrice">
+      </el-form-item>
+      <el-form-item label="商品售价" prop="sellingPrice">
         <el-input
           v-model="dialogProps.rowData!.sellingPrice"
           placeholder="请填写商品售价"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="商品介绍" prop="intro">
+      </el-form-item>
+      <el-form-item label="商品介绍" prop="intro">
         <el-input
           v-model="dialogProps.rowData!.intro"
           placeholder="请填写商品介绍"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="主图路径" prop="picUrl">
+      </el-form-item>
+      <el-form-item label="主图路径" prop="picUrl">
         <el-input
           v-model="dialogProps.rowData!.picUrl"
           placeholder="请填写主图路径"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="是否已审核" prop="isAudited">
+      </el-form-item>
+      <el-form-item label="是否已审核" prop="isAudited">
         <el-input
           v-model="dialogProps.rowData!.isAudited"
           placeholder="请填写是否已审核"
           clearable
         ></el-input>
-       </el-form-item>
-     <el-form-item label="排序" prop="seq">
+      </el-form-item>
+      <el-form-item label="排序" prop="seq">
         <el-input
           v-model="dialogProps.rowData!.seq"
           placeholder="请填写排序"
           clearable
         ></el-input>
-       </el-form-item>
+      </el-form-item>
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
@@ -125,7 +124,7 @@
 <script setup lang="ts" name="GoodsSpuEditDialog">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import type { GoodsSpu } from '@/api//goods/spu/type'
+import type { GoodsSpu } from '@/api/goods/spu/type'
 
 interface DialogProps {
   title: string
@@ -135,20 +134,20 @@ interface DialogProps {
 }
 
 const rules = reactive({
-     goodsName: [{ required: true, message: '请填写商品名称' }],
-     goodsTitle: [{ required: true, message: '请填写顾客端的名称' }],
-     categoryId: [{ required: true, message: '请填写分类ID' }],
-     brandId: [{ required: true, message: '请填写品牌ID' }],
-     brandName: [{ required: true, message: '请填写品牌名称' }],
-     mneCode: [{ required: true, message: '请填写助记码' }],
-     artNo: [{ required: true, message: '请填写货号' }],
-     specId: [{ required: true, message: '请填写规格ID' }],
-     unit: [{ required: true, message: '请填写计量单位' }],
-     sellingPrice: [{ required: true, message: '请填写商品售价' }],
-     intro: [{ required: true, message: '请填写商品介绍' }],
-     picUrl: [{ required: true, message: '请填写主图路径' }],
-     isAudited: [{ required: true, message: '请填写是否已审核' }],
-     seq: [{ required: true, message: '请填写排序' }],
+  goodsName: [{ required: true, message: '请填写商品名称' }],
+  goodsTitle: [{ required: true, message: '请填写顾客端的名称' }],
+  categoryId: [{ required: true, message: '请填写分类ID' }],
+  brandId: [{ required: true, message: '请填写品牌ID' }],
+  brandName: [{ required: true, message: '请填写品牌名称' }],
+  mneCode: [{ required: true, message: '请填写助记码' }],
+  artNo: [{ required: true, message: '请填写货号' }],
+  specId: [{ required: true, message: '请填写规格ID' }],
+  unit: [{ required: true, message: '请填写计量单位' }],
+  sellingPrice: [{ required: true, message: '请填写商品售价' }],
+  intro: [{ required: true, message: '请填写商品介绍' }],
+  picUrl: [{ required: true, message: '请填写主图路径' }],
+  isAudited: [{ required: true, message: '请填写是否已审核' }],
+  seq: [{ required: true, message: '请填写排序' }],
 })
 
 const dialogVisible = ref(false)
