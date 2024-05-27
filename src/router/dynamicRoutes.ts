@@ -189,6 +189,24 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
+        name: 'Category',
+        path: '/goods/category',
+        component: () => import('@/views/goods/category/index.vue'),
+        meta: {
+          title: '分类列表',
+          icon: 'Grid',
+        },
+      },
+      {
+        name: 'Brand',
+        path: '/goods/brand',
+        component: () => import('@/views/goods/brand/index.vue'),
+        meta: {
+          title: '品牌列表',
+          icon: 'Grid',
+        },
+      },
+      {
         name: 'GoodsSkuList',
         path: '/goods/sku/index',
         component: () => import('@/views/goods/sku/index.vue'),
