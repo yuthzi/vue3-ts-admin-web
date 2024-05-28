@@ -104,7 +104,7 @@
                 return item.beforeChange(scope.row[item.prop], scope.row)
               }
             "
-            @change="item.onChange && item.onChange($event, scope.row)"
+            @change="item.onChange?.($event, scope.row)"
           ></el-switch>
         </el-table-column>
         <!-- other columns -->
