@@ -47,7 +47,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
-  // 商品管理
+  // 商品管理0
   {
     name: 'Product0',
     path: '/product0',
@@ -64,24 +64,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/product/attr/index.vue'),
         meta: {
           title: '属性列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'Brand',
-        path: '/product/brand',
-        component: () => import('@/views/product/brand/index.vue'),
-        meta: {
-          title: '品牌列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'Category',
-        path: '/product/category',
-        component: () => import('@/views/product/category/index.vue'),
-        meta: {
-          title: '分类列表',
           icon: 'Grid',
         },
       },
