@@ -82,4 +82,5 @@ export interface ColumnProps<T = any>
   onChange?: (evt: any, row: any) => any // type为switch类型时必填。开关的onChange事件响应
   _children?: ColumnProps<T>[] // 多级表头
 }
+
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
