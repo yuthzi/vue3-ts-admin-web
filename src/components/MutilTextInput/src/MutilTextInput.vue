@@ -148,7 +148,7 @@ function handleItemAdd(addedValue: string) {
     return
   }
 
-  let row = {}
+  let row: any = {}
   row[props.dataKey] = addedValue
   valuesRef.value.push(row)
   setValue('')
