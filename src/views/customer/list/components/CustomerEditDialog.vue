@@ -11,46 +11,49 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
       <el-form-item label="用户名" prop="username">
         <el-input
-          v-model="dialogProps.rowData!.username"
+          v-model="formData!.username"
           placeholder="请填写用户名"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="姓名" prop="nickname">
         <el-input
-          v-model="dialogProps.rowData!.nickname"
+          v-model="formData!.nickname"
           placeholder="请填写姓名"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
-        <el-input
-          v-model="dialogProps.rowData!.gender"
-          placeholder="请填写性别"
-          clearable
-        ></el-input>
+        <el-select v-model="formData!.gender" placeholder="请填写性别">
+          <el-option
+            v-for="item in genderOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input
-          v-model="dialogProps.rowData!.password"
+          v-model="formData!.password"
           placeholder="请填写密码"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="联系电话" prop="phone">
         <el-input
-          v-model="dialogProps.rowData!.phone"
+          v-model="formData!.phone"
           placeholder="请填写联系电话"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="头像" prop="avatar">
         <el-input
-          v-model="dialogProps.rowData!.avatar"
+          v-model="formData!.avatar"
           placeholder="请填写头像"
           clearable
         ></el-input>
@@ -77,6 +80,8 @@ interface DialogProps {
   getTableList?: () => Promise<any>
 }
 
+let formData = ref<Customer.ResCustomerList>()
+
 const rules = reactive({
   username: [{ required: true, message: '请填写用户名' }],
   nickname: [{ required: true, message: '请填写姓名' }],
@@ -93,6 +98,7 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+  formData.value = params.rowData
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -112,6 +118,21 @@ const handleSubmit = () => {
     }
   })
 }
+
+const genderOptions = [
+  {
+    value: '0',
+    label: '保密',
+  },
+  {
+    value: '1',
+    label: '男',
+  },
+  {
+    value: '2',
+    label: '女',
+  },
+]
 
 // 暴露给父组件的方法
 defineExpose({
