@@ -71,6 +71,19 @@ import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import CategoryDialog from './components/CategoryDialog.vue'
 
+const onChangeEnable = async (val: boolean, row: Category.ResCategoryList) => {
+  console.log('val=' + val)
+  const params: any = {
+    categoryId: row.categoryId,
+    status: val ? 1 : 0,
+  }
+  await useHandleData(
+    updateCategory,
+    params,
+    val ? `启用${row.categoryName}` : `禁用${row.categoryName}`,
+  )
+}
+
 // *表格配置项
 const columns: ColumnProps[] = [
   { prop: 'categoryId', label: 'id' },
@@ -84,8 +97,12 @@ const columns: ColumnProps[] = [
     label: '排序值',
   },
   {
+    type: 'switch',
     prop: 'status',
-    label: '状态',
+    label: '是否启用',
+    onChange: onChangeEnable,
+    activeValue: 1,
+    inactiveValue: 0,
   },
   {
     prop: 'gmtCreate',
