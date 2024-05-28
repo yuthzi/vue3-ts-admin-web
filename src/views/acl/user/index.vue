@@ -97,16 +97,6 @@ const beforeChangeEnable = (val: boolean, row: any) => {
 }
 
 const onChangeEnable = async (val: boolean, row: any) => {
-  // if (row?.username === 'admin') {
-  //   ElMessage({
-  //     type: 'warning',
-  //     message: `系统用户不允许修改`,
-  //   })
-
-  //   row.enable = !row.enable
-  //   return false
-  // }
-
   const params: any = {
     userId: row.userId,
     enable: val ? 1 : 0,
