@@ -28,7 +28,11 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
-        <el-select v-model="formData!.gender" placeholder="请填写性别">
+        <el-select
+          v-model="genderValue"
+          placeholder="请填写性别"
+          @change="handleGenderChange"
+        >
           <el-option
             v-for="item in genderOptions"
             :key="item.value"
@@ -80,6 +84,22 @@ interface DialogProps {
   getTableList?: () => Promise<any>
 }
 
+const genderOptions = [
+  {
+    value: '0',
+    label: '保密',
+  },
+  {
+    value: '1',
+    label: '男',
+  },
+  {
+    value: '2',
+    label: '女',
+  },
+]
+
+const genderValue = ref()
 let formData = ref<Customer.ResCustomerList>()
 
 const rules = reactive({
@@ -99,6 +119,14 @@ const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
   formData.value = params.rowData
+
+  // 初始化gender
+  const gender = genderOptions.find((e) => e.value == params.rowData?.gender)
+  genderValue.value = gender === undefined ? '' : gender
+}
+
+const handleGenderChange = () => {
+  formData!.value!.gender = genderValue.value
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -118,21 +146,6 @@ const handleSubmit = () => {
     }
   })
 }
-
-const genderOptions = [
-  {
-    value: '0',
-    label: '保密',
-  },
-  {
-    value: '1',
-    label: '男',
-  },
-  {
-    value: '2',
-    label: '女',
-  },
-]
 
 // 暴露给父组件的方法
 defineExpose({
