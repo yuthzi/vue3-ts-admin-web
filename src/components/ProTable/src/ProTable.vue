@@ -84,7 +84,7 @@
         <el-table-column
           v-bind="item"
           :align="item.align ?? 'center'"
-          v-if="item.type == 'switch' && item.prop && item.onChange"
+          v-if="item.type == 'switch' && item.prop"
           v-slot="scope"
         >
           <el-switch
@@ -98,7 +98,7 @@
                 return item.beforeChange(scope.row[item.prop], scope.row)
               }
             "
-            @change="item.onChange($event, scope.row)"
+            @change="item.onChange && item.onChange($event, scope.row)"
           ></el-switch>
         </el-table-column>
         <!-- other columns -->
