@@ -80,6 +80,8 @@ export interface ColumnProps<T = any>
   render?: (scope: { row: T }) => any // 自定义单元格内容渲染（tsx语法）
   beforeChange?: (val: boolean, row: any) => any // type为switch类型时开关的beforeChange事件响应，可选
   onChange?: (evt: any, row: any) => any // type为switch类型时必填。开关的onChange事件响应
+  activeValue?: boolean | number | string // type为switch类型时的激活状态值。默认是true
+  inactiveValue?: boolean | number | string // type为switch类型时的不激活状态值。默认是false
   _children?: ColumnProps<T>[] // 多级表头
 }
 

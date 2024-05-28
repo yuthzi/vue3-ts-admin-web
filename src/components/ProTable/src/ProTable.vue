@@ -89,6 +89,12 @@
         >
           <el-switch
             v-model="scope.row[item.prop]"
+            :active-value="
+              item.activeValue === undefined ? true : item.activeValue
+            "
+            :inactive-value="
+              item.inactiveValue === undefined ? false : item.inactiveValue
+            "
             :beforeChange="
               () => {
                 if (!item.prop || !item.beforeChange) {
