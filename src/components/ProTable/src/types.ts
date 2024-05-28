@@ -64,7 +64,7 @@ export type SearchProps = {
 } & Partial<Record<BreakPoint, Responsive>>
 
 /**
- * @param type element-plus table的属性。值：'default' | 'selection' | 'index' | 'expand'
+ * @param type element-plus table的属性 + 自定义类型switch。值：'default' | 'selection' | 'index' | 'expand' | switch
  */
 export interface ColumnProps<T = any>
   extends Partial<

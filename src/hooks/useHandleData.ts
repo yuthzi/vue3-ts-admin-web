@@ -1,8 +1,4 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-03-08 14:34:18
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-08 17:01:31
  * @Description: 请求接口二次弹窗确认
  */
 
