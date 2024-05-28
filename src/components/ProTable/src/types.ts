@@ -63,6 +63,9 @@ export type SearchProps = {
   defaultValue?: string | number | boolean | any[] // 搜索项默认值
 } & Partial<Record<BreakPoint, Responsive>>
 
+/**
+ * @param type element-plus table的属性。值：'default' | 'selection' | 'index' | 'expand'
+ */
 export interface ColumnProps<T = any>
   extends Partial<
     Omit<TableColumnCtx<T>, 'children' | 'renderHeader' | 'renderCell'>
@@ -75,6 +78,8 @@ export interface ColumnProps<T = any>
   fieldNames?: { label: string; value: string } // 指定 label && value 的 key 值
   headerRender?: (row: ColumnProps) => any // 自定义表头内容渲染（tsx语法）
   render?: (scope: { row: T }) => any // 自定义单元格内容渲染（tsx语法）
+  beforeChange?: (val: boolean, row: any) => any // type为switch类型时开关的beforeChange事件响应，可选
+  onChange?: (evt: any, row: any) => any // type为switch类型时必填。开关的onChange事件响应
   _children?: ColumnProps<T>[] // 多级表头
 }
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

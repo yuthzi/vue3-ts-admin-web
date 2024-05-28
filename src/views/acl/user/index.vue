@@ -84,11 +84,45 @@ import {
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
 
+const beforeChangeEnable = (val: boolean, row: any) => {
+  if (row?.username === 'admin') {
+    ElMessage({
+      type: 'warning',
+      message: `系统用户不允许修改`,
+    })
+    return false
+  }
+
+  return true
+}
+
+const onChangeEnable = async (val: boolean, row: any) => {
+  // if (row?.username === 'admin') {
+  //   ElMessage({
+  //     type: 'warning',
+  //     message: `系统用户不允许修改`,
+  //   })
+
+  //   row.enable = !row.enable
+  //   return false
+  // }
+
+  const params: any = {
+    userId: row.userId,
+    enable: val ? 1 : 0,
+  }
+  await useHandleData(
+    updateAclUser,
+    params,
+    val ? `启用${row.nickname}用户` : `禁用${row.nickname}用户`,
+  )
+}
+
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'selection', fixed: 'left', width: 80 },
   { type: 'index', label: '#', width: 80 },
-  { prop: 'userId', label: 'id' },
+  // { type: 'default', prop: 'userId', label: 'id' },
   {
     prop: 'username',
     label: '用户名',
@@ -104,22 +138,11 @@ const columns: ColumnProps[] = [
   },
   { prop: 'roleName', label: '角色列表' },
   {
+    type: 'switch',
     prop: 'enable',
     label: '是否启用',
-    render: ({ row }) => {
-      return (
-        <el-switch
-          v-model={row.enable}
-          beforeChange={(e: boolean) => {
-            return beforeChangeEnable(e, row)
-          }}
-          onChange={(e: boolean) => {
-            onChangeEnable(e, row)
-          }}
-          style="--el-switch-on-color: #13ce66;"
-        ></el-switch>
-      )
-    },
+    beforeChange: beforeChangeEnable,
+    onChange: onChangeEnable,
   },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
@@ -181,29 +204,5 @@ const batchDelete = async (ids: string[]) => {
   await useHandleData(batchAclUser, ids, '删除所选用户信息')
   proTable.value.clearSelection()
   proTable.value.getTableList()
-}
-
-const beforeChangeEnable = (val: boolean, row: any) => {
-  if (row?.username === 'admin') {
-    ElMessage({
-      type: 'warning',
-      message: `系统用户不允许修改`,
-    })
-    return false
-  }
-
-  return true
-}
-
-const onChangeEnable = async (val: boolean, row: any) => {
-  const params: any = {
-    userId: row.userId,
-    enable: val ? 1 : 0,
-  }
-  await useHandleData(
-    updateAclUser,
-    params,
-    val ? `启用${row.nickname}用户` : `禁用${row.nickname}用户`,
-  )
 }
 </script>
