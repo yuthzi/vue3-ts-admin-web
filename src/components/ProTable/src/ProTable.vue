@@ -80,8 +80,32 @@
           ></component>
           <slot :name="item.type" :row="scope.row" v-else></slot>
         </el-table-column>
+        <!-- switch -->
+        <el-table-column
+          v-bind="item"
+          :align="item.align ?? 'center'"
+          v-if="item.type == 'switch' && item.prop && item.onChange"
+          v-slot="scope"
+        >
+          <el-switch
+            v-model="scope.row[item.prop]"
+            :beforeChange="
+              () => {
+                if (!item.prop || !item.beforeChange) {
+                  return true
+                }
+
+                return item.beforeChange(scope.row[item.prop], scope.row)
+              }
+            "
+            @change="item.onChange($event, scope.row)"
+          ></el-switch>
+        </el-table-column>
         <!-- other columns -->
-        <TableColumn :column="item" v-if="!item.type && item.prop">
+        <TableColumn
+          :column="item"
+          v-if="(!item.type || item.type == 'default') && item.prop"
+        >
           <template
             v-for="slot in Object.keys($slots)"
             :key="slot"
@@ -91,6 +115,7 @@
           </template>
         </TableColumn>
       </template>
+
       <!-- 插入表格最后一行之后的插槽 -->
       <template #append>
         <slot name="append"></slot>
@@ -129,6 +154,7 @@ import SearchForm from '@/components/SearchForm'
 import TableColumn from './components/TableColumn.vue'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
+
 /**
  * @description: props类型定义
  * @param columns       - 列配置项
