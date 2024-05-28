@@ -1,3 +1,4 @@
+<!-- 编辑客户 -->
 <template>
   <el-dialog
     v-model="dialogVisible"
@@ -12,24 +13,45 @@
       :rules="rules"
       :model="dialogProps.rowData"
     >
-      <el-form-item label="等级名称" prop="levelName">
+      <el-form-item label="用户名" prop="username">
         <el-input
-          v-model="dialogProps.rowData!.levelName"
-          placeholder="请填写等级名称"
+          v-model="dialogProps.rowData!.username"
+          placeholder="请填写用户名"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="等级描述" prop="levelDesc">
+      <el-form-item label="姓名" prop="nickname">
         <el-input
-          v-model="dialogProps.rowData!.levelDesc"
-          placeholder="请填写等级描述"
+          v-model="dialogProps.rowData!.nickname"
+          placeholder="请填写姓名"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="所需积分" prop="minScore">
+      <el-form-item label="性别" prop="gender">
         <el-input
-          v-model="dialogProps.rowData!.minScore"
-          placeholder="请填写所需积分"
+          v-model="dialogProps.rowData!.gender"
+          placeholder="请填写性别"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input
+          v-model="dialogProps.rowData!.password"
+          placeholder="请填写密码"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="联系电话" prop="phone">
+        <el-input
+          v-model="dialogProps.rowData!.phone"
+          placeholder="请填写联系电话"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="头像" prop="avatar">
+        <el-input
+          v-model="dialogProps.rowData!.avatar"
+          placeholder="请填写头像"
           clearable
         ></el-input>
       </el-form-item>
@@ -43,23 +65,23 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts" name="LevelDialog">
+<script setup lang="ts" name="CustomerEditDialog">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import type { ClientUser } from '@/api/client-user/types'
+import type { Customer } from '@/api/customer/type'
 
 interface DialogProps {
   title: string
-  rowData?: ClientUser.ResLevelList
+  rowData?: Customer.ResCustomerList
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
 }
+
 const rules = reactive({
-  levelName: [
-    { required: true, message: '请填写等级名称' },
-    { min: 2, message: '等级名不能小于2位' },
-  ],
-  minScore: [{ required: true, message: '请填写所需积分' }],
+  username: [{ required: true, message: '请填写用户名' }],
+  nickname: [{ required: true, message: '请填写姓名' }],
+  gender: [{ required: true, message: '请填写性别' }],
+  phone: [{ required: true, message: '请填写联系电话' }],
 })
 
 const dialogVisible = ref(false)
@@ -72,6 +94,7 @@ const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
 }
+
 const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
   ruleFormRef.value!.validate(async (valid) => {
@@ -79,7 +102,7 @@ const handleSubmit = () => {
     try {
       loading.value = true
       await dialogProps.value.api!(dialogProps.value.rowData)
-      ElMessage.success({ message: `${dialogProps.value.title}等级成功！` })
+      ElMessage.success({ message: `${dialogProps.value.title}客户成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
       loading.value = false

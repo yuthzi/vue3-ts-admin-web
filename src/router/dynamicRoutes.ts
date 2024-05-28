@@ -129,10 +129,10 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   },
   // 客户管理
   {
-    name: 'ClientUser',
-    path: '/client-user',
+    name: 'Customer',
+    path: '/customer',
     component: LAYOUT,
-    redirect: '/client-user/list',
+    redirect: '/customer/list',
     meta: {
       title: '客户管理',
       icon: 'User',
@@ -140,8 +140,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     children: [
       {
         name: 'CustomerList',
-        path: '/client-user/list',
-        component: () => import('@/views/client-user/list/index.vue'),
+        path: '/customer/list',
+        component: () => import('@/views/customer/list/index.vue'),
         meta: {
           title: '客户列表',
           icon: 'User',
@@ -149,8 +149,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
       {
         name: 'CustomerLevel',
-        path: '/client-user/level',
-        component: () => import('@/views/client-user/level/index.vue'),
+        path: '/customer/level',
+        component: () => import('@/views/customer/level/index.vue'),
         meta: {
           title: '客户等级',
           // icon: 'Grid',
