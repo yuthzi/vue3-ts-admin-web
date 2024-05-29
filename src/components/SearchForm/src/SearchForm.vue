@@ -28,7 +28,7 @@
               type="primary"
               link
               class="search-isOpen"
-              @click="collapsed = !collapsed"
+              @click="handleCollapsed"
             >
               {{ collapsed ? '展开' : '合并' }}
               <el-icon class="el-icon--right">
@@ -58,12 +58,14 @@ interface ProTableProps {
   searchCol: number | Record<BreakPoint, number>
   search: (params: any) => void // 搜索方法
   reset: (params: any) => void // 重置方法
+  onCollapse?: (collapsed: boolean) => void // 折叠/展开的事件响应
 }
 
 // 默认值
 const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
   searchParam: () => ({}),
+  onCollapse: () => ({}),
 })
 
 // 获取响应式设置
@@ -102,6 +104,13 @@ const showCollapse = computed(() => {
   }, 0)
   return show
 })
+
+function handleCollapsed() {
+  collapsed.value = !collapsed.value
+  if (props.onCollapse) {
+    props.onCollapse(collapsed.value)
+  }
+}
 </script>
 
 <style scoped lang="scss">
