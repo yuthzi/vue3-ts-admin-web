@@ -6,6 +6,7 @@
     :searchCol="searchCol"
     :search="search"
     :reset="reset"
+    :onCollapse="onCollapse"
   />
   <div class="card table" ref="tableCard">
     <!-- 表格头部 操作按钮 -->
@@ -168,11 +169,14 @@ import ColSetting from './components/ColSetting.vue'
  * @param dataCallback  - 返回数据的回调函数，可以对数据进行处理 ==> 非必传
  * @param title         - 表格标题，目前只在打印的时候用到 ==> 非必传
  * @param pagination    - 是否需要分页组件 ==> 非必传（默认为true）
+ * @param pageSize      - 每页数目 ==> 非必传（默认为10）
  * @param initParam     - 初始化请求参数 ==> 非必传（默认为{}）
  * @param border        - 是否带有纵向边框 ==> 非必传（默认为true）
  * @param toolButton    - 是否显示表格功能按钮 ==> 非必传（默认为true）
  * @param selectId      - 当表格数据多选时，所指定的字段名 ==> 非必传（默认为 id）
  * @param searchCol     - 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
+ * @param isShowSearch  - 是否展示搜索           ==> 非必传 （默认为true）
+ * @param onCollapse    - 是否展示搜索框展开/折叠的事件响应  ==> 非必传
  */
 interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
   columns: ColumnProps[]
@@ -180,11 +184,14 @@ interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
   dataCallback?: (data: any) => any
   title?: string
   pagination?: boolean
+  pageSize?: number
   initParam?: any
   border?: boolean
   toolButton?: boolean
   selectId?: string
   searchCol?: number | Record<BreakPoint, number>
+  isShowSearch?: boolean
+  onCollapse?: (collapsed: boolean) => void
 }
 
 // 🌟组件props的ts定义必须在组件中声明
@@ -196,6 +203,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   toolButton: true,
   selectId: 'id',
   searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
+  isShowSearch: true,
 })
 
 // --------------------表格-----------------------
@@ -225,6 +233,7 @@ const {
   props.requestApi,
   props.initParam,
   props.pagination,
+  props.pageSize,
   props.dataCallback,
 )
 
@@ -247,7 +256,7 @@ const clearSelection = () => tableRef.value!.clearSelection()
 
 // --------------------搜索-----------------------
 // 是否显示搜索模块
-const isShowSearch = ref(true)
+const isShowSearch = ref(props.isShowSearch)
 
 // 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
 const enumMap = ref(new Map<string, { [key: string]: any }[]>())
