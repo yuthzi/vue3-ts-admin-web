@@ -54,7 +54,7 @@
         </Auth>
       </template>
     </ProTable>
-    <CategoryDialog ref="DialogRef" />
+    <CategoryEditDialog ref="DialogRef" />
   </div>
 </template>
 
@@ -65,55 +65,41 @@ import {
   addCategory,
   updateCategory,
   deleteCategoryById,
-} from '@/api'
-import type { Category } from '@/api/product/types'
+} from '@/api/goods/category/api'
+import type { Category } from '@/api/goods/category/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
-import CategoryDialog from './components/CategoryDialog.vue'
+import CategoryEditDialog from './components/CategoryEditDialog.vue'
 
-const onChangeEnable = async (val: boolean, row: Category.ResCategoryList) => {
-  console.log('val=' + val)
+const onChangeStatus = async (val: boolean, row: Category.ResCategoryList) => {
   const params: any = {
     categoryId: row.categoryId,
     status: val ? 1 : 0,
   }
-  await useHandleData(
-    updateCategory,
-    params,
-    val ? `启用${row.categoryName}` : `禁用${row.categoryName}`,
-  )
+  await useHandleData(updateCategory, params, val ? `启用` : `禁用`)
 }
 
 // *表格配置项
 const columns: ColumnProps[] = [
+  { type: 'index', label: '#', width: 80 },
   { prop: 'categoryId', label: 'id' },
+  { prop: 'pid', label: '父级分类ID' },
   {
     prop: 'categoryName',
     label: '分类名称',
     search: { el: 'input', key: 'categoryName' },
   },
-  {
-    prop: 'seq',
-    label: '排序值',
-  },
+  { prop: 'seq', label: '排序值' },
   {
     type: 'switch',
     prop: 'status',
-    label: '是否启用',
-    onChange: onChangeEnable,
+    label: '状态',
+    onChange: onChangeStatus,
     activeValue: 1,
     inactiveValue: 0,
   },
-  {
-    prop: 'gmtCreate',
-    label: '创建时间',
-    sortable: true,
-  },
-  {
-    prop: 'gmtModified',
-    label: '更新时间',
-    sortable: true,
-  },
+  { prop: 'gmtCreate', label: '创建时间', sortable: true },
+  { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
