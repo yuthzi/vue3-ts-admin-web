@@ -60,23 +60,25 @@ import GoodsSpecEditDialog from './components/GoodsSpecEditDialog.vue'
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
-  { prop: 'specId', label: 'id' },
   {
     prop: 'specName',
     label: '规格名',
     search: { el: 'input', key: 'specName' },
   },
-  { prop: 'categoryId', label: '分类ID' },
-  { prop: 'seq', label: '排序值' },
+  { prop: 'seq', label: '排序值', width: 150 },
   {
     prop: 'values',
     label: '属性值',
+    width: 400,
     render: ({ row }) => {
       if (row.values) {
-        const v = row.values.map(
-          (e: GoodsSpecValue.ResGoodsSpecValueList) => e.specVal,
+        return (
+          <div style="display: flex;grid-gap: 0.5rem; gap: 0.5rem;">
+            {row.values.map((e: GoodsSpecValue.ResGoodsSpecValueList) => {
+              return <el-tag type="primary">{e.specVal}</el-tag>
+            })}
+          </div>
         )
-        return v.join(', ')
       } else {
         return ''
       }
@@ -120,4 +122,4 @@ const handleDelete = async (row: GoodsSpec.ResGoodsSpecList) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
