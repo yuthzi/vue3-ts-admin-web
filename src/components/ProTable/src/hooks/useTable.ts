@@ -6,12 +6,14 @@ import { reactive, computed, onMounted, toRefs } from 'vue'
  * @param {Function} api 获取表格数据 api 方法(必传)
  * @param {Object} initParam 获取数据初始化参数(非必传，默认为{})
  * @param {Boolean} isPageable 是否有分页(非必传，默认为true)
+ * @param {Number} pageSize 每页数目
  * @param {Function} dataCallBack 对后台返回的数据进行处理的方法(非必传)
  * */
 export const useTable = (
   api: (params: any) => Promise<any>,
   initParam: object = {},
   isPageable = true,
+  pageSize = 10,
   dataCallBack?: (data: any) => any,
 ) => {
   const state = reactive<Table.TableStateProps>({
@@ -22,7 +24,7 @@ export const useTable = (
       // 当前页数
       pageNum: 1,
       // 每页显示条数
-      pageSize: 10,
+      pageSize: pageSize,
       // 总条数
       total: 0,
     },
