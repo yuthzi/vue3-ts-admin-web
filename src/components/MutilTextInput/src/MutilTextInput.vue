@@ -46,8 +46,6 @@ export interface MultiTextInputProps {
   name?: string // input标签的name属性
   placeholder?: string // input标签的placeholder属性
   submitKeys?: any //触发添加元素的字符，默认是分号和回车
-  /** JSX or string which will be used as the control to delete an item from the collection */
-  deleteButton?: string
   shouldAddOnBlur?: boolean // Blur时是否触发添加元素
   className?: string // input element class
   labelClassName?: string // input label class
@@ -69,8 +67,7 @@ const props = withDefaults(defineProps<MultiTextInputProps>(), {
   name: 'name',
   placeholder: '输入任意字符，按回车确定',
   submitKeys: ['Enter', ','],
-  deleteButton: '<span>&times;</span>',
-  shouldAddOnBlur: true,
+  shouldAddOnBlur: false,
   className: '',
   itemClassName: 'item',
   labelClassName: '',
@@ -97,6 +94,7 @@ function handleItemRemove(data: any) {
   }
 
   currentValues.splice(idx, 1)
+  valuesRef.value = currentValues
   props.onItemDeleted(data)
 }
 
