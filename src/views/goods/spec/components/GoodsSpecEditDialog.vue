@@ -36,11 +36,10 @@
       </el-form-item>
       <el-form-item label="属性值" prop="values">
         <MutilTextInput
-          ref="mutilInputRef"
           :data="dialogProps.rowData!.values"
-          :label="``"
-          :dataKey="`specVal`"
-          :placeholder="`回车确定`"
+          :label="''"
+          :dataKey="'specVal'"
+          :placeholder="'回车输入属性值'"
         />
       </el-form-item>
     </el-form>
@@ -71,7 +70,7 @@ const rules = reactive({
   seq: [{ required: true, message: '请填写排序值' }],
 })
 
-const mutilInputRef = ref()
+// const mutilInputRef = ref()
 const dialogVisible = ref(false)
 const loading = ref<boolean>(false)
 // props定义
@@ -81,6 +80,8 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+
+  // mutilInputRef.value = dialogProps.value.rowData!.values
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -88,7 +89,7 @@ const handleSubmit = () => {
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
 
-    dialogProps.value.rowData!.values = mutilInputRef.value.data
+    // dialogProps.value.rowData!.values = mutilInputRef.value.data
 
     try {
       loading.value = true
