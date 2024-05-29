@@ -4,12 +4,7 @@
       {{ label }}&#58;
     </div>
     <div class="values">
-      <span
-        v-for="item in valuesRef"
-        :key="item"
-        class="item"
-        :class="itemClassName"
-      >
+      <span v-for="item in valuesRef" :key="item">
         <MultiTextInputItem
           :val="item"
           :dataKey="dataKey"
@@ -183,12 +178,9 @@ defineExpose({
 }
 
 .values {
-  width: 100%;
-  padding: 10px 0px;
-}
-
-.item {
-  height: 20px;
+  display: flex;
+  grid-gap: 0.5rem;
+  gap: 0.5rem;
   width: 100%;
 }
 
