@@ -55,6 +55,7 @@
       :row-key="getRowKeys"
       :border="border"
       @selection-change="selectionChange"
+      class="table-data"
     >
       <!-- default slot -->
       <slot></slot>
