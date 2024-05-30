@@ -19,8 +19,6 @@ import { getBrandList } from '@/api'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { defineEmits } from 'vue'
 
-const emit = defineEmits(['updateInput'])
-
 interface DialogProps {
   title?: string
   placeholder?: string // 输入框的占位符
@@ -29,7 +27,7 @@ interface DialogProps {
 }
 
 // props定义
-const props = withDefaults(defineProps<DialogProps>(), {
+withDefaults(defineProps<DialogProps>(), {
   isShowSearch: true,
   title: '请选择',
   placeholder: '请输入',
@@ -57,6 +55,8 @@ const dataCallback = (data: any) => {
   }
 }
 
+const emit = defineEmits(['updateInput'])
+// 转发事件
 function handleUpdateInput(val: any) {
   emit('updateInput', val)
 }
