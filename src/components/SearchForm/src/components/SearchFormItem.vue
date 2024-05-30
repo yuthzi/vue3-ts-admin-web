@@ -1,33 +1,48 @@
 <template>
-  <component
-    v-if="column.search?.el"
-    :is="`el-${column.search.el}`"
-    v-bind="handleSearchProps"
-    v-model="searchParam[column.search.key ?? handleProp(column.prop!)]"
-    :data="column.search?.el === 'tree-select' ? columnEnum : []"
-    :options="
-      ['cascader', 'select-v2'].includes(column.search?.el) ? columnEnum : []
-    "
-    :placeholder="placeholder"
-    :clearable="clearable"
-    range-separator="至"
-    start-placeholder="开始时间"
-    end-placeholder="结束时间"
-  >
-    <template #default="{ data }" v-if="column.search.el === 'cascader'">
-      <span>{{ data[fieldNames.label] }}</span>
-    </template>
-    <template v-if="column.search.el === 'select'">
-      <component
-        :is="`el-option`"
-        v-for="(col, index) in columnEnum"
-        :key="index"
-        :label="col[fieldNames.label]"
-        :value="col[fieldNames.value]"
-      ></component>
-    </template>
-    <slot v-else></slot>
-  </component>
+  <div>
+    <!-- element plus的组件 -->
+    <component
+      v-if="column.search?.el && isElementPlus"
+      :is="`el-${column.search.el}`"
+      v-bind="handleSearchProps"
+      v-model="searchParam[column.search.key ?? handleProp(column.prop!)]"
+      :data="column.search?.el === 'tree-select' ? columnEnum : []"
+      :options="
+        ['cascader', 'select-v2'].includes(column.search?.el) ? columnEnum : []
+      "
+      :placeholder="placeholder"
+      :clearable="clearable"
+      range-separator="至"
+      start-placeholder="开始时间"
+      end-placeholder="结束时间"
+    >
+      <template #default="{ data }" v-if="column.search.el === 'cascader'">
+        <span>{{ data[fieldNames.label] }}</span>
+      </template>
+      <template v-if="column.search.el === 'select'">
+        <component
+          :is="`el-option`"
+          v-for="(col, index) in columnEnum"
+          :key="index"
+          :label="col[fieldNames.label]"
+          :value="col[fieldNames.value]"
+        ></component>
+      </template>
+      <slot v-else></slot>
+    </component>
+    <!-- 自定义组件 -->
+    <component
+      v-if="column.search?.el && !isElementPlus"
+      :is="`${column.search.el}`"
+      v-bind="handleSearchProps"
+      v-model="searchParam[column.search.key ?? handleProp(column.prop!)]"
+      :placeholder="placeholder"
+      :clearable="clearable"
+      @updateInput="handleUpdateInput"
+    >
+      <slot></slot>
+    </component>
+  </div>
 </template>
 
 <script setup lang="ts" name="SearchFormItem">
@@ -112,5 +127,25 @@ const handleProp = (prop: string) => {
   const propArr = prop.split('.')
   if (propArr.length == 1) return prop
   return propArr[propArr.length - 1]
+}
+
+// 判断是否是element-plus的组件。默认时true
+const isElementPlus = computed(() => {
+  console.log(
+    'at isElementPlus: ' + JSON.stringify(props.searchParam),
+    props.column?.search?.key,
+    handleProp(props.column!.prop!),
+  )
+  const v = props.column.search?.isElement
+  return v === undefined ? true : v
+})
+
+function handleUpdateInput(val: any) {
+  // 2024-05-30 搜索框使用自定义组件SelectorDialog时，选定的数据没有双向绑定到SearchFormItem，原因未知
+  if (props.column?.search) {
+    props.searchParam[
+      props.column.search.key ?? handleProp(props.column.prop!)
+    ] = val
+  }
 }
 </script>
