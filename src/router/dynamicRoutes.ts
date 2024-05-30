@@ -47,6 +47,28 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  // dev
+  {
+    name: 'Dev',
+    path: '/dev',
+    component: LAYOUT,
+    redirect: '/dev/ing',
+    meta: {
+      title: '开发',
+      icon: 'Goods',
+    },
+    children: [
+      {
+        name: 'DevIng',
+        path: '/dev/ing',
+        component: () => import('@/views/dev/shareData/index.vue'),
+        meta: {
+          title: '开发页面',
+          icon: 'Grid',
+        },
+      },
+    ],
+  },
   // 商品管理0
   {
     name: 'Product0',
