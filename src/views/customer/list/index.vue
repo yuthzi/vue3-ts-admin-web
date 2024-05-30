@@ -96,6 +96,7 @@ const columns: ColumnProps[] = [
         label: '女',
       },
     ],
+    search: { el: 'select', key: 'gender' },
   },
   { prop: 'levelScore', label: '等级积分' },
   {
