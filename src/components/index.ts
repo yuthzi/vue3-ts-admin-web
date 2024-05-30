@@ -8,6 +8,7 @@ import { SwitchDark } from './SwitchDark'
 import { IconifyIcon } from './IconifyIcon'
 import { MutilTextInput } from './MutilTextInput'
 import { CategorySelector } from './CategorySelector'
+import { SelectorDialog, BrandSelectorDialog } from './Selector'
 
 const Components: {
   [propName: string]: Component
@@ -20,6 +21,8 @@ const Components: {
   IconifyIcon,
   MutilTextInput,
   CategorySelector,
+  SelectorDialog,
+  BrandSelectorDialog,
 }
 
 export default {
