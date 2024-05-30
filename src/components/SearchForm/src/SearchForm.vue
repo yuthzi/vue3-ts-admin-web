@@ -107,9 +107,7 @@ const showCollapse = computed(() => {
 
 function handleCollapsed() {
   collapsed.value = !collapsed.value
-  if (props.onCollapse) {
-    props.onCollapse(collapsed.value)
-  }
+  props.onCollapse?.(collapsed.value)
 }
 </script>
 
