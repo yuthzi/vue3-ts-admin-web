@@ -1,5 +1,4 @@
 import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
-import { TableProps } from 'element-plus'
 
 export namespace Table {
   export interface Pageable {
