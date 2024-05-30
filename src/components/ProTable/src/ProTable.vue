@@ -1,6 +1,6 @@
 <template>
   <SearchForm
-    v-show="isShowSearch"
+    v-if="isShowSearch"
     :columns="searchColumns"
     :searchParam="searchParam"
     :searchCol="searchCol"
@@ -54,6 +54,7 @@
       :data="tableData"
       :row-key="getRowKeys"
       :border="border"
+      :highlight-current-row="highlightCurrentRow"
       @selection-change="selectionChange"
       class="table-data"
     >
@@ -178,6 +179,7 @@ import ColSetting from './components/ColSetting.vue'
  * @param searchCol     - 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
  * @param isShowSearch  - 是否展示搜索           ==> 非必传 （默认为true）
  * @param onCollapse    - 是否展示搜索框展开/折叠的事件响应  ==> 非必传
+ * @param highlightCurrentRow    - 是否高亮选中行  ==> 非必传 （默认为false）
  */
 interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
   columns: ColumnProps[]
@@ -193,6 +195,7 @@ interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
   searchCol?: number | Record<BreakPoint, number>
   isShowSearch?: boolean
   onCollapse?: (collapsed: boolean) => void
+  highlightCurrentRow?: boolean
 }
 
 // 🌟组件props的ts定义必须在组件中声明
@@ -205,6 +208,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   selectId: 'id',
   searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
   isShowSearch: true,
+  highlightCurrentRow: false,
 })
 
 // --------------------表格-----------------------
