@@ -7,7 +7,7 @@ import { Auth } from './Auth'
 import { SwitchDark } from './SwitchDark'
 import { IconifyIcon } from './IconifyIcon'
 import { MutilTextInput } from './MutilTextInput'
-import { CategorySelector } from './CategorySelector'
+// import { CategorySelector } from './CategorySelector'
 import { SelectorDialog, BrandSelectorDialog } from './Selector'
 
 const Components: {
@@ -20,7 +20,6 @@ const Components: {
   SwitchDark,
   IconifyIcon,
   MutilTextInput,
-  CategorySelector,
   SelectorDialog,
   BrandSelectorDialog,
 }
