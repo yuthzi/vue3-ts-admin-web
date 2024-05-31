@@ -13,6 +13,11 @@ import type { GoodsSpec } from './type'
  * @returns {<PageRes<GoodsSpec.ResGoodsSpecList>>}
  */
 export function getGoodsSpecList(params: GoodsSpec.ReqGoodsSpecList) {
+  // 处理分类选择器返回的数据是一个路径的问题
+  if (params.categoryId && Array.isArray(params.categoryId)) {
+    params.categoryId = params.categoryId.pop()
+  }
+
   return http.post<PageRes<GoodsSpec.ResGoodsSpecList>>(
     `/admin/goods/spec/list`,
     params,
