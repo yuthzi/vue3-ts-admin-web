@@ -58,6 +58,7 @@ interface ProTableProps {
   searchCol: number | Record<BreakPoint, number>
   search: (params: any) => void // 搜索方法
   reset: (params: any) => void // 重置方法
+  isCollapse?: boolean //是否折叠搜索框
   onCollapse?: (collapsed: boolean) => void // 折叠/展开的事件响应
 }
 
@@ -65,6 +66,7 @@ interface ProTableProps {
 const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
   searchParam: () => ({}),
+  isCollapse: false,
   onCollapse: () => ({}),
 })
 
@@ -82,7 +84,7 @@ const getResponsive = (item: ColumnProps) => {
 }
 
 // 是否默认折叠搜索项
-const collapsed = ref(true)
+const collapsed = ref(props.isCollapse)
 
 // 获取响应式断点
 const gridRef = ref()
