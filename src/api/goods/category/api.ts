@@ -20,6 +20,18 @@ export function getCategoryList(params: Category.ReqCategoryList) {
 }
 
 /**
+ * @description 获取分类选择器数据(带搜索)
+ * @param {Category.ReqCategoryList} params
+ * @returns {<PageRes<Category.ResCategoryList>>}
+ */
+export function getCategorySelector(params: Category.ReqCategoryList) {
+  return http.post<PageRes<Category.ResCategoryList>>(
+    `/admin/category/list`,
+    params,
+  )
+}
+
+/**
  * @description 新增分类
  * @param {Category.ReqAddCategory} params
  * @returns {<PageRes<any>>}
