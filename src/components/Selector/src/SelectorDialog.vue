@@ -5,7 +5,9 @@
         v-model="inputData"
         style="width: 240px"
         :placeholder="placeholder"
+        :clearable="true"
         @click="handleClick"
+        @clear="handleClear"
       />
     </div>
     <el-dialog
@@ -131,7 +133,7 @@ const dataCallback = (data: any) => {
 // 有搜索条件的列个数
 const searchColCount = props.columns.filter((item) => item.search?.el).length
 // 处理高度
-let tableDataMinusHeight = ref('140px')
+let tableDataMinusHeight = ref('110px')
 
 function onCollapse(collapsed: boolean) {
   console.log(
@@ -153,7 +155,11 @@ function onCollapse(collapsed: boolean) {
 
 function handleClick() {
   dialogVisible.value = true
-  console.log('requestApi=' + props.requestApi)
+}
+
+function handleClear() {
+  dialogVisible.value = false
+  emit('updateInput', undefined)
 }
 
 function handleConfirm() {

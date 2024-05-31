@@ -63,7 +63,17 @@ const columns: ColumnProps[] = [
   {
     prop: 'specName',
     label: '规格名',
-    search: { el: 'input', key: 'specName' },
+    search: { key: 'specName', el: 'input' },
+  },
+  {
+    prop: 'brandId',
+    label: '品牌',
+    search: {
+      key: 'brandId',
+      el: 'BrandSelectorDialog',
+      isElement: false,
+      props: { placeholder: '请选择品牌', title: '请选择品牌' },
+    },
   },
   { prop: 'seq', label: '排序值', width: 150 },
   {

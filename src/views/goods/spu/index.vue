@@ -74,9 +74,14 @@ const columns: ColumnProps[] = [
   { prop: 'categoryId', label: '分类ID' },
   { prop: 'brandId', label: '品牌ID' },
   {
-    prop: 'brandName',
-    label: '品牌名称',
-    search: { el: 'input', key: 'brandName' },
+    prop: 'brandId',
+    label: '品牌',
+    search: {
+      key: 'brandId',
+      el: 'BrandSelectorDialog',
+      isElement: false,
+      props: { placeholder: '请选择品牌', title: '请选择品牌' },
+    },
   },
   { prop: 'mneCode', label: '助记码' },
   { prop: 'artNo', label: '货号' },
