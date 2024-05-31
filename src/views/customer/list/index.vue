@@ -10,7 +10,7 @@
     >
       <!-- Expand -->
       <template #tableHeader>
-        <Auth :value="['btn.Customer.add']">
+        <Auth :value="['btn.CustomerList.add']">
           <el-button type="primary" icon="Plus" @click="openDialog('新增')">
             添加
           </el-button>
@@ -18,7 +18,7 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <Auth :value="['btn.Customer.update']">
+        <Auth :value="['btn.CustomerList.update']">
           <el-button
             type="primary"
             link
@@ -28,7 +28,7 @@
             编辑
           </el-button>
         </Auth>
-        <Auth :value="['btn.Customer.remove']">
+        <Auth :value="['btn.CustomerList.remove']">
           <el-button
             type="primary"
             link
