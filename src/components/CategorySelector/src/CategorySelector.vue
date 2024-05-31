@@ -1,3 +1,4 @@
+<!-- 废弃 -->
 <template>
   <el-form inline>
     <el-form-item label="一级分类">
