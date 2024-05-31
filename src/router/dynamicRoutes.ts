@@ -300,15 +300,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           icon: 'Histogram',
         },
       },
-      {
-        name: 'SkuSellStatList',
-        path: '/report/order/skuSellStatList',
-        component: () => import('@/views/order/list/index.vue'),
-        meta: {
-          title: '订单分析',
-          icon: 'Grid',
-        },
-      },
     ],
   },
   // 系统管理
