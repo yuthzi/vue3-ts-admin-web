@@ -53,7 +53,7 @@ export interface EnumProps {
  * time-select：element-plus的组件
  * switch：element-plus的组件
  * slider：element-plus的组件
- * dialog: 自定义组件
+ * BrandSelectorDialog: 自定义组件，品牌选择器
  */
 export type SearchType =
   | 'input'
@@ -67,7 +67,7 @@ export type SearchType =
   | 'time-select'
   | 'switch'
   | 'slider'
-  | 'SelectorDialog'
+  | 'BrandSelectorDialog'
 
 export type SearchProps = {
   el: SearchType // 当前项搜索框的类型。
