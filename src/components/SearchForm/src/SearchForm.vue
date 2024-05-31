@@ -30,7 +30,7 @@
               class="search-isOpen"
               @click="handleCollapsed"
             >
-              {{ collapsed ? '展开' : '合并' }}
+              {{ collapsed ? '展开' : '收缩' }}
               <el-icon class="el-icon--right">
                 <component :is="collapsed ? ArrowDown : ArrowUp"></component>
               </el-icon>
