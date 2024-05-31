@@ -160,7 +160,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   },
   // 客户管理
   {
-    name: 'Customer',
+    name: 'CustomerDir',
     path: '/customer',
     component: LAYOUT,
     redirect: '/customer/list',
@@ -170,7 +170,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        name: 'CustomerList',
+        name: 'Customer',
         path: '/customer/list',
         component: () => import('@/views/customer/list/index.vue'),
         meta: {
@@ -220,7 +220,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'GoodsSkuList',
+        name: 'GoodsSku',
         path: '/goods/sku/index',
         component: () => import('@/views/goods/sku/index.vue'),
         meta: {
@@ -229,7 +229,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'GoodsSpecList',
+        name: 'GoodsSpec',
         path: '/goods/spec/index',
         component: () => import('@/views/goods/spec/index.vue'),
         meta: {
@@ -238,7 +238,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'GoodsSpuList',
+        name: 'GoodsSpu',
         path: '/goods/spu/index',
         component: () => import('@/views/goods/spu/index.vue'),
         meta: {
@@ -260,7 +260,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        name: 'OrderList',
+        name: 'OrderBasis',
         path: '/order/list',
         component: () => import('@/views/order/basis/index.vue'),
         meta: {
@@ -269,8 +269,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'RefundList',
-        path: '/order/refundList',
+        name: 'Refund',
+        path: '/order/refund',
         component: () => import('@/views/order/refund/index.vue'),
         meta: {
           title: '退款管理',
