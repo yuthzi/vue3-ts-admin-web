@@ -56,7 +56,10 @@ import type { GoodsSpec, GoodsSpecValue } from '@/api/goods/spec/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import { dataCallback } from '@/utils/pagination'
+import { categorySearchProps } from '@/components/Selector'
 import GoodsSpecEditDialog from './components/GoodsSpecEditDialog.vue'
+
+console.log(categorySearchProps)
 
 // *表格配置项
 const columns: ColumnProps[] = [
@@ -72,35 +75,8 @@ const columns: ColumnProps[] = [
     search: {
       key: 'categoryId',
       el: 'cascader',
-      isElement: true,
-      props: {
-        props: {
-          expandTrigger: 'hover',
-        },
-      },
+      props: categorySearchProps,
     },
-    enum: [
-      {
-        value: 'guide',
-        label: 'Guide',
-        children: [
-          {
-            value: 'disciplines',
-            label: 'Disciplines',
-            children: [
-              {
-                value: 'consistency',
-                label: 'Consistency',
-              },
-              {
-                value: 'feedback',
-                label: 'Feedback',
-              },
-            ],
-          },
-        ],
-      },
-    ],
   },
   { prop: 'seq', label: '排序值', width: 150 },
   {

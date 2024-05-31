@@ -100,9 +100,9 @@ interface DialogProps extends Partial<Omit<TableProps<any>, 'data'>> {
 }
 
 const dialogVisible = ref(false)
-const inputData = ref('')
 // props定义
 const props = withDefaults(defineProps<DialogProps>(), {
+  value: '',
   title: '请选择',
   placeholder: '请输入',
   highlightCurrentRow: true,
@@ -116,6 +116,7 @@ const props = withDefaults(defineProps<DialogProps>(), {
   isShowSearch: true,
 })
 
+const inputData = ref(props.value)
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
 
