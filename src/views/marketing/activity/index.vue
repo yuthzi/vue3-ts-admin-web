@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import { getActivityList } from '@/api'
 import { ref } from 'vue'
+import { dataCallback } from '@/utils/pagination'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import ActivityDrawer from './components/ActivityDrawer.vue'
 import { Activity } from '@/api/marketing/types'
@@ -73,14 +74,6 @@ const columns: ColumnProps[] = [
 
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // *新增、编辑
 const drawerRef = ref()

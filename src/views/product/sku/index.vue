@@ -26,7 +26,9 @@
 import { getSkuList } from '@/api'
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
+import { dataCallback } from '@/utils/pagination'
 import { Order } from '@/api/order/types'
+
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 50 },
@@ -54,14 +56,6 @@ const columns: ColumnProps[] = [
 ]
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // *新增、编辑
 const drawerRef = ref()

@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { dataCallback } from '@/utils/pagination'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { getLoginLogList } from '@/api'
 
@@ -48,12 +49,4 @@ const columns: ColumnProps[] = [
 ]
 
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 </script>

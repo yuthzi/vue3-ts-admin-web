@@ -18,6 +18,7 @@
 import { getBrandList } from '@/api'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { defineEmits } from 'vue'
+import { dataCallback } from '@/utils/pagination'
 
 interface DialogProps {
   title?: string
@@ -46,14 +47,6 @@ const columns: ColumnProps[] = [
     search: { el: 'input', props: { placeholder: '输入品牌名称' } },
   },
 ]
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 const emit = defineEmits(['updateInput'])
 // 转发事件

@@ -54,6 +54,7 @@ import {
 } from '@/api/order/basis/api'
 import type { OrderBasis } from '@/api/order/basis/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
+import { dataCallback } from '@/utils/pagination'
 import { useHandleData } from '@/hooks/useHandleData'
 import OrderBasisEditDialog from './components/OrderBasisEditDialog.vue'
 
@@ -259,14 +260,6 @@ const columns: ColumnProps[] = [
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // 打开Dialog
 const DialogRef = ref()

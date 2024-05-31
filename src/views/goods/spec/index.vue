@@ -55,6 +55,7 @@ import {
 import type { GoodsSpec, GoodsSpecValue } from '@/api/goods/spec/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
+import { dataCallback } from '@/utils/pagination'
 import GoodsSpecEditDialog from './components/GoodsSpecEditDialog.vue'
 
 // *表格配置项
@@ -66,14 +67,40 @@ const columns: ColumnProps[] = [
     search: { key: 'specName', el: 'input' },
   },
   {
-    prop: 'brandId',
-    label: '品牌',
+    prop: 'categoryId',
+    label: '分类',
     search: {
-      key: 'brandId',
-      el: 'BrandSelectorDialog',
-      isElement: false,
-      props: { placeholder: '请选择品牌', title: '请选择品牌' },
+      key: 'categoryId',
+      el: 'cascader',
+      isElement: true,
+      props: {
+        props: {
+          expandTrigger: 'hover',
+        },
+      },
     },
+    enum: [
+      {
+        value: 'guide',
+        label: 'Guide',
+        children: [
+          {
+            value: 'disciplines',
+            label: 'Disciplines',
+            children: [
+              {
+                value: 'consistency',
+                label: 'Consistency',
+              },
+              {
+                value: 'feedback',
+                label: 'Feedback',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   { prop: 'seq', label: '排序值', width: 150 },
   {
@@ -98,14 +125,6 @@ const columns: ColumnProps[] = [
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // 打开Dialog
 const DialogRef = ref()

@@ -46,7 +46,7 @@
 <script setup lang="tsx">
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
-
+import { dataCallback } from '@/utils/pagination'
 import { useHandleData } from '@/hooks/useHandleData'
 import type { Brand } from '@/api/product/types'
 import BrandDrawer from './components/BrandDrawer.vue'
@@ -80,14 +80,6 @@ const columns: ColumnProps[] = [
 ]
 
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // *根据id删除品牌
 const handleDelete = async (row: Brand.ResBrandList) => {

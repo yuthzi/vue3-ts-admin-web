@@ -49,6 +49,8 @@ import { ColumnProps } from '@/components/ProTable/src/types'
 import BannerDrawer from './components/BannerDrawer.vue'
 import { useHandleData } from '@/hooks/useHandleData'
 import { Banner } from '@/api/setting/types'
+import { dataCallback } from '@/utils/pagination'
+
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
@@ -82,14 +84,6 @@ const columns: ColumnProps[] = [
 ]
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // *新增、编辑
 const drawerRef = ref()

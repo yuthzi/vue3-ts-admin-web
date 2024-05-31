@@ -71,6 +71,8 @@ import UserDrawer from './components/UserDrawer.vue'
 import type { AclUser } from '@/api/acl/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import { ElMessage } from 'element-plus'
+import { dataCallback } from '@/utils/pagination'
+
 import {
   getAclUserList,
   addAclUser,
@@ -145,14 +147,6 @@ const searchCol = 5
 
 // *查询参数
 const initParam = reactive({})
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // *新增、编辑、分配角色
 const drawerRef = ref()

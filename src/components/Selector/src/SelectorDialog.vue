@@ -122,14 +122,6 @@ const proTable = ref()
 // *查询参数
 const initParam = reactive({})
 
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
-
 // 有搜索条件的列个数
 const searchColCount = props.columns.filter((item) => item.search?.el).length
 // 处理高度

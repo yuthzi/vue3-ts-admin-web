@@ -53,6 +53,7 @@ import {
   deleteCustomerLevelById,
 } from '@/api/customer/level/api'
 import type { CustomerLevel } from '@/api/customer/level/type'
+import { dataCallback } from '@/utils/pagination'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import CustomerLevelEditDialog from './components/CustomerLevelEditDialog.vue'
@@ -91,14 +92,6 @@ const columns: ColumnProps[] = [
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // 打开Dialog
 const DialogRef = ref()

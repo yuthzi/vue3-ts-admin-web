@@ -57,6 +57,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
+import { dataCallback } from '@/utils/pagination'
+
 import RoleDialog from './components/RoleDialog.vue'
 import DoleDrawer from './components/RoleDrawer.vue'
 import type { Role } from '@/api/acl/types'
@@ -85,14 +87,6 @@ const columns: ColumnProps[] = [
 ]
 
 const proTable = ref()
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // 打开Dialog
 const DialogRef = ref()

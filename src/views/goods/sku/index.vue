@@ -55,6 +55,7 @@ import {
 import type { GoodsSku } from '@/api/goods/sku/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
+import { dataCallback } from '@/utils/pagination'
 import GoodsSkuEditDialog from './components/GoodsSkuEditDialog.vue'
 
 // *表格配置项
@@ -72,14 +73,6 @@ const columns: ColumnProps[] = [
   { prop: 'gmtModified', label: '更新时间', sortable: true },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
-
-// 处理返回的数据格式
-const dataCallback = (data: any) => {
-  return {
-    list: data?.records,
-    total: data?.total,
-  }
-}
 
 // 打开Dialog
 const DialogRef = ref()
