@@ -347,45 +347,45 @@ const acceptParams = (params: DialogProps): void => {
   dialogVisible.value = true
   formData.value = params.rowData
 
-  // 初始化orderSource
-  const orderSource = orderSourceOptions.find(
-    (e) => e.value == params.rowData?.orderSource,
-  )
-  orderSourceValue.value = orderSource === undefined ? '' : orderSource
+  // // 初始化orderSource
+  // const orderSource = orderSourceOptions.find(
+  //   (e: number) => e.value == params.rowData!.orderSource,
+  // )
+  // orderSourceValue.value = orderSource === undefined ? '' : orderSource
 
-  // 初始化orderType
-  const orderType = orderTypeOptions.find(
-    (e) => e.value == params.rowData?.orderType,
-  )
-  orderTypeValue.value = orderType === undefined ? '' : orderType
+  // // 初始化orderType
+  // const orderType = orderTypeOptions.find(
+  //   (e) => e.value == params.rowData?.orderType,
+  // )
+  // orderTypeValue.value = orderType === undefined ? '' : orderType
 
-  // 初始化orderStatus
-  const orderStatus = orderStatusOptions.find(
-    (e) => e.value == params.rowData?.orderStatus,
-  )
-  orderStatusValue.value = orderStatus === undefined ? '' : orderStatus
+  // // 初始化orderStatus
+  // const orderStatus = orderStatusOptions.find(
+  //   (e) => e.value == params.rowData?.orderStatus,
+  // )
+  // orderStatusValue.value = orderStatus === undefined ? '' : orderStatus
 
-  // 初始化payStatus
-  const payStatus = payStatusOptions.find(
-    (e) => e.value == params.rowData?.payStatus,
-  )
-  payStatusValue.value = payStatus === undefined ? '' : payStatus
+  // // 初始化payStatus
+  // const payStatus = payStatusOptions.find(
+  //   (e) => e.value == params.rowData?.payStatus,
+  // )
+  // payStatusValue.value = payStatus === undefined ? '' : payStatus
 
-  // 初始化dispatchStatus
-  const dispatchStatus = dispatchStatusOptions.find(
-    (e) => e.value == params.rowData?.dispatchStatus,
-  )
-  dispatchStatusValue.value = dispatchStatus === undefined ? '' : dispatchStatus
+  // // 初始化dispatchStatus
+  // const dispatchStatus = dispatchStatusOptions.find(
+  //   (e) => e.value == params.rowData?.dispatchStatus,
+  // )
+  // dispatchStatusValue.value = dispatchStatus === undefined ? '' : dispatchStatus
 
-  // 初始化returnStatus
-  const returnStatus = returnStatusOptions.find(
-    (e) => e.value == params.rowData?.returnStatus,
-  )
-  returnStatusValue.value = returnStatus === undefined ? '' : returnStatus
+  // // 初始化returnStatus
+  // const returnStatus = returnStatusOptions.find(
+  //   (e) => e.value == params.rowData?.returnStatus,
+  // )
+  // returnStatusValue.value = returnStatus === undefined ? '' : returnStatus
 
-  // 初始化payType
-  const payType = payTypeOptions.find((e) => e.value == params.rowData?.payType)
-  payTypeValue.value = payType === undefined ? '' : payType
+  // // 初始化payType
+  // const payType = payTypeOptions.find((e) => e.value == params.rowData?.payType)
+  // payTypeValue.value = payType === undefined ? '' : payType
 }
 
 const handleOrderSourceChange = () => {
