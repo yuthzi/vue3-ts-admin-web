@@ -16,7 +16,6 @@
  */
 import { ref } from 'vue'
 import { getCategoryList } from '@/api/goods/category/api'
-import { isLeaf } from 'element-plus/es/utils'
 
 const valueRef = ref([])
 const options = ref([])
@@ -31,6 +30,7 @@ const lazyLoadData = async (node: any, resolve: any) => {
   }).catch((error) => {
     console.log(error)
     resolve([])
+    return
   })
 
   const records = data?.data?.records ?? []
@@ -51,6 +51,6 @@ const props: any = {
 }
 
 const handleChange = (val: any) => {
-  console.log(valueRef.value)
+  console.log(valueRef.value, val)
 }
 </script>
