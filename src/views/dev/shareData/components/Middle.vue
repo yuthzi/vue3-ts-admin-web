@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>第2层组件: {{ sharedData!.title }}</p>
+    <p>第2层组件: {{ sharedData?.title }}</p>
     <Grandson :sharedData="sharedData" />
   </div>
 </template>
