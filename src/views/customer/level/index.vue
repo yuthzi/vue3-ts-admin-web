@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :selectId="`levelId`"
+      :selectId="'levelId'"
       :columns="columns"
       :requestApi="getCustomerLevelList"
       :dataCallback="dataCallback"
@@ -53,9 +53,9 @@ import {
   deleteCustomerLevelById,
 } from '@/api/customer/level/api'
 import type { CustomerLevel } from '@/api/customer/level/type'
-import { dataCallback } from '@/utils/pagination'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
+import { dataCallback } from '@/utils/pagination'
 import CustomerLevelEditDialog from './components/CustomerLevelEditDialog.vue'
 
 const onChangeStatus = async (
