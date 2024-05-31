@@ -54,7 +54,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     component: LAYOUT,
     redirect: '/dev/ing',
     meta: {
-      title: '开发',
+      title: '组件demo',
       icon: 'Goods',
     },
     children: [
@@ -365,3 +365,5 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     ],
   },
 ]
+
+// console.log(JSON.stringify(dynamicRoutes))
