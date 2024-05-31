@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-item-wrap">
     <!-- element plus的组件 -->
     <component
       v-if="column.search?.el && isElementPlus"
