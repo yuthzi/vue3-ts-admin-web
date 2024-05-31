@@ -47,7 +47,7 @@ export interface EnumProps {
  * select：element-plus的组件
  * select-v2：element-plus的组件
  * tree-select：element-plus的组件
- * cascader：element-plus的组件
+ * cascader：element-plus的组件。级联选择器
  * date-picker：element-plus的组件
  * time-picker：element-plus的组件
  * time-select：element-plus的组件
@@ -68,6 +68,7 @@ export type SearchType =
   | 'switch'
   | 'slider'
   | 'BrandSelectorDialog'
+  | 'CategorySelector'
 
 export type SearchProps = {
   el: SearchType // 当前项搜索框的类型。

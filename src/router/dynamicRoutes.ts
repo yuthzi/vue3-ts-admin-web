@@ -59,11 +59,20 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        name: 'DevIng',
-        path: '/dev/ing',
+        name: 'DevShareData',
+        path: '/dev/shareData',
         component: () => import('@/views/dev/shareData/index.vue'),
         meta: {
-          title: '开发页面',
+          title: '父子组件共享数据',
+          icon: 'Grid',
+        },
+      },
+      {
+        name: 'DevCascader',
+        path: '/dev/cascader',
+        component: () => import('@/views/dev/cascader/indexLazyLoad.vue'),
+        meta: {
+          title: '级联选择器',
           icon: 'Grid',
         },
       },
