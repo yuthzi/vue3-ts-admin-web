@@ -72,7 +72,7 @@ export type SearchType =
 
 export type SearchProps = {
   el: SearchType // 当前项搜索框的类型。
-  isElement?: boolean // 是否是element-plus的组件。默认时true
+  isElement?: boolean // 是否是element-plus的组件。默认是true
   props?: any // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
   key?: string // 当搜索项 key 不为 prop 属性时，可通过 key 指定
   order?: number // 搜索项排序（从大到小）
