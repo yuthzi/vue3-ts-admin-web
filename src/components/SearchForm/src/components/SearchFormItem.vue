@@ -129,19 +129,15 @@ const handleProp = (prop: string) => {
   return propArr[propArr.length - 1]
 }
 
-// 判断是否是element-plus的组件。默认时true
+// 判断是否是element-plus的组件。默认是true
 const isElementPlus = computed(() => {
-  console.log(
-    'at isElementPlus: ' + JSON.stringify(props.searchParam),
-    props.column?.search?.key,
-    handleProp(props.column!.prop!),
-  )
   const v = props.column.search?.isElement
   return v === undefined ? true : v
 })
 
 function handleUpdateInput(val: any) {
   // 2024-05-30 搜索框使用自定义组件SelectorDialog时，选定的数据没有双向绑定到SearchFormItem，原因未知
+  // 使用自定义绑定的好处是可以显示label，传输给表单value，分开两个值
   if (props.column?.search) {
     props.searchParam[
       props.column.search.key ?? handleProp(props.column.prop!)

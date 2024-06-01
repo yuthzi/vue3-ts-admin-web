@@ -130,10 +130,11 @@ const searchColCount = props.columns.filter((item) => item.search?.el).length
 let tableDataMinusHeight = ref('110px')
 
 function onCollapse(collapsed: boolean) {
-  console.log(
-    'collapsed=' + collapsed,
-    ((searchColCount + 1) / 2) * 50 + 90 + 'px',
-  )
+  // console.log(
+  //   'collapsed=' + collapsed,
+  //   ((searchColCount + 1) / 2) * 50 + 90 + 'px',
+  // )
+
   // 一行占50px
   if (collapsed) {
     tableDataMinusHeight.value = '140px'
@@ -162,7 +163,7 @@ function handleConfirm() {
   if (proTable.value.selectedList) {
     const v = proTable.value.selectedList[0]
     inputData.value = v[props.labelKey]
-    console.log('value=' + inputData.value)
+    // console.log('value=' + inputData.value)
     // 发送给父组件
     // console.log('handleConfirm, v=' + v[props.valueKey], v[props.labelKey])
     emit('updateInput', v[props.valueKey])
