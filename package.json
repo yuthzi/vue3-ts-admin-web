@@ -7,6 +7,7 @@
     "dev": "vite",
     "build:test": "vue-tsc && vite build --mode test",
     "build:pro": "vue-tsc && vite build --mode production",
+	"build:proIP": "vue-tsc && vite build --mode productionIP",
     "preview": "vite preview",
     "lint": "eslint src",
     "fix": "eslint src --fix",
