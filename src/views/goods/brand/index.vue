@@ -39,7 +39,7 @@
         </Auth>
       </template>
     </ProTable>
-    <BrandDrawer ref="DrawerRef" />
+    <BrandEditDialog ref="DrawerRef" />
   </div>
 </template>
 
@@ -49,7 +49,7 @@ import { ColumnProps } from '@/components/ProTable/src/types'
 import { dataCallback } from '@/utils/pagination'
 import { useHandleData } from '@/hooks/useHandleData'
 import type { Brand } from '@/api/product/types'
-import BrandDrawer from './components/BrandDrawer.vue'
+import BrandEditDialog from './components/BrandEditDialog.vue'
 
 import { getBrandList, removeBrand, addBrand, updateBrand } from '@/api'
 
