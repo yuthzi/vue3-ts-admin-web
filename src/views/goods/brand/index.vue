@@ -75,7 +75,15 @@ const columns: ColumnProps[] = [
       )
     },
   },
-  { prop: 'gmtModified', label: '更新时间', sortable: true },
+  {
+    prop: 'gmtModified',
+    label: '更新时间',
+    sortable: true,
+    search: {
+      el: 'date-range-picker',
+      isElement: false,
+    },
+  },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
