@@ -78,6 +78,7 @@ const emit = defineEmits(['updateInput'])
  * @param highlightCurrentRow    - 是否高亮选中行  ==> 非必传 （默认为false）
  */
 interface DialogProps extends Partial<Omit<TableProps<any>, 'data'>> {
+  value?: string
   columns: ColumnProps[]
   requestApi: (params: any) => Promise<any>
   dataCallback?: (data: any) => any
@@ -95,16 +96,16 @@ interface DialogProps extends Partial<Omit<TableProps<any>, 'data'>> {
   placeholder?: string // 输入框的占位符
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
-  label: string
-  value: string
+  labelKey: string
+  valueKey: string
 }
 
 const dialogVisible = ref(false)
 // props定义
 const props = withDefaults(defineProps<DialogProps>(), {
-  value: '',
   title: '请选择',
   placeholder: '请输入',
+  value: '',
   highlightCurrentRow: true,
   columns: () => [],
   pagination: true,
@@ -157,13 +158,14 @@ function handleClear() {
 
 function handleConfirm() {
   dialogVisible.value = false
-  console.log(proTable.value.selectedList)
+  // console.log('selectedList=' + JSON.stringify(proTable.value.selectedList))
   if (proTable.value.selectedList) {
     const v = proTable.value.selectedList[0]
-    inputData.value = v[props.label]
+    inputData.value = v[props.labelKey]
+    console.log('value=' + inputData.value)
     // 发送给父组件
-    console.log('handleConfirm, v=' + v[props.value], v[props.label])
-    emit('updateInput', v[props.value])
+    // console.log('handleConfirm, v=' + v[props.valueKey], v[props.labelKey])
+    emit('updateInput', v[props.valueKey])
   }
 }
 </script>

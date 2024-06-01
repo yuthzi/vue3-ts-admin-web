@@ -61,19 +61,12 @@ import GoodsSpuEditDialog from './components/GoodsSpuEditDialog.vue'
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
-  { prop: 'spuId', label: 'id' },
   {
     prop: 'goodsName',
     label: '商品名称',
     search: { el: 'input', key: 'goodsName' },
   },
-  {
-    prop: 'goodsTitle',
-    label: '顾客端的名称',
-    search: { el: 'input', key: 'goodsTitle' },
-  },
-  { prop: 'categoryId', label: '分类ID' },
-  { prop: 'brandId', label: '品牌ID' },
+  // { prop: 'categoryId', label: '分类ID' },
   {
     prop: 'brandId',
     label: '品牌',
@@ -84,13 +77,11 @@ const columns: ColumnProps[] = [
       props: { placeholder: '请选择品牌', title: '请选择品牌' },
     },
   },
-  { prop: 'mneCode', label: '助记码' },
+  // { prop: 'mneCode', label: '助记码' },
   { prop: 'artNo', label: '货号' },
-  { prop: 'specId', label: '规格ID' },
+  // { prop: 'specId', label: '规格ID' },
   { prop: 'unit', label: '计量单位' },
   { prop: 'sellingPrice', label: '商品售价' },
-  { prop: 'intro', label: '商品介绍' },
-  { prop: 'picUrl', label: '主图路径' },
   { prop: 'isAudited', label: '是否已审核' },
   { prop: 'seq', label: '排序' },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },

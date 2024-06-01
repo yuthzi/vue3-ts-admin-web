@@ -1,14 +1,15 @@
 <template>
   <div>
     <SelectorDialog
+      :value="value"
       :selectId="`brandId`"
       :dataCallback="dataCallback"
       :columns="columns"
       :isShowSearch="true"
       :requestApi="getBrandList"
       :pageSize="10"
-      :label="'brandName'"
-      :value="'brandId'"
+      :labelKey="'brandName'"
+      :valueKey="'brandId'"
       @updateInput="handleUpdateInput"
     ></SelectorDialog>
   </div>
@@ -23,8 +24,7 @@ import { dataCallback } from '@/utils/pagination'
 interface DialogProps {
   title?: string
   placeholder?: string // 输入框的占位符
-  label?: string
-  value?: string
+  value?: string // 输入框的值
 }
 
 // props定义
@@ -33,8 +33,7 @@ withDefaults(defineProps<DialogProps>(), {
   title: '请选择',
   placeholder: '请输入',
   highlightCurrentRow: true,
-  label: 'brandName',
-  value: 'brandId',
+  value: '',
 })
 
 // *表格配置项
