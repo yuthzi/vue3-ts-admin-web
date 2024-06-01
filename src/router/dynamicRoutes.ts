@@ -59,11 +59,20 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        name: 'DevShareData',
-        path: '/dev/shareData',
-        component: () => import('@/views/dev/shareData/index.vue'),
+        name: 'DevShareDataByReactive',
+        path: '/dev/shareData/reactive',
+        component: () => import('@/views/dev/shareData/reactiveObj/index.vue'),
         meta: {
-          title: '父子组件共享数据',
+          title: '组件共享数据reactive',
+          icon: 'Grid',
+        },
+      },
+      {
+        name: 'DevShareDataByModelValue',
+        path: '/dev/shareData/modelValue',
+        component: () => import('@/views/dev/shareData/modelValue/index.vue'),
+        meta: {
+          title: '组件共享数据modelValue',
           icon: 'Grid',
         },
       },
