@@ -2,7 +2,7 @@
   <div>
     <div>
       <el-input
-        v-model="inputData"
+        v-model="inputModel"
         style="width: 240px"
         :placeholder="placeholder"
         :clearable="true"
@@ -54,11 +54,16 @@
  * 选择数据对话框
  */
 
-import { defineEmits, reactive, ref } from 'vue'
+import { computed, defineEmits, reactive, ref, watch } from 'vue'
 import { ColumnProps, BreakPoint } from '@/components/ProTable/src/types'
 import { TableProps } from 'element-plus'
 
-const emit = defineEmits(['updateInput'])
+const emit = defineEmits([
+  // 'updateInput',
+  'update:modelValue',
+  'input',
+  'change',
+])
 
 /**
  * @description: props类型定义。兼容ProTable的props类型定义
@@ -78,7 +83,7 @@ const emit = defineEmits(['updateInput'])
  * @param highlightCurrentRow    - 是否高亮选中行  ==> 非必传 （默认为false）
  */
 interface DialogProps extends Partial<Omit<TableProps<any>, 'data'>> {
-  value?: string
+  modelValue?: any
   columns: ColumnProps[]
   requestApi: (params: any) => Promise<any>
   dataCallback?: (data: any) => any
@@ -105,7 +110,7 @@ const dialogVisible = ref(false)
 const props = withDefaults(defineProps<DialogProps>(), {
   title: '请选择',
   placeholder: '请输入',
-  value: '',
+  modelValue: '',
   highlightCurrentRow: true,
   columns: () => [],
   pagination: true,
@@ -117,7 +122,19 @@ const props = withDefaults(defineProps<DialogProps>(), {
   isShowSearch: true,
 })
 
-const inputData = ref(props.value)
+const inputModel = ref(!props.modelValue ? '' : String(props.modelValue))
+// 响应父组件重置的关键点: modelValue(名称固定), computed(ref不行), watch
+const nativeInputValue = computed(() =>
+  !props.modelValue ? '' : String(props.modelValue),
+)
+watch(nativeInputValue, (val, oldVal) => {
+  console.log('watch input value', val, oldVal)
+  // 只有父组件重置清除数据时才需要更新inputModel。即数据变化是自父组件到子组件。输入时是：子组件到父组件
+  if (val.length == 0) {
+    inputModel.value = ''
+  }
+})
+
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
 
@@ -154,7 +171,7 @@ function handleClick() {
 
 function handleClear() {
   dialogVisible.value = false
-  emit('updateInput', undefined)
+  emit('update:modelValue', '')
 }
 
 function handleConfirm() {
@@ -162,11 +179,11 @@ function handleConfirm() {
   // console.log('selectedList=' + JSON.stringify(proTable.value.selectedList))
   if (proTable.value.selectedList) {
     const v = proTable.value.selectedList[0]
-    inputData.value = v[props.labelKey]
+    inputModel.value = v[props.labelKey]
     // console.log('value=' + inputData.value)
+    const value = v[props.valueKey]
     // 发送给父组件
-    // console.log('handleConfirm, v=' + v[props.valueKey], v[props.labelKey])
-    emit('updateInput', v[props.valueKey])
+    emit('update:modelValue', value)
   }
 }
 </script>
