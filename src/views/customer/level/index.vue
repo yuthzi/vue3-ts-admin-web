@@ -87,6 +87,17 @@ const columns: ColumnProps[] = [
     onChange: onChangeStatus,
     activeValue: 1,
     inactiveValue: 0,
+    enum: [
+      {
+        value: 0,
+        label: '禁用',
+      },
+      {
+        value: 1,
+        label: '启用',
+      },
+    ],
+    search: { el: 'select', key: 'status' },
   },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
