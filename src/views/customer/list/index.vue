@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :selectId="`customerId`"
+      :selectId="'customerId'"
       :columns="columns"
       :requestApi="getCustomerList"
       :dataCallback="dataCallback"
@@ -54,8 +54,8 @@ import {
 } from '@/api/customer/api'
 import type { Customer } from '@/api/customer/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
-import { dataCallback } from '@/utils/pagination'
 import { useHandleData } from '@/hooks/useHandleData'
+import { dataCallback } from '@/utils/pagination'
 import CustomerEditDialog from './components/CustomerEditDialog.vue'
 
 const onChangeStatus = async (val: boolean, row: Customer.ResCustomerList) => {
@@ -127,11 +127,7 @@ const columns: ColumnProps[] = [
         label: '启用',
       },
     ],
-    search: {
-      el: 'select',
-      key: 'status',
-      props: { placeholder: '请输入', props: { placeholder: '请输入' } },
-    },
+    search: { el: 'select', key: 'status' },
   },
   { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间', sortable: true },
