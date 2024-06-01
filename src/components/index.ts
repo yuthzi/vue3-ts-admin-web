@@ -4,6 +4,7 @@ import { SvgIcon } from './SvgIcon'
 import { SearchForm } from './SearchForm'
 import { ProTable } from './ProTable'
 import { Auth } from './Auth'
+import { DateRangePicker } from './DateRangePicker'
 import { SwitchDark } from './SwitchDark'
 import { IconifyIcon } from './IconifyIcon'
 import { MutilTextInput } from './MutilTextInput'
@@ -17,6 +18,7 @@ const Components: {
   SearchForm,
   ProTable,
   Auth,
+  DateRangePicker,
   SwitchDark,
   IconifyIcon,
   MutilTextInput,
