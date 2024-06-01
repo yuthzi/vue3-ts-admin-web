@@ -61,6 +61,16 @@ watch(inputModel, (val, oldVal) => {
   emit(UPDATE_MODEL_EVENT, val)
 })
 
+//TODO 试试这样子：
+// const value = computed({
+//     get(){
+//         return props.modelValue
+//     },
+//     set(val){
+//         emits('update:modelValue', val)
+//     }
+// })
+
 // 监听父组件的修改
 watch(nativeInputValue, (val, oldVal) => {
   console.log('brand watch nativeInputValue', val, oldVal)
