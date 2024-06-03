@@ -11,54 +11,33 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
-      <el-form-item label="SPU ID" prop="spuId">
-        <el-input
-          v-model="dialogProps.rowData!.spuId"
-          placeholder="请填写SPU ID"
-          clearable
-        ></el-input>
-      </el-form-item>
       <el-form-item label="规格" prop="spec">
         <el-input
-          v-model="dialogProps.rowData!.spec"
+          v-model="formData!.spec"
           placeholder="请填写规格"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="计量单位" prop="unit">
         <el-input
-          v-model="dialogProps.rowData!.unit"
+          v-model="formData!.unit"
           placeholder="请填写计量单位"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="销售价" prop="sellingPrice">
         <el-input
-          v-model="dialogProps.rowData!.sellingPrice"
+          v-model="formData!.sellingPrice"
           placeholder="请填写销售价"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="数量" prop="quantity">
         <el-input
-          v-model="dialogProps.rowData!.quantity"
+          v-model="formData!.quantity"
           placeholder="请填写数量"
-          clearable
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="下单锁定数量" prop="lockQuantity">
-        <el-input
-          v-model="dialogProps.rowData!.lockQuantity"
-          placeholder="请填写下单锁定数量"
-          clearable
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="版本号（用于乐观锁）" prop="version">
-        <el-input
-          v-model="dialogProps.rowData!.version"
-          placeholder="请填写版本号（用于乐观锁）"
           clearable
         ></el-input>
       </el-form-item>
@@ -84,14 +63,14 @@ interface DialogProps {
   getTableList?: () => Promise<any>
 }
 
+let formData = ref<GoodsSku.ResGoodsSkuList>()
+
 const rules = reactive({
   spuId: [{ required: true, message: '请填写SPU ID' }],
   spec: [{ required: true, message: '请填写规格' }],
   unit: [{ required: true, message: '请填写计量单位' }],
   sellingPrice: [{ required: true, message: '请填写销售价' }],
   quantity: [{ required: true, message: '请填写数量' }],
-  lockQuantity: [{ required: true, message: '请填写下单锁定数量' }],
-  version: [{ required: true, message: '请填写版本号（用于乐观锁）' }],
 })
 
 const dialogVisible = ref(false)
@@ -103,6 +82,7 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+  formData.value = params.rowData
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -111,7 +91,7 @@ const handleSubmit = () => {
     if (!valid) return
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
+      await dialogProps.value.api!(formData.value)
       ElMessage.success({ message: `${dialogProps.value.title}SKU成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false

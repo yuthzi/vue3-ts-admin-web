@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :selectId="`skuId`"
+      :selectId="'skuId'"
       :columns="columns"
       :requestApi="getGoodsSkuList"
       :dataCallback="dataCallback"
@@ -69,8 +69,18 @@ const columns: ColumnProps[] = [
   { prop: 'quantity', label: '数量' },
   { prop: 'lockQuantity', label: '下单锁定数量' },
   { prop: 'version', label: '版本号（用于乐观锁）' },
-  { prop: 'gmtCreate', label: '创建时间', sortable: true },
-  { prop: 'gmtModified', label: '更新时间', sortable: true },
+  {
+    prop: 'gmtCreate',
+    label: '创建时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtCreate' },
+  },
+  {
+    prop: 'gmtModified',
+    label: '更新时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtModified' },
+  },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
 
@@ -94,11 +104,7 @@ const proTable = ref()
 
 // *根据id删除
 const handleDelete = async (row: GoodsSku.ResGoodsSkuList) => {
-  await useHandleData(
-    deleteGoodsSkuById,
-    row.skuId,
-    `删除\$\{row.goodsSkuName\}`,
-  )
+  await useHandleData(deleteGoodsSkuById, row.skuId, `删除`)
   proTable.value.getTableList()
 }
 </script>
