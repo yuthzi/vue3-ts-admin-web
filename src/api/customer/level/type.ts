@@ -1,7 +1,7 @@
 /*
  * 客户等级模型定义
  * @Author: yuth
- * @Date: 2024-05-28 16:44:14
+ * @Date: 2024-06-03 11:10:03
  * @Description: 客户等级
  */
 import type { ReqPage } from '@/api/types'

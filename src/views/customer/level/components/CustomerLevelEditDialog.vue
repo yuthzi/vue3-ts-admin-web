@@ -11,28 +11,42 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
       <el-form-item label="等级名称" prop="levelName">
         <el-input
-          v-model="dialogProps.rowData!.levelName"
+          v-model="formData!.levelName"
           placeholder="请填写等级名称"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="等级描述" prop="levelDesc">
         <el-input
-          v-model="dialogProps.rowData!.levelDesc"
+          v-model="formData!.levelDesc"
           placeholder="请填写等级描述"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="所需积分" prop="minScore">
+      <el-form-item label="最小积分" prop="minScore">
         <el-input
-          v-model="dialogProps.rowData!.minScore"
-          placeholder="请填写所需积分"
+          v-model="formData!.minScore"
+          placeholder="请填写所需最小积分"
           clearable
         ></el-input>
+      </el-form-item>
+      <el-form-item label="状态" prop="status">
+        <el-select
+          v-model="statusValue"
+          placeholder="请填写状态"
+          @change="handleStatusChange"
+        >
+          <el-option
+            v-for="item in statusOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -56,12 +70,26 @@ interface DialogProps {
   getTableList?: () => Promise<any>
 }
 
+const statusOptions = [
+  {
+    value: 0,
+    label: '禁用',
+  },
+  {
+    value: 1,
+    label: '启用',
+  },
+]
+
+const statusValue = ref()
+
+let formData = ref<CustomerLevel.ResCustomerLevelList>()
+
 const rules = reactive({
-  levelName: [
-    { required: true, message: '请填写等级名称' },
-    { min: 2, message: '等级名不能小于2位' },
-  ],
-  minScore: [{ required: true, message: '请填写所需积分' }],
+  levelName: [{ required: true, message: '请填写等级名称' }],
+  levelDesc: [{ required: true, message: '请填写等级描述' }],
+  minScore: [{ required: true, message: '请填写所需最小积分' }],
+  status: [{ required: true, message: '请填写状态' }],
 })
 
 const dialogVisible = ref(false)
@@ -73,6 +101,15 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+  formData.value = params.rowData
+
+  // 初始化status
+  const status = statusOptions.find((e) => e.value == formData.value!.status)
+  statusValue.value = status === undefined ? '' : status
+}
+
+const handleStatusChange = () => {
+  formData!.value!.status = statusValue.value
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -81,8 +118,8 @@ const handleSubmit = () => {
     if (!valid) return
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
-      ElMessage.success({ message: `${dialogProps.value.title}等级成功！` })
+      await dialogProps.value.api!(formData.value)
+      ElMessage.success({ message: `${dialogProps.value.title}客户等级成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
       loading.value = false

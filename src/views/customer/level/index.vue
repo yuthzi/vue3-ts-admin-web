@@ -99,8 +99,18 @@ const columns: ColumnProps[] = [
     ],
     search: { el: 'select', key: 'status' },
   },
-  { prop: 'gmtCreate', label: '创建时间', sortable: true },
-  { prop: 'gmtModified', label: '更新时间', sortable: true },
+  {
+    prop: 'gmtCreate',
+    label: '创建时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtCreate' },
+  },
+  {
+    prop: 'gmtModified',
+    label: '更新时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtModified' },
+  },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
 
@@ -127,7 +137,7 @@ const handleDelete = async (row: CustomerLevel.ResCustomerLevelList) => {
   await useHandleData(
     deleteCustomerLevelById,
     row.levelId,
-    `删除\$\{row.customerLevelName\}`,
+    `删除${row.levelName}`,
   )
   proTable.value.getTableList()
 }
