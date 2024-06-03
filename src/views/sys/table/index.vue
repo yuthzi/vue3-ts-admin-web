@@ -15,7 +15,14 @@
             添加
           </el-button>
         </Auth>
-        <el-button type="primary" icon="Plus" @click="sync">同步</el-button>
+        <el-button
+          type="primary"
+          icon="Refresh"
+          @click="sync"
+          :loading="loading"
+        >
+          同步
+        </el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
@@ -47,6 +54,7 @@
 
 <script setup lang="tsx">
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import {
   getSysTableList,
   addSysTable,
@@ -107,6 +115,7 @@ const openDialog = (
 
 // 获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
+const loading = ref<boolean>(false)
 
 // 根据id删除
 const handleDelete = async (row: SysTable.ResSysTableList) => {
@@ -119,7 +128,11 @@ const handleDelete = async (row: SysTable.ResSysTableList) => {
 }
 
 const sync = async () => {
-  syncTable()
+  loading.value = true
+  await syncTable()
+  ElMessage.success({ message: `同步成功！` })
+  loading.value = false
+  proTable.value.getTableList()
 }
 </script>
 
