@@ -1,21 +1,29 @@
+<!-- 编辑品牌 -->
 <template>
-  <el-drawer
-    v-model="drawerVisible"
+  <el-dialog
+    v-model="dialogVisible"
+    :title="dialogProps.title"
     :destroy-on-close="true"
-    size="450px"
-    :title="`${drawerProps.title}用户`"
+    width="580px"
   >
     <el-form
       ref="ruleFormRef"
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="drawerProps.rowData"
+      :model="formData"
     >
       <el-form-item label="品牌名称" prop="brandName">
         <el-input
-          v-model="drawerProps.rowData!.brandName"
+          v-model="formData!.brandName"
           placeholder="请填写品牌名称"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="首字母" prop="initial">
+        <el-input
+          v-model="formData!.initial"
+          placeholder="请填写品牌名首字母"
           clearable
         ></el-input>
       </el-form-item>
@@ -28,8 +36,8 @@
           :before-upload="beforeAvatarUpload"
         >
           <img
-            v-if="drawerProps.rowData!.logoUrl"
-            :src="drawerProps.rowData!.logoUrl"
+            v-if="formData!.logoUrl"
+            :src="formData!.logoUrl"
             class="avatar"
           />
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
@@ -38,52 +46,88 @@
           </template>
         </el-upload>
       </el-form-item>
+      <el-form-item label="状态" prop="status">
+        <el-select
+          v-model="statusValue"
+          placeholder="请填写状态"
+          @change="handleStatusChange"
+        >
+          <el-option
+            v-for="item in statusOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
     </el-form>
     <template #footer>
-      <el-button @click="drawerVisible = false">取消</el-button>
+      <el-button @click="dialogVisible = false">取消</el-button>
       <el-button type="primary" @click="handleSubmit" :loading="loading">
         确定
       </el-button>
     </template>
-  </el-drawer>
+  </el-dialog>
 </template>
 
-<script setup lang="ts" name="BrandDrawer">
+<script setup lang="ts" name="BrandEditDialog">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance, UploadProps } from 'element-plus'
-interface DrawerProps {
+import type { Brand } from '@/api/goods/brand/type'
+
+interface DialogProps {
   title: string
-  rowData?: any
-  list?: any
+  rowData?: Brand.ResBrandList
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
 }
 
+const statusOptions = [
+  {
+    value: 0,
+    label: '禁用',
+  },
+  {
+    value: 1,
+    label: '启用',
+  },
+]
+
+const statusValue = ref()
+
+let formData = ref<Brand.ResBrandList>()
+
 const rules = reactive({
-  brandName: [
-    { required: true, message: '请填写品牌名称' },
-    { min: 2, message: '品牌名称不能小于2位' },
-  ],
+  brandName: [{ required: true, message: '请填写品牌名称' }],
   logoUrl: [{ required: true, message: '请上传品牌Logo' }],
+  seq: [{ required: true, message: '请填写排序值' }],
+  status: [{ required: true, message: '请填写状态' }],
 })
 
-// drawer框状态
-const drawerVisible = ref(false)
-const drawerProps = ref<DrawerProps>({
-  title: '',
-})
-
+const dialogVisible = ref(false)
 const loading = ref<boolean>(false)
-// 接收父组件传过来的参数
-const acceptParams = (params: DrawerProps): void => {
-  drawerProps.value = params
-  drawerVisible.value = true
+// props定义
+// title 需要给个默认值，否则ts会提示为空值
+const dialogProps = ref<DialogProps>({ title: '' })
+// 接收父组件参数
+const acceptParams = (params: DialogProps): void => {
+  dialogProps.value = params
+  dialogVisible.value = true
+  formData.value = params.rowData
+
+  // 初始化status
+  const status = statusOptions.find((e) => e.value == formData.value!.status)
+  statusValue.value = status === undefined ? '' : status
+}
+
+const handleStatusChange = () => {
+  formData!.value!.status = statusValue.value
 }
 
 const handleAvatarSuccess: UploadProps['onSuccess'] = (res, file) => {
   // 保存请求返回的图片url数据
   console.log(res, file)
-  drawerProps.value.rowData.logoUrl = res.data
+  formData!.value!.logoUrl = res.data
 }
 
 const beforeAvatarUpload = (file: any) => {
@@ -105,10 +149,10 @@ const handleSubmit = () => {
     if (!valid) return
     try {
       loading.value = true
-      await drawerProps.value.api!(drawerProps.value.rowData)
-      ElMessage.success({ message: `${drawerProps.value.title}品牌成功！` })
-      drawerProps.value.getTableList!()
-      drawerVisible.value = false
+      await dialogProps.value.api!(formData.value)
+      ElMessage.success({ message: `${dialogProps.value.title}品牌成功！` })
+      dialogProps.value.getTableList!()
+      dialogVisible.value = false
       loading.value = false
     } catch (error) {
       loading.value = false
@@ -117,6 +161,7 @@ const handleSubmit = () => {
   })
 }
 
+// 暴露给父组件的方法
 defineExpose({
   acceptParams,
 })
