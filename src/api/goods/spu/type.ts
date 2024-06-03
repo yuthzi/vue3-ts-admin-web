@@ -1,7 +1,7 @@
 /*
  * SPU模型定义
  * @Author: yuth
- * @Date: 2024-05-21 22:27:32
+ * @Date: 2024-06-03 11:17:03
  * @Description: SPU
  */
 import type { ReqPage } from '@/api/types'
@@ -24,7 +24,7 @@ export namespace GoodsSpu {
     sellingPrice?: string
     intro?: string
     picUrl?: string
-    isAudited?: string
+    isAudited?: number
     seq?: number
   }
 
@@ -43,7 +43,7 @@ export namespace GoodsSpu {
     sellingPrice?: string
     intro?: string
     picUrl?: string
-    isAudited?: string
+    isAudited?: number
     seq?: number
   }
 
@@ -62,7 +62,7 @@ export namespace GoodsSpu {
     sellingPrice?: string
     intro?: string
     picUrl?: string
-    isAudited?: string
+    isAudited?: number
     seq?: number
     gmtCreate?: string
     gmtModified?: string
@@ -83,7 +83,7 @@ export namespace GoodsSpu {
     sellingPrice?: string
     intro?: string
     picUrl?: string
-    isAudited?: string
+    isAudited?: number
     seq?: number
     gmtCreate?: string
     gmtModified?: string

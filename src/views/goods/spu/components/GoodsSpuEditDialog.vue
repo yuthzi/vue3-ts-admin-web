@@ -11,102 +11,102 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
       <el-form-item label="商品名称" prop="goodsName">
         <el-input
-          v-model="dialogProps.rowData!.goodsName"
+          v-model="formData!.goodsName"
           placeholder="请填写商品名称"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="顾客端的名称" prop="goodsTitle">
         <el-input
-          v-model="dialogProps.rowData!.goodsTitle"
+          v-model="formData!.goodsTitle"
           placeholder="请填写顾客端的名称"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="分类ID" prop="categoryId">
         <el-input
-          v-model="dialogProps.rowData!.categoryId"
+          v-model="formData!.categoryId"
           placeholder="请填写分类ID"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="品牌ID" prop="brandId">
         <el-input
-          v-model="dialogProps.rowData!.brandId"
+          v-model="formData!.brandId"
           placeholder="请填写品牌ID"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="品牌名称" prop="brandName">
         <el-input
-          v-model="dialogProps.rowData!.brandName"
+          v-model="formData!.brandName"
           placeholder="请填写品牌名称"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="助记码" prop="mneCode">
         <el-input
-          v-model="dialogProps.rowData!.mneCode"
+          v-model="formData!.mneCode"
           placeholder="请填写助记码"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="货号" prop="artNo">
         <el-input
-          v-model="dialogProps.rowData!.artNo"
+          v-model="formData!.artNo"
           placeholder="请填写货号"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="规格ID" prop="specId">
         <el-input
-          v-model="dialogProps.rowData!.specId"
+          v-model="formData!.specId"
           placeholder="请填写规格ID"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="计量单位" prop="unit">
         <el-input
-          v-model="dialogProps.rowData!.unit"
+          v-model="formData!.unit"
           placeholder="请填写计量单位"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="商品售价" prop="sellingPrice">
         <el-input
-          v-model="dialogProps.rowData!.sellingPrice"
+          v-model="formData!.sellingPrice"
           placeholder="请填写商品售价"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="商品介绍" prop="intro">
         <el-input
-          v-model="dialogProps.rowData!.intro"
+          v-model="formData!.intro"
           placeholder="请填写商品介绍"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="主图路径" prop="picUrl">
         <el-input
-          v-model="dialogProps.rowData!.picUrl"
+          v-model="formData!.picUrl"
           placeholder="请填写主图路径"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="是否已审核" prop="isAudited">
         <el-input
-          v-model="dialogProps.rowData!.isAudited"
+          v-model="formData!.isAudited"
           placeholder="请填写是否已审核"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="排序" prop="seq">
         <el-input
-          v-model="dialogProps.rowData!.seq"
+          v-model="formData!.seq"
           placeholder="请填写排序"
           clearable
         ></el-input>
@@ -132,6 +132,8 @@ interface DialogProps {
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
 }
+
+let formData = ref<GoodsSpu.ResGoodsSpuList>()
 
 const rules = reactive({
   goodsName: [{ required: true, message: '请填写商品名称' }],
@@ -159,6 +161,7 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
+  formData.value = params.rowData
 }
 
 const ruleFormRef = ref<FormInstance>()
@@ -167,7 +170,7 @@ const handleSubmit = () => {
     if (!valid) return
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
+      await dialogProps.value.api!(formData.value)
       ElMessage.success({ message: `${dialogProps.value.title}SPU成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
