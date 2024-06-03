@@ -86,15 +86,15 @@ interface DialogProps {
 
 const genderOptions = [
   {
-    value: '0',
+    value: 0,
     label: '保密',
   },
   {
-    value: '1',
+    value: 1,
     label: '男',
   },
   {
-    value: '2',
+    value: 2,
     label: '女',
   },
 ]
@@ -121,7 +121,7 @@ const acceptParams = (params: DialogProps): void => {
   formData.value = params.rowData
 
   // 初始化gender
-  const gender = genderOptions.find((e) => e.value == params.rowData?.gender)
+  const gender = genderOptions.find((e) => e.value == formData.value!.gender)
   genderValue.value = gender === undefined ? '' : gender
 }
 
@@ -135,7 +135,7 @@ const handleSubmit = () => {
     if (!valid) return
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
+      await dialogProps.value.api!(formData.value)
       ElMessage.success({ message: `${dialogProps.value.title}客户成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false

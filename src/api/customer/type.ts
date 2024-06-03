@@ -1,7 +1,7 @@
 /*
  * 客户模型定义
  * @Author: yuth
- * @Date: 2024-05-28 17:00:01
+ * @Date: 2024-06-03 11:06:47
  * @Description: 客户
  */
 import type { ReqPage } from '@/api/types'
@@ -14,7 +14,7 @@ export namespace Customer {
     tenantId?: string
     username?: string
     nickname?: string
-    gender?: string
+    gender?: number
     levelScore?: number
     levelName?: string
     password?: string
@@ -28,7 +28,7 @@ export namespace Customer {
     tenantId?: string
     username?: string
     nickname?: string
-    gender?: string
+    gender?: number
     levelScore?: number
     levelName?: string
     password?: string
@@ -42,7 +42,7 @@ export namespace Customer {
     tenantId?: string
     username?: string
     nickname?: string
-    gender?: string
+    gender?: number
     levelScore?: number
     levelName?: string
     password?: string
@@ -58,7 +58,7 @@ export namespace Customer {
     tenantId?: string
     username?: string
     nickname?: string
-    gender?: string
+    gender?: number
     levelScore?: number
     levelName?: string
     password?: string
