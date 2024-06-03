@@ -15,7 +15,7 @@
 </template>
 
 <script name="BrandSelectorDialog" lang="ts" setup>
-import { getBrandList } from '@/api'
+import { getBrandList } from '@/api/goods/brand/api'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import { computed, defineEmits, ref, watch } from 'vue'
 import { dataCallback } from '@/utils/pagination'

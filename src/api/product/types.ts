@@ -15,32 +15,6 @@ import type { ReqPage } from '../types'
 //   }
 // }
 
-/**
- * 品牌
- */
-export namespace Brand {
-  /**
-   * 编辑
-   */
-  export interface ReqBrand {
-    brandId?: number
-    brandName?: string
-  }
-
-  export interface ReqBrandList extends ReqPage {
-    brandName?: string
-  }
-
-  export interface ResBrandList {
-    brandId: number
-    brandName?: string
-    initial: string // 品牌名首字母
-    logoUrl: string
-    gmtCreate: string
-    gmtModified: string
-  }
-}
-
 interface AttrList {
   attrId: number
   id?: number

@@ -33,13 +33,6 @@ export {
   deleteCategoryById,
 } from './product/category'
 
-export {
-  getBrandList,
-  removeBrand,
-  addBrand,
-  updateBrand,
-} from './product/brand'
-
 export { getActivityList } from './marketing/activity'
 export { getCouponList, removeCoupon } from './marketing/coupon'
 
