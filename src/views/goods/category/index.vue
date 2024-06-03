@@ -96,9 +96,28 @@ const columns: ColumnProps[] = [
     onChange: onChangeStatus,
     activeValue: 1,
     inactiveValue: 0,
+    enum: [
+      {
+        value: 0,
+        label: '禁用',
+      },
+      {
+        value: 1,
+        label: '启用',
+      },
+    ],
+    search: { el: 'select', key: 'status' },
   },
-  { prop: 'gmtCreate', label: '创建时间', sortable: true },
-  { prop: 'gmtModified', label: '更新时间', sortable: true },
+  {
+    prop: 'gmtCreate',
+    label: '创建时间',
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtCreate' },
+  },
+  {
+    prop: 'gmtModified',
+    label: '更新时间',
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtModified' },
+  },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
@@ -127,7 +146,7 @@ const handleDelete = async (row: Category.ResCategoryList) => {
   await useHandleData(
     deleteCategoryById,
     row.categoryId,
-    `删除\$\{row.categoryName\}`,
+    `删除${row.categoryName}`,
   )
   proTable.value.getTableList()
 }
