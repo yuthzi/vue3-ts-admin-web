@@ -324,6 +324,28 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    // 代码生成
+    name: 'Generator',
+    path: '/sys/generator',
+    component: LAYOUT,
+    redirect: '/sys/generator/index',
+    meta: {
+      title: '代码生成',
+      icon: 'User',
+    },
+    children: [
+      {
+        name: 'SysTableList',
+        path: '/sys/generator/index',
+        component: () => import('@/views/sys/table/index.vue'),
+        meta: {
+          title: '代码生成',
+          icon: 'User',
+        },
+      },
+    ],
+  },
 ]
 
 // console.log(JSON.stringify(dynamicRoutes))
