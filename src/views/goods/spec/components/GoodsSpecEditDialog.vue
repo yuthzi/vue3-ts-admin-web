@@ -11,32 +11,32 @@
       label-width="100px"
       label-suffix=" :"
       :rules="rules"
-      :model="dialogProps.rowData"
+      :model="formData"
     >
       <el-form-item label="规格名" prop="specName">
         <el-input
-          v-model="dialogProps.rowData!.specName"
+          v-model="formData!.specName"
           placeholder="请填写规格名"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="分类ID" prop="categoryId">
         <el-input
-          v-model="dialogProps.rowData!.categoryId"
+          v-model="formData!.categoryId"
           placeholder="请填写分类ID"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="seq">
         <el-input
-          v-model="dialogProps.rowData!.seq"
+          v-model="formData!.seq"
           placeholder="请填写排序值"
           clearable
         ></el-input>
       </el-form-item>
       <el-form-item label="属性值" prop="values">
         <MutilTextInput
-          :data="dialogProps.rowData!.values"
+          :data="formData!.values"
           :label="''"
           :dataKey="'specVal'"
           :placeholder="'回车输入属性值'"
@@ -64,13 +64,14 @@ interface DialogProps {
   getTableList?: () => Promise<any>
 }
 
+let formData = ref<GoodsSpec.ResGoodsSpecList>()
+
 const rules = reactive({
   specName: [{ required: true, message: '请填写规格名' }],
   categoryId: [{ required: true, message: '请填写分类ID' }],
   seq: [{ required: true, message: '请填写排序值' }],
 })
 
-// const mutilInputRef = ref()
 const dialogVisible = ref(false)
 const loading = ref<boolean>(false)
 // props定义
@@ -80,20 +81,16 @@ const dialogProps = ref<DialogProps>({ title: '' })
 const acceptParams = (params: DialogProps): void => {
   dialogProps.value = params
   dialogVisible.value = true
-
-  // mutilInputRef.value = dialogProps.value.rowData!.values
+  formData.value = params.rowData
 }
 
 const ruleFormRef = ref<FormInstance>()
 const handleSubmit = () => {
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
-
-    // dialogProps.value.rowData!.values = mutilInputRef.value.data
-
     try {
       loading.value = true
-      await dialogProps.value.api!(dialogProps.value.rowData)
+      await dialogProps.value.api!(formData.value)
       ElMessage.success({ message: `${dialogProps.value.title}规格成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false

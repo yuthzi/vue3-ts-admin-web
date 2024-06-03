@@ -3,7 +3,7 @@
   <div>
     <ProTable
       ref="proTable"
-      :selectId="`specId`"
+      :selectId="'specId'"
       :columns="columns"
       :requestApi="getGoodsSpecList"
       :dataCallback="dataCallback"
@@ -59,15 +59,13 @@ import { dataCallback } from '@/utils/pagination'
 import { categorySearchProps } from '@/components/Selector'
 import GoodsSpecEditDialog from './components/GoodsSpecEditDialog.vue'
 
-console.log(categorySearchProps)
-
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
   {
     prop: 'specName',
     label: '规格名',
-    search: { key: 'specName', el: 'input' },
+    search: { el: 'input', key: 'specName' },
   },
   {
     prop: 'categoryId',
@@ -97,8 +95,18 @@ const columns: ColumnProps[] = [
       }
     },
   },
-  { prop: 'gmtCreate', label: '创建时间', sortable: true },
-  { prop: 'gmtModified', label: '更新时间', sortable: true },
+  {
+    prop: 'gmtCreate',
+    label: '创建时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtCreate' },
+  },
+  {
+    prop: 'gmtModified',
+    label: '更新时间',
+    sortable: true,
+    search: { el: 'date-range-picker', isElement: false, key: 'gmtModified' },
+  },
   { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
 ]
 
@@ -127,4 +135,4 @@ const handleDelete = async (row: GoodsSpec.ResGoodsSpecList) => {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

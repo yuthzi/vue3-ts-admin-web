@@ -1,7 +1,7 @@
 /*
  * 商品规格模型定义
  * @Author: yuth
- * @Date: 2024-05-21 22:27:31
+ * @Date: 2024-06-03 11:20:18
  * @Description: 商品规格
  */
 import type { ReqPage } from '@/api/types'
@@ -14,7 +14,7 @@ export namespace GoodsSpec {
     tenantId?: string
     specName?: string
     categoryId?: string
-    seq?: string
+    seq?: number
     values?: GoodsSpecValue.ReqAddGoodsSpecValue[] // 属性值
   }
 
@@ -23,7 +23,7 @@ export namespace GoodsSpec {
     tenantId?: string
     specName?: string
     categoryId?: string
-    seq?: string
+    seq?: number
     values?: GoodsSpecValue.ReqUpdateGoodsSpecValue[] // 属性值
   }
 
@@ -32,7 +32,7 @@ export namespace GoodsSpec {
     tenantId?: string
     specName?: string
     categoryId?: string
-    seq?: string
+    seq?: number
     gmtCreate?: string
     gmtModified?: string
   }
@@ -40,7 +40,7 @@ export namespace GoodsSpec {
   export interface ResGoodsSpecList {
     specId: string
     tenantId?: string
-    specName: string
+    specName?: string
     categoryId?: string
     seq?: string
     gmtCreate?: string
