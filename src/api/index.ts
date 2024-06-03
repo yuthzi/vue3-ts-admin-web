@@ -23,16 +23,6 @@ export {
 
 export { getLoginLogList } from './log/loginLog'
 
-export {
-  getCategorys1,
-  getCategorys2,
-  getCategorys3,
-  getCategoryList,
-  addCategory,
-  updateCategory,
-  deleteCategoryById,
-} from './product/category'
-
 export { getActivityList } from './marketing/activity'
 export { getCouponList, removeCoupon } from './marketing/coupon'
 
@@ -45,7 +35,3 @@ export {
   updateBanner,
   removeBanner,
 } from './setting/banner'
-
-export { getAttrList, removeAttr, addAttr } from './product/attr'
-
-export { getSkuList } from './product/sku'

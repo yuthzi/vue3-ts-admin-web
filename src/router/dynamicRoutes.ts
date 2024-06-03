@@ -87,46 +87,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
-  // 商品管理0
-  {
-    name: 'Product0',
-    path: '/product0',
-    component: LAYOUT,
-    redirect: '/product/attr',
-    meta: {
-      title: '商品0管理',
-      icon: 'Goods',
-    },
-    children: [
-      {
-        name: 'Attr',
-        path: '/product/attr',
-        component: () => import('@/views/product/attr/index.vue'),
-        meta: {
-          title: '属性列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'Spu',
-        path: '/product/spu',
-        component: () => import('@/views/product/spu/index.vue'),
-        meta: {
-          title: 'spu列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'Sku',
-        path: '/product/sku',
-        component: () => import('@/views/product/sku/index.vue'),
-        meta: {
-          title: 'sku列表',
-          icon: 'Grid',
-        },
-      },
-    ],
-  },
   // 营销管理
   {
     name: 'Marketing',
