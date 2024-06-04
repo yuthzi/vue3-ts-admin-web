@@ -16,7 +16,6 @@
 import { ref, defineProps } from 'vue'
 import router from '@/router'
 import { previewTable } from '@/api/sys/table/api'
-import { SysTable } from '@/api/sys/table/type'
 
 /**
  * props类型定义
@@ -30,10 +29,10 @@ withDefaults(defineProps<Props>(), {
   height: '70vh',
 })
 
-const codes = ref<SysTable.ResCodeGen>()
+const codes = ref()
 const activeName = ref('ApiModel')
 
-const tableId = router.currentRoute.value.query.tableId
+const tableId = router.currentRoute.value.query.tableId as string
 console.log('tableId=' + tableId)
 previewTable(tableId)
   .then((resp) => {
