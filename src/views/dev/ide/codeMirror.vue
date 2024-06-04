@@ -2,7 +2,7 @@
   <codemirror
     v-model="code"
     placeholder="Code gose here..."
-    :style="{ height: '400px' }"
+    :style="{ height: '75vh' }"
     :autofocus="true"
     :indent-with-tab="true"
     :tabSize="2"

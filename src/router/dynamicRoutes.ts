@@ -85,6 +85,15 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           icon: 'Grid',
         },
       },
+      {
+        name: 'IDECodeMirror',
+        path: '/dev/CodeMirror',
+        component: () => import('@/views/dev/ide/codeMirror.vue'),
+        meta: {
+          icon: 'DataLine',
+          title: 'CodeMirror',
+        },
+      },
     ],
   },
   // 营销管理
