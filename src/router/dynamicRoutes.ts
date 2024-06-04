@@ -344,6 +344,15 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           icon: 'User',
         },
       },
+      {
+        name: 'CodePreview',
+        path: '/sys/generator/preview',
+        component: () => import('@/views/sys/table/components/preview.vue'),
+        meta: {
+          title: '代码预览',
+          isHide: true,
+        },
+      },
     ],
   },
 ]
