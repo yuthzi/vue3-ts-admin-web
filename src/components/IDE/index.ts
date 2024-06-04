@@ -1,3 +1,4 @@
-import IDEjs from './src/IDEJs.vue'
+import IDEjs from './src/IDEjs.vue'
+import IDEjava from './src/IDEjava.vue'
 
-export { IDEjs }
+export { IDEjs, IDEjava }

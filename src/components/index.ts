@@ -10,7 +10,7 @@ import { IconifyIcon } from './IconifyIcon'
 import { MutilTextInput } from './MutilTextInput'
 // import { CategorySelector } from './CategorySelector'
 import { SelectorDialog, BrandSelectorDialog } from './Selector'
-import { IDEJs } from './IDE'
+import { IDEjs, IDEjava } from './IDE'
 
 const Components: {
   [propName: string]: Component
@@ -25,7 +25,8 @@ const Components: {
   MutilTextInput,
   SelectorDialog,
   BrandSelectorDialog,
-  IDEJs,
+  IDEjs,
+  IDEjava,
 }
 
 export default {
