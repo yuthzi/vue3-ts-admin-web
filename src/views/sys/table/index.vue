@@ -144,7 +144,6 @@ const preview = async (tableId: string) => {
   loading.value = true
   await previewTable(tableId)
   loading.value = false
-  proTable.value.getTableList()
 }
 </script>
 
