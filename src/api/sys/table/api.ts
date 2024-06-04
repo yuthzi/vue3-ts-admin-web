@@ -69,5 +69,5 @@ export function syncTable() {
  * @returns {<PageRes<any>>}
  */
 export function previewTable(id: string) {
-  return http.get<PageRes<any>>(`/admin/sys/table/preview/${id}`)
+  return http.get<SysTable.ResCodeGen>(`/admin/sys/table/preview/${id}`)
 }
