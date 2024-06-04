@@ -44,4 +44,13 @@ export namespace SysTable {
     gmtCreate?: string
     gmtModified?: string
   }
+
+  /**
+   * 代码生成响应
+   */
+  export interface ResCodeGen {
+    name: string
+    code: string
+    type?: string
+  }
 }
