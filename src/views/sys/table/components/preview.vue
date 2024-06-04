@@ -1,43 +1,48 @@
 <template>
   <el-tabs v-model="activeName" type="card">
     <el-tab-pane
-      v-for="item in data"
-      :key="item.name"
+      v-for="item in codes"
       :lazy="true"
-      :label="item.name"
-      :name="item.name"
+      :key="item!.name"
+      :label="item!.name"
+      :name="item!.name"
     >
-      <el-input :value="item.code" autosize="true" :type="'textarea'" />
+      <IDEjava :value="item!.code" :height="height"></IDEjava>
     </el-tab-pane>
   </el-tabs>
 </template>
 
-<script lang="tsx">
+<script lang="ts" setup>
+import { ref, defineProps } from 'vue'
+import router from '@/router'
 import { previewTable } from '@/api/sys/table/api'
+import { SysTable } from '@/api/sys/table/type'
 
-export default {
-  name: 'Preview',
-  components: {},
-  data() {
-    return {
-      data: null,
-      height: '',
-      activeName: 'ApiModel',
-    }
-  },
-  created() {
-    this.height = document.documentElement.clientHeight - 180 + 'px'
-    const tableId = this.$route.query.tableId
-    previewTable(tableId)
-      .then((resp) => {
-        let { data } = resp
-        this.data = data
-      })
-      .catch(() => {
-        this.$router.go(-1)
-      })
-  },
+/**
+ * props类型定义
+ */
+export interface Props {
+  height?: string // style高度
 }
+
+// 组件props
+withDefaults(defineProps<Props>(), {
+  height: '70vh',
+})
+
+const codes = ref<SysTable.ResCodeGen>()
+const activeName = ref('ApiModel')
+
+const tableId = router.currentRoute.value.query.tableId
+console.log('tableId=' + tableId)
+previewTable(tableId)
+  .then((resp) => {
+    let { data } = resp
+    codes.value = data
+  })
+  .catch(() => {
+    router.go(-1)
+  })
 </script>
 
 <style lang="scss" scoped></style>
