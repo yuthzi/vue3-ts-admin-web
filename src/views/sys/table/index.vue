@@ -26,6 +26,14 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
+        <el-button
+          type="primary"
+          link
+          icon="Edit"
+          @click="preview(scope.row.tableId)"
+        >
+          预览
+        </el-button>
         <Auth :value="['btn.SysTable.update']">
           <el-button
             type="primary"
@@ -61,6 +69,7 @@ import {
   updateSysTable,
   deleteSysTableById,
   syncTable,
+  previewTable,
 } from '@/api/sys/table/api'
 import type { SysTable } from '@/api/sys/table/type'
 import { ColumnProps } from '@/components/ProTable/src/types'
@@ -95,7 +104,7 @@ const columns: ColumnProps[] = [
     sortable: true,
     search: { el: 'date-range-picker', isElement: false, key: 'gmtModified' },
   },
-  { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
+  { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
 
 // 打开Dialog
@@ -127,6 +136,13 @@ const sync = async () => {
   loading.value = true
   await syncTable()
   ElMessage.success({ message: `同步成功！` })
+  loading.value = false
+  proTable.value.getTableList()
+}
+
+const preview = async (tableId: string) => {
+  loading.value = true
+  await previewTable(tableId)
   loading.value = false
   proTable.value.getTableList()
 }

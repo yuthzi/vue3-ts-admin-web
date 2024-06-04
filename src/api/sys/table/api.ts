@@ -62,3 +62,12 @@ export function batchDeleteSysTable(ids: string[]) {
 export function syncTable() {
   return http.post<PageRes<any>>(`/admin/sys/table/sync`)
 }
+
+/**
+ * @description: 预览
+ * @param {string} id
+ * @returns {<PageRes<any>>}
+ */
+export function previewTable(id: string) {
+  return http.get<PageRes<any>>(`/admin/sys/table/preview/${id}`)
+}
