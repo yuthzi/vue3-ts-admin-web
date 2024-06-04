@@ -119,11 +119,7 @@ const loading = ref<boolean>(false)
 
 // 根据id删除
 const handleDelete = async (row: SysTable.ResSysTableList) => {
-  await useHandleData(
-    deleteSysTableById,
-    row.tableId,
-    `删除${row.sysTableName}`,
-  )
+  await useHandleData(deleteSysTableById, row.tableId, `删除${row.tableName}`)
   proTable.value.getTableList()
 }
 
