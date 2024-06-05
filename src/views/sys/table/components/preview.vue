@@ -7,7 +7,7 @@
       :label="item!.name"
       :name="item!.name"
     >
-      <IDEjava :value="item!.code" :height="height"></IDEjava>
+      <IDEjava :value="item!.code"></IDEjava>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -26,11 +26,11 @@ export interface Props {
 
 // 组件props
 withDefaults(defineProps<Props>(), {
-  height: '70vh',
+  height: '50vh',
 })
 
 const codes = ref()
-const activeName = ref('ApiModel')
+const activeName = ref('DO实体')
 
 const tableId = router.currentRoute.value.query.tableId as string
 console.log('tableId=' + tableId)
@@ -44,4 +44,12 @@ previewTable(tableId)
   })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-tabs--card {
+  height: calc(100vh - 220px);
+}
+.el-tab-pane {
+  height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+</style>
