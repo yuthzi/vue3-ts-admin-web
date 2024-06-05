@@ -1,8 +1,4 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-03-21 11:05:23
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-24 14:27:11
  * @Description: 优惠券接口
  */
 import http from '@/utils/http'

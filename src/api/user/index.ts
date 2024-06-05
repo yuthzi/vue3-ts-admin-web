@@ -1,8 +1,4 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-02-27 09:50:34
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-10 14:16:24
  * @Description: 系统用户登录信息接口
  */
 import http from '@/utils/http'

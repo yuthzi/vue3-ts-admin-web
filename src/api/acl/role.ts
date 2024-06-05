@@ -1,8 +1,4 @@
 /*
- * @Author: 朽木白
- * @Date: 2023-03-10 11:31:11
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-30 10:22:42
  * @Description: 角色接口
  */
 import http from '@/utils/http'
