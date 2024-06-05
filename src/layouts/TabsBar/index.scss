@@ -50,8 +50,9 @@
     }
 
     .tabs-icon {
-      top: 3px;
       font-size: 15px;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .el-tabs__item {
