@@ -5,10 +5,9 @@
     ref="picker"
     :shortcuts="calendarShortcuts"
     :valueFormat="valueFormat"
-    :type="type"
+    :type="'daterange'"
     :startPlaceholder="startPlaceholder"
     :endPlaceholder="endPlaceholder"
-    :defaultTime="defaultTime"
     @change="handleChange"
   ></el-date-picker>
 </template>
@@ -17,31 +16,21 @@
 import { computed, ref, useAttrs } from 'vue'
 import { daysAgo, monthBegin, quarterBegin, yearBegin } from '@/utils/datetime'
 
-const props = defineProps({
-  modelValue: Array,
-  type: {
-    type: String,
-    default: 'daterange',
+export interface DateRangeProps {
+  modelValue?: string[]
+  valueFormat?: string
+  startPlaceholder?: string
+  endPlaceholder?: string
+}
+
+// 组件props
+const props = withDefaults(defineProps<DateRangeProps>(), {
+  modelValue: () => {
+    return []
   },
-  valueFormat: {
-    type: String,
-    default: 'YYYY-MM-DD HH:mm:ss',
-  },
-  defaultTime: {
-    type: Array,
-    default: () => [
-      new Date(2000, 1, 1, 0, 0, 0),
-      new Date(2000, 1, 1, 0, 0, 0),
-    ],
-  },
-  startPlaceholder: {
-    type: String,
-    default: '开始日期',
-  },
-  endPlaceholder: {
-    type: String,
-    default: '结束日期',
-  },
+  valueFormat: 'YYYY-MM-DD HH:mm:ss',
+  startPlaceholder: '开始日期',
+  endPlaceholder: '结束日期',
 })
 
 const emits = defineEmits(['update:modelValue'])
