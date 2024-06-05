@@ -26,7 +26,7 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button type="primary" link icon="Edit">
+        <el-button type="primary" link icon="View">
           <router-link
             :to="{
               path: '/sys/generator/preview',
@@ -81,7 +81,6 @@ import SysTableEditDialog from './components/SysTableEditDialog.vue'
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
-  { prop: 'tableId', label: 'id' },
   {
     prop: 'tableName',
     label: '表名',
@@ -93,12 +92,6 @@ const columns: ColumnProps[] = [
     search: { el: 'input', key: 'entityName' },
   },
   { prop: 'memo', label: '表注释' },
-  {
-    prop: 'gmtCreate',
-    label: '创建时间',
-    sortable: true,
-    search: { el: 'date-range-picker', isElement: false, key: 'gmtCreate' },
-  },
   {
     prop: 'gmtModified',
     label: '更新时间',
