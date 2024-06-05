@@ -17,7 +17,7 @@ import { computed, ref, useAttrs } from 'vue'
 import { daysAgo, monthBegin, quarterBegin, yearBegin } from '@/utils/datetime'
 
 export interface DateRangeProps {
-  modelValue?: string[]
+  modelValue?: any
   valueFormat?: string
   startPlaceholder?: string
   endPlaceholder?: string
@@ -25,9 +25,7 @@ export interface DateRangeProps {
 
 // 组件props
 const props = withDefaults(defineProps<DateRangeProps>(), {
-  modelValue: () => {
-    return []
-  },
+  modelValue: '',
   valueFormat: 'YYYY-MM-DD HH:mm:ss',
   startPlaceholder: '开始日期',
   endPlaceholder: '结束日期',
