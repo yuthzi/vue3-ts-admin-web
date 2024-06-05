@@ -20,17 +20,10 @@
           :closable="!(item.meta && item.meta.affix)"
         >
           <template #label>
-            <el-icon
-              class="tabs-icon"
-              v-if="item.meta && item.meta.icon"
-              size="16"
-            >
-              <component :is="item.meta.icon"></component>
-            </el-icon>
             <svg-icon
-              :name="item.meta.customIcon"
+              v-if="item.meta && item.meta.icon"
+              :name="item.meta.icon"
               class="tabs-icon"
-              v-else-if="item.meta && item.meta.customIcon"
               size="16"
             ></svg-icon>
             {{ item.title }}

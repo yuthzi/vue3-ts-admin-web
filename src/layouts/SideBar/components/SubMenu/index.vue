@@ -5,14 +5,11 @@
       :index="subItem.path"
     >
       <template #title>
-        <div v-if="subItem.meta.icon">
-          <el-icon>
-            <component :is="subItem.meta.icon"></component>
-          </el-icon>
-        </div>
-        <div v-else>
-          <svg-icon :name="subItem.meta.customIcon"></svg-icon>
-        </div>
+        <svg-icon
+          v-if="subItem.meta.icon"
+          :name="subItem.meta.icon"
+          :size="18"
+        ></svg-icon>
         <span>{{ subItem.meta.title }}</span>
       </template>
       <!-- 有children递归本次组件 -->
@@ -23,17 +20,11 @@
       :index="subItem.children[0].path"
       @click="handleClickMenu(subItem.children[0])"
     >
-      <!-- <el-icon>
-        <component :is="subItem.children[0].meta.icon"></component>
-      </el-icon> -->
-      <div v-if="subItem.children[0].meta.icon">
-        <el-icon>
-          <component :is="subItem.children[0].meta.icon"></component>
-        </el-icon>
-      </div>
-      <div v-else>
-        <svg-icon :name="subItem.children[0].meta.customIcon"></svg-icon>
-      </div>
+      <svg-icon
+        v-if="subItem.children[0].meta.icon"
+        :name="subItem.children[0].meta.icon"
+        :size="18"
+      ></svg-icon>
       <template #title>
         <span>{{ subItem.children[0].meta.title }}</span>
       </template>
@@ -43,14 +34,11 @@
       :index="subItem.path"
       @click="handleClickMenu(subItem)"
     >
-      <div v-if="subItem.meta.icon">
-        <el-icon>
-          <component :is="subItem.meta.icon"></component>
-        </el-icon>
-      </div>
-      <div v-else>
-        <svg-icon :name="subItem.meta.customIcon"></svg-icon>
-      </div>
+      <svg-icon
+        v-if="subItem.meta.icon"
+        :name="subItem.meta.icon"
+        :size="18"
+      ></svg-icon>
       <template #title>
         <span>{{ subItem.meta.title }}</span>
       </template>
@@ -92,3 +80,4 @@ export default defineComponent({
   },
 })
 </script>
+<style lang="scss"></style>
