@@ -6,6 +6,10 @@ import { RouteRecordRaw } from 'vue-router'
 
 const LAYOUT = () => import('@/layouts/index.vue')
 
+/**
+ * 路由。
+ * icon：大写字母开头的当作element-plus图标，小写字母开头的当作自定义图标
+ */
 export const dynamicRoutes: RouteRecordRaw[] = [
   // 权限管理
   {
@@ -15,7 +19,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/acl/user',
     meta: {
       title: '权限管理',
-      icon: 'Lock',
+      icon: 'authority',
     },
     children: [
       {
@@ -33,7 +37,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/role/index.vue'),
         meta: {
           title: '角色管理',
-          icon: 'Avatar',
+          icon: 'role',
         },
       },
       {
@@ -47,6 +51,96 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  // 客户管理
+  {
+    name: 'CustomerDir',
+    path: '/customer',
+    component: LAYOUT,
+    redirect: '/customer/list',
+    meta: {
+      title: '客户管理',
+      icon: 'customer',
+    },
+    children: [
+      {
+        name: 'Customer',
+        path: '/customer/list',
+        component: () => import('@/views/customer/list/index.vue'),
+        meta: {
+          title: '客户列表',
+          icon: 'User',
+        },
+      },
+      {
+        name: 'CustomerLevel',
+        path: '/customer/level',
+        component: () => import('@/views/customer/level/index.vue'),
+        meta: {
+          title: '客户等级',
+          // icon: 'Grid',
+          icon: 'level',
+        },
+      },
+    ],
+  },
+  {
+    // 商品管理
+    name: 'Goods',
+    path: '/goods',
+    component: LAYOUT,
+    redirect: '/goods/sku/index',
+    meta: {
+      title: '商品管理',
+      icon: 'goods-goods',
+    },
+    children: [
+      {
+        name: 'Category',
+        path: '/goods/category',
+        component: () => import('@/views/goods/category/index.vue'),
+        meta: {
+          title: '分类列表',
+          icon: 'category',
+        },
+      },
+      {
+        name: 'Brand',
+        path: '/goods/brand',
+        component: () => import('@/views/goods/brand/index.vue'),
+        meta: {
+          title: '品牌列表',
+          icon: 'goods-brand',
+        },
+      },
+      {
+        name: 'GoodsSpec',
+        path: '/goods/spec/index',
+        component: () => import('@/views/goods/spec/index.vue'),
+        meta: {
+          title: '规格列表',
+          icon: 'goods-attr',
+        },
+      },
+      {
+        name: 'GoodsSpu',
+        path: '/goods/spu/index',
+        component: () => import('@/views/goods/spu/index.vue'),
+        meta: {
+          title: 'SPU列表',
+          icon: 'goods-spu',
+        },
+      },
+      {
+        name: 'GoodsSku',
+        path: '/goods/sku/index',
+        component: () => import('@/views/goods/sku/index.vue'),
+        meta: {
+          title: 'SKU列表',
+          icon: 'goods-sku',
+        },
+      },
+    ],
+  },
   // dev
   {
     name: 'Dev',
@@ -55,7 +149,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/dev/ing',
     meta: {
       title: '组件demo',
-      icon: 'Goods',
+      icon: 'component',
     },
     children: [
       {
@@ -136,96 +230,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
-  // 客户管理
-  {
-    name: 'CustomerDir',
-    path: '/customer',
-    component: LAYOUT,
-    redirect: '/customer/list',
-    meta: {
-      title: '客户管理',
-      icon: 'User',
-    },
-    children: [
-      {
-        name: 'Customer',
-        path: '/customer/list',
-        component: () => import('@/views/customer/list/index.vue'),
-        meta: {
-          title: '客户列表',
-          icon: 'User',
-        },
-      },
-      {
-        name: 'CustomerLevel',
-        path: '/customer/level',
-        component: () => import('@/views/customer/level/index.vue'),
-        meta: {
-          title: '客户等级',
-          // icon: 'Grid',
-          customIcon: 'level',
-        },
-      },
-    ],
-  },
-  {
-    // 商品管理
-    name: 'Goods',
-    path: '/goods',
-    component: LAYOUT,
-    redirect: '/goods/sku/index',
-    meta: {
-      title: '商品管理',
-      icon: 'User',
-    },
-    children: [
-      {
-        name: 'Category',
-        path: '/goods/category',
-        component: () => import('@/views/goods/category/index.vue'),
-        meta: {
-          title: '分类列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'Brand',
-        path: '/goods/brand',
-        component: () => import('@/views/goods/brand/index.vue'),
-        meta: {
-          title: '品牌列表',
-          icon: 'Grid',
-        },
-      },
-      {
-        name: 'GoodsSku',
-        path: '/goods/sku/index',
-        component: () => import('@/views/goods/sku/index.vue'),
-        meta: {
-          title: 'SKU列表',
-          icon: 'User',
-        },
-      },
-      {
-        name: 'GoodsSpec',
-        path: '/goods/spec/index',
-        component: () => import('@/views/goods/spec/index.vue'),
-        meta: {
-          title: '规格列表',
-          icon: 'User',
-        },
-      },
-      {
-        name: 'GoodsSpu',
-        path: '/goods/spu/index',
-        component: () => import('@/views/goods/spu/index.vue'),
-        meta: {
-          title: 'SPU列表',
-          icon: 'User',
-        },
-      },
-    ],
-  },
+
   // 订单管理
   {
     name: 'Order',
@@ -243,7 +248,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/order/basis/index.vue'),
         meta: {
           title: '订单列表',
-          icon: 'Grid',
+          icon: 'order',
         },
       },
       {
@@ -252,7 +257,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/order/refund/index.vue'),
         meta: {
           title: '退款管理',
-          icon: 'Grid',
+          icon: 'refund',
         },
       },
     ],
@@ -266,7 +271,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     meta: {
       title: '报表管理',
       icon: 'PieChart',
-      // customIcon: 'report',
+      // icon: 'report',
     },
     children: [
       {
@@ -341,7 +346,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/sys/generator/index',
     meta: {
       title: '代码生成',
-      icon: 'User',
+      icon: 'code',
     },
     children: [
       {
@@ -350,7 +355,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/sys/table/index.vue'),
         meta: {
           title: '代码生成',
-          icon: 'User',
+          icon: 'code',
         },
       },
       {
