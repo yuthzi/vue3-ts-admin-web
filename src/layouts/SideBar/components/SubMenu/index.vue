@@ -62,7 +62,6 @@
 import { Menu } from '@element-plus/icons-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
 
 export default defineComponent({
   name: 'SubMenu',
