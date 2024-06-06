@@ -369,6 +369,28 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    // 招聘管理
+    name: 'Job',
+    path: '/job',
+    component: LAYOUT,
+    redirect: '/job/index',
+    meta: {
+      title: '招聘',
+      icon: 'User',
+    },
+    children: [
+      {
+        name: 'JobList',
+        path: '/job/index',
+        component: () => import('@/views/job/list/index.vue'),
+        meta: {
+          title: '招聘列表',
+          icon: 'User',
+        },
+      },
+    ],
+  },
 ]
 
 // console.log(JSON.stringify(dynamicRoutes))

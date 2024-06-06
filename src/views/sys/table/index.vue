@@ -84,14 +84,16 @@ const columns: ColumnProps[] = [
   {
     prop: 'tableName',
     label: '表名',
+    align: 'left',
     search: { el: 'input', key: 'tableName' },
   },
   {
     prop: 'entityName',
     label: '实体名',
+    align: 'left',
     search: { el: 'input', key: 'entityName' },
   },
-  { prop: 'memo', label: '表注释' },
+  { prop: 'memo', label: '表注释', align: 'left' },
   {
     prop: 'gmtModified',
     label: '更新时间',
