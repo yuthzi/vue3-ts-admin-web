@@ -20,6 +20,20 @@
           clearable
         ></el-input>
       </el-form-item>
+      <el-form-item label="工作年限" prop="jobYear">
+        <el-input
+          v-model="formData!.jobYear"
+          placeholder="请填写工作年限"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="学历" prop="jobDegree">
+        <el-input
+          v-model="formData!.jobDegree"
+          placeholder="请填写学历"
+          clearable
+        ></el-input>
+      </el-form-item>
       <el-form-item label="标签" prop="tag">
         <el-input
           v-model="formData!.tag"
@@ -31,20 +45,6 @@
         <el-input
           v-model="formData!.salary"
           placeholder="请填写薪酬"
-          clearable
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="公司" prop="companyName">
-        <el-input
-          v-model="formData!.companyName"
-          placeholder="请填写公司"
-          clearable
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="公司url" prop="companyUrl">
-        <el-input
-          v-model="formData!.companyUrl"
-          placeholder="请填写公司url"
           clearable
         ></el-input>
       </el-form-item>
@@ -82,13 +82,6 @@
             :value="item.value"
           />
         </el-select>
-      </el-form-item>
-      <el-form-item label="发布时间" prop="publishTime">
-        <el-input
-          v-model="formData!.publishTime"
-          placeholder="请填写发布时间"
-          clearable
-        ></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -132,6 +125,8 @@ const rules = reactive({
   signLow: [{ required: true, message: '请填写摘要，低位' }],
   signHight: [{ required: true, message: '请填写摘要，高位' }],
   title: [{ required: true, message: '请填写职位' }],
+  jobYear: [{ required: true, message: '请填写工作年限' }],
+  jobDegree: [{ required: true, message: '请填写学历' }],
   tag: [{ required: true, message: '请填写标签' }],
   salary: [{ required: true, message: '请填写薪酬' }],
   companyName: [{ required: true, message: '请填写公司' }],

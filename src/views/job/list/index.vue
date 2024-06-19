@@ -70,6 +70,9 @@ const onChangeStatus = async (val: boolean, row: Job.ResJobList) => {
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
   { prop: 'title', label: '职位', search: { el: 'input', key: 'title' } },
+  { prop: 'jobYear', label: '工作年限' },
+  { prop: 'jobDegree', label: '学历' },
+  { prop: 'tag', label: '标签' },
   { prop: 'salary', label: '薪酬' },
   { prop: 'companyName', label: '公司' },
   { prop: 'location', label: '工作地点' },
