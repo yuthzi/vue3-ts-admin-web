@@ -1,7 +1,7 @@
 /*
  * 招聘模型定义
  * @Author: yuth
- * @Date: 2024-06-18 16:31:27
+ * @Date: 2024-06-19 21:03:29
  * @Description: 招聘
  */
 import type { ReqPage } from '@/api/types'
@@ -16,6 +16,8 @@ export namespace Job {
     signLow?: string
     signHight?: string
     title?: string
+    jobyear?: string
+    jobdegree?: string
     tag?: string
     salary?: string
     companyName?: string
@@ -34,6 +36,8 @@ export namespace Job {
     signLow?: string
     signHight?: string
     title?: string
+    jobyear?: string
+    jobdegree?: string
     tag?: string
     salary?: string
     companyName?: string
@@ -52,6 +56,8 @@ export namespace Job {
     signLow?: string
     signHight?: string
     title?: string
+    jobyear?: string
+    jobdegree?: string
     tag?: string
     salary?: string
     companyName?: string
@@ -72,6 +78,8 @@ export namespace Job {
     signLow?: string
     signHight?: string
     title?: string
+    jobyear?: string
+    jobdegree?: string
     tag?: string
     salary?: string
     companyName?: string
