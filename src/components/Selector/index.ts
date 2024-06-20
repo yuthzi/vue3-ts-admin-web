@@ -1,5 +1,10 @@
 import SelectorDialog from './src/SelectorDialog.vue'
 import BrandSelectorDialog from './src/BrandSelectorDialog.vue'
-import { categorySearchProps } from './src/ELSelectorHelper'
+import { categorySearchProps, jobPlatformEnum } from './src/ELSelectorHelper'
 
-export { SelectorDialog, BrandSelectorDialog, categorySearchProps }
+export {
+  SelectorDialog,
+  BrandSelectorDialog,
+  categorySearchProps,
+  jobPlatformEnum,
+}

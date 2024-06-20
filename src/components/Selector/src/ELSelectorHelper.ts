@@ -2,6 +2,7 @@
  * element-plus 选择器辅助工具
  */
 import { getCategorySelector } from '@/api/goods/category/api'
+import { getJobPlatformList } from '@/api/job/platform/api'
 
 function listDataCallback(resp: any) {
   return resp?.data?.records ?? []
@@ -9,11 +10,11 @@ function listDataCallback(resp: any) {
 
 /**
  * 分类级联选择器的props。
- * 例子：
+ * 使用例子：
  * {
  *  prop: 'categoryId',
  *  label: '分类',
- *   search: {
+ *  search: {
  *    key: 'categoryId',
  *    el: 'cascader',
  *    props: categorySearchProps,
@@ -54,4 +55,33 @@ const categorySearchProps = (() => {
   }
 })()
 
-export { categorySearchProps }
+/**
+ * 招聘平台选择器的props。
+ * 使用例子：
+ * {
+ *  prop: 'platformId',
+ *  label: '平台',
+ *  search: {
+ *    key: 'platformId',
+ *    el: 'select',
+ *    props: jobPlatformSearchProps,
+ *  },
+ * }
+ */
+const jobPlatformEnum = async () => {
+  return await getJobPlatformList({
+    status: 1,
+    pageNum: 1,
+    pageSize: 1000,
+  }).then(function (resp) {
+    const records = listDataCallback(resp)
+    const arr = records.map((e: any) => {
+      return { value: e.platformId, label: e.name }
+    })
+    return {
+      data: arr,
+    }
+  })
+}
+
+export { categorySearchProps, jobPlatformEnum }

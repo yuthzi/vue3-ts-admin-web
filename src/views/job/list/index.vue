@@ -57,6 +57,7 @@ import { ColumnProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import { dataCallback } from '@/utils/pagination'
 import JobEditDialog from './components/JobEditDialog.vue'
+import { jobPlatformEnum } from '@/components/Selector'
 
 const onChangeStatus = async (val: boolean, row: Job.ResJobList) => {
   const params: any = {
@@ -69,6 +70,16 @@ const onChangeStatus = async (val: boolean, row: Job.ResJobList) => {
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
+  {
+    prop: 'platformId',
+    label: '平台',
+    isShow: false,
+    enum: jobPlatformEnum,
+    search: {
+      key: 'platformId',
+      el: 'select',
+    },
+  },
   { prop: 'title', label: '职位', search: { el: 'input', key: 'title' } },
   { prop: 'jobYear', label: '工作年限' },
   { prop: 'jobDegree', label: '学历' },
