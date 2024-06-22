@@ -58,6 +58,15 @@ export const staticRoutes: RouteRecordRaw[] = [
       title: '数据大屏',
     },
   },
+  {
+    name: 'ViewJobList',
+    path: '/view/jobList',
+    component: () => import('@/views/client/job/index.vue'),
+    meta: {
+      title: '招聘职位',
+      icon: 'Grid',
+    },
+  },
   // 此路由防止控制台出现No match found for location with path的警告
   {
     path: '/:catchAll(.*)',
