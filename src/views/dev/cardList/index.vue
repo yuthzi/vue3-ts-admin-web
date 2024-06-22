@@ -31,7 +31,7 @@ const leftTop: CardAreaProps<Job.ResJobList> = {
     if (row.location) {
       return (
         <>
-          <span>{title} </span>
+          <span title={title}>{title} </span>
           <span class="left-top-right">[{row.location}] </span>
         </>
       )
