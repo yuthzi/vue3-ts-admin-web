@@ -105,3 +105,13 @@ export interface ColumnProps<T = any>
 }
 
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+/**
+ * 卡片区域属性
+ */
+export type CardAreaProps<T = any> = {
+  prop: string // 属性名
+  render?: (scope: { row: T }) => any // 自定义单元格内容渲染（tsx语法）
+  color?: string
+  fontSize?: string
+}
