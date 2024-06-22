@@ -11,6 +11,7 @@ import { MutilTextInput } from './MutilTextInput'
 // import { CategorySelector } from './CategorySelector'
 import { SelectorDialog, BrandSelectorDialog } from './Selector'
 import { IDEjs, IDEjava } from './IDE'
+import { CardList } from './CardList'
 
 const Components: {
   [propName: string]: Component
@@ -27,6 +28,7 @@ const Components: {
   BrandSelectorDialog,
   IDEjs,
   IDEjava,
+  CardList,
 }
 
 export default {
