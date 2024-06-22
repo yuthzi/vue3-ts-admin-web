@@ -153,6 +153,15 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
+        name: 'CardListDemo',
+        path: '/dev/cardList',
+        component: () => import('@/views/dev/cardList/index.vue'),
+        meta: {
+          title: '卡片列表demo',
+          icon: 'Grid',
+        },
+      },
+      {
         name: 'DevShareDataByReactive',
         path: '/dev/shareData/reactive',
         component: () => import('@/views/dev/shareData/reactiveObj/index.vue'),

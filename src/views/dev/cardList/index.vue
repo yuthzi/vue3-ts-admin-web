@@ -5,10 +5,12 @@
       :requestApi="getJobList"
       :dataCallback="dataCallback"
       :pageSize="20"
+      :width="'600px'"
       :leftTop="leftTop"
       :rightTop="rightTop"
       :center="center"
       :leftBottom="leftBottom"
+      :rightBottom="rightBottom"
     ></CardList>
   </div>
 </template>
@@ -17,7 +19,6 @@
 import { ref } from 'vue'
 import { getJobList } from '@/api/job/list/api'
 import { Job } from '@/api/job/list/type'
-// import { getBrandList } from '@/api/goods/brand/api'
 import { dataCallback } from '@/utils/pagination'
 import { CardAreaProps } from '@/components/CardList/src/types'
 
@@ -76,6 +77,11 @@ const leftBottom: CardAreaProps<Job.ResJobList> = {
       return ''
     }
   },
+}
+
+const rightBottom: CardAreaProps<Job.ResJobList> = {
+  prop: 'publishTime',
+  fontSize: '16px',
 }
 
 const cardList = ref()
