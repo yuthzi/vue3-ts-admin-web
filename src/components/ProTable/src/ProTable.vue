@@ -27,7 +27,6 @@
         </el-tooltip>
         <el-tooltip
           v-if="false"
-          effect="dark"
           :content="!isFullscreen ? '全屏' : '收起'"
           placement="bottom"
         >
@@ -47,98 +46,20 @@
       </div>
     </div>
     <!-- 表格主体 -->
-    <el-table
-      ref="tableRef"
+    <TableBody
+      ref="tableBody"
       v-bind="$attrs"
-      v-loading="loading"
-      :data="tableData"
-      :row-key="getRowKeys"
+      :tableData="tableData"
+      :columns="columns"
+      :selectId="selectId"
+      :highlightCurrentRow="highlightCurrentRow"
       :border="border"
-      :highlight-current-row="highlightCurrentRow"
-      @selection-change="selectionChange"
-      class="table-data"
+      :loading="loading"
     >
-      <!-- default slot -->
-      <slot></slot>
-      <!-- render columns -->
-      <template v-for="item in tableColumns" :key="item">
-        <!-- selection || index -->
-        <el-table-column
-          v-bind="item"
-          :align="item.align ?? 'center'"
-          :reserve-selection="item.type == 'selection'"
-          v-if="item.type == 'selection' || item.type == 'index'"
-        ></el-table-column>
-        <!-- expend -->
-        <el-table-column
-          v-bind="item"
-          :align="item.align ?? 'center'"
-          v-if="item.type == 'expand'"
-          v-slot="scope"
-        >
-          <component
-            :is="item.render"
-            :row="scope.row"
-            v-if="item.render"
-          ></component>
-          <slot :name="item.type" :row="scope.row" v-else></slot>
-        </el-table-column>
-        <!-- switch -->
-        <el-table-column
-          v-bind="item"
-          :align="item.align ?? 'center'"
-          v-if="item.type == 'switch' && item.prop"
-          v-slot="scope"
-        >
-          <el-switch
-            v-model="scope.row[item.prop]"
-            :active-value="
-              item.activeValue === undefined ? true : item.activeValue
-            "
-            :inactive-value="
-              item.inactiveValue === undefined ? false : item.inactiveValue
-            "
-            :beforeChange="
-              () => {
-                if (!item.prop || !item.beforeChange) {
-                  return true
-                }
-
-                return item.beforeChange(scope.row[item.prop], scope.row)
-              }
-            "
-            @change="item.onChange?.($event, scope.row)"
-          ></el-switch>
-        </el-table-column>
-        <!-- other columns -->
-        <TableColumn
-          :column="item"
-          v-if="(!item.type || item.type == 'default') && item.prop"
-        >
-          <template
-            v-for="slot in Object.keys($slots)"
-            :key="slot"
-            #[slot]="scope"
-          >
-            <slot :name="slot" :row="scope.row"></slot>
-          </template>
-        </TableColumn>
+      <template v-for="slot in Object.keys($slots)" :key="slot" #[slot]="scope">
+        <slot :name="slot" :row="scope.row"></slot>
       </template>
-
-      <!-- 插入表格最后一行之后的插槽 -->
-      <template #append>
-        <slot name="append"></slot>
-      </template>
-      <!-- noData -->
-      <template #empty>
-        <div class="table-empty">
-          <slot name="empty">
-            <img src="./assets/images/notData.png" alt="noData" />
-            <div>暂无数据</div>
-          </slot>
-        </div>
-      </template>
-    </el-table>
+    </TableBody>
     <!-- 分页组件 -->
     <slot name="pagination">
       <Pagination
@@ -153,16 +74,15 @@
 </template>
 
 <script lang="ts" setup name="ProTable">
-import { ref, provide, watch } from 'vue'
+import { computed, onMounted, ref, provide, watch } from 'vue'
 import { useFullscreen } from '@vueuse/core'
 import { useTable } from './hooks/useTable'
-import { useSelection } from './hooks/useSelection'
-import { ElTable, TableProps } from 'element-plus'
+import { TableProps } from 'element-plus'
 import type { ColumnProps, BreakPoint } from './types'
 import SearchForm from '@/components/SearchForm'
-import TableColumn from './components/TableColumn.vue'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
+import TableBody from './components/TableBody.vue'
 
 /**
  * @description: props类型定义
@@ -213,9 +133,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 
 // --------------------表格-----------------------
 const tableCard = ref()
-
-// 表格 DOM 元素
-const tableRef = ref<InstanceType<typeof ElTable>>()
+const tableBody = ref()
 
 // 表格全屏
 const { isFullscreen, toggle } = useFullscreen(tableCard)
@@ -244,20 +162,6 @@ const {
 
 // 监听页面 initParam 改化，重新获取表格数据
 watch(() => props.initParam, getTableList, { deep: true })
-
-//* --------------------表格多选-----------------------
-
-// 表格多选 Hooks
-const {
-  selectionChange,
-  getRowKeys,
-  selectedList,
-  selectedListIds,
-  isSelected,
-} = useSelection(props.selectId)
-
-// 清空选中数据列表
-const clearSelection = () => tableRef.value!.clearSelection()
 
 // --------------------搜索-----------------------
 // 是否显示搜索模块
@@ -310,13 +214,25 @@ const colSetting = tableColumns.value!.filter((item) => {
 })
 const openColSetting = () => colRef.value.openColSetting()
 
+let element = null
+let isSelected: any = null
+let selectedList: any = null
+let selectedListIds: any = null
+const clearSelection = () => tableBody.value!.clearSelection()
+onMounted(() => {
+  element = computed(() => tableBody.value.element)
+  isSelected = computed(() => tableBody.value.isSelected)
+  selectedList = computed(() => tableBody.value.selectedList)
+  selectedListIds = computed(() => tableBody.value.selectedListIds)
+})
+
 defineExpose({
-  element: tableRef,
+  element,
   tableData,
   searchParam,
   pageable,
   enumMap,
-  isSelected,
+  isSelected, // 是否有选中的数据
   selectedList,
   selectedListIds,
   reset,
