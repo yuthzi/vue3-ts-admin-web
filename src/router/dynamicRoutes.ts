@@ -11,6 +11,28 @@ const LAYOUT = () => import('@/layouts/index.vue')
  * icon：大写字母开头的当作element-plus图标，小写字母开头的当作自定义图标
  */
 export const dynamicRoutes: RouteRecordRaw[] = [
+  // 隐藏页面
+  {
+    name: 'unVisible',
+    path: '/unVisible',
+    component: LAYOUT,
+    meta: {
+      title: '隐藏视图',
+      icon: 'Postcard',
+      isHide: true,
+    },
+    children: [
+      {
+        name: 'CardList',
+        path: '/card/list',
+        component: () => import('@/views/client/job/index.vue'),
+        meta: {
+          title: '卡片视图',
+          icon: 'Postcard',
+        },
+      },
+    ],
+  },
   // 权限管理
   {
     name: 'Acl',
@@ -182,7 +204,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       {
         name: 'DevCascader',
         path: '/dev/cascader',
-        component: () => import('@/views/dev/cascader/indexLazyLoad.vue'),
+        // component: () => import('@/views/dev/cascader/indexLazyLoad.vue'),
+        component: () => import('@/views/dev/tmp.vue'),
         meta: {
           title: '级联选择器',
           icon: 'Grid',
