@@ -105,7 +105,7 @@ let rightBottomStyle = computeStyle(props.rightBottom)
   padding: 15px;
   margin-bottom: 9px;
   // height: 100px;
-  background-color: #fff;
+  background-color: #b0c4de30;
   border-radius: 12px;
   transition: all 0.2s linear;
   cursor: pointer;
