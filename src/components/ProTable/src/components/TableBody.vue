@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts" setup name="ProTable">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useSelection } from '../hooks/useSelection'
 import { ElTable, TableProps } from 'element-plus'
 import type { ColumnProps } from '../types'
@@ -116,6 +116,7 @@ interface TableBodyProps extends Partial<Omit<TableProps<any>, 'data'>> {
   selectId?: string
   highlightCurrentRow?: boolean
   tableData: any[]
+  afterMounted: () => any
 }
 
 // 🌟组件props的ts定义必须在组件中声明
@@ -128,6 +129,7 @@ const props = withDefaults(defineProps<TableBodyProps>(), {
   tableData: () => [],
 })
 
+console.log('init table')
 // --------------------表格-----------------------
 
 // 表格 DOM 元素
@@ -147,6 +149,13 @@ const {
 
 // 清空选中数据列表
 const clearSelection = () => tableRef.value!.clearSelection()
+
+onMounted(() => {
+  if (props.afterMounted) {
+    console.log('call props.afterMounted()')
+    props.afterMounted()
+  }
+})
 
 defineExpose({
   element: tableRef,
