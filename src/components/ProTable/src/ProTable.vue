@@ -19,6 +19,7 @@
           :isSelected="isSelected"
         ></slot>
       </div>
+      <div class="header-left" v-if="bodyViewType == ListViewEnum.CARD"></div>
       <div class="header-right" v-if="toolButton">
         <el-tooltip content="刷新表格">
           <el-icon size="18" @click="getTableList">
@@ -43,11 +44,6 @@
             <Setting />
           </el-icon>
         </el-tooltip>
-        <el-tooltip content="卡片视图">
-          <el-icon size="18" @click="handleOpenCardList">
-            <Postcard />
-          </el-icon>
-        </el-tooltip>
       </div>
     </div>
     <!-- 表格主体。表格视图 -->
@@ -61,23 +57,12 @@
       :highlightCurrentRow="highlightCurrentRow"
       :border="border"
       :loading="loading"
+      :afterMounted="afterTableMounted"
     >
       <template v-for="slot in Object.keys($slots)" :key="slot" #[slot]="scope">
         <slot :name="slot" :row="scope.row"></slot>
       </template>
     </TableBody>
-    <!-- 表格主体。卡片视图 -->
-    <CardList
-      v-if="bodyViewType == ListViewEnum.CARD"
-      ref="tableBody"
-      :width="'600px'"
-      :data="tableData"
-      :leftTop="leftTop"
-      :rightTop="rightTop"
-      :center="center"
-      :leftBottom="leftBottom"
-      :rightBottom="rightBottom"
-    ></CardList>
     <!-- 分页组件 -->
     <slot name="pagination">
       <Pagination
@@ -92,16 +77,16 @@
 </template>
 
 <script lang="tsx" setup name="ProTable">
-import { computed, onMounted, ref, provide, watch } from 'vue'
+import { computed, ref, provide, watch } from 'vue'
 import { useFullscreen } from '@vueuse/core'
 import { useTable } from './hooks/useTable'
 import { TableProps } from 'element-plus'
 import type { ColumnProps, BreakPoint } from './types'
+import { ListViewEnum } from './enums'
 import SearchForm from '@/components/SearchForm'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
 import TableBody from './components/TableBody.vue'
-import CardList from './components/CardList.vue'
 
 /**
  * @description: props类型定义
@@ -152,8 +137,8 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 
 // --------------------表格-----------------------
 const tableCard = ref()
-const tableBody = ref()
-const bodyViewType = ref(1)
+const tableBody = ref<InstanceType<typeof TableBody>>()
+const bodyViewType = ref(ListViewEnum.TABLE)
 
 // 表格全屏
 const { isFullscreen, toggle } = useFullscreen(tableCard)
@@ -234,96 +219,20 @@ const colSetting = tableColumns.value!.filter((item) => {
 })
 const openColSetting = () => colRef.value.openColSetting()
 
-const handleOpenCardList = () => {
-  bodyViewType.value = 2
-}
-
-import { Job } from '@/api/job/list/type'
-import { CardAreaProps } from '@/components/CardList/src/types'
-
-const leftTop: CardAreaProps<Job.ResJobList> = {
-  prop: 'title',
-  // color: 'red',
-  fontSize: '16px',
-  render: ({ row }) => {
-    let title = row.title
-    if (row.location) {
-      return (
-        <>
-          <span title={title}>{title} </span>
-          <span class="left-top-right">[{row.location}] </span>
-        </>
-      )
-    } else {
-      return <>{title}</>
-    }
-  },
-}
-
-const rightTop: CardAreaProps<Job.ResJobList> = {
-  prop: 'companyName',
-  // color: 'red',
-  fontSize: '16px',
-}
-
-const center: CardAreaProps<Job.ResJobList> = {
-  prop: 'salary',
-  color: 'red',
-  fontSize: '16px',
-}
-
-const leftBottom: CardAreaProps<Job.ResJobList> = {
-  prop: 'tag',
-  // color: 'red',
-  fontSize: '16px',
-  render: ({ row }) => {
-    // console.log(JSON.stringify(row))
-    let cols = row.tag?.split(',')
-    if (cols) {
-      // 只展示前5
-      if (cols.length > 5) {
-        cols = cols.slice(0, 5)
-      }
-
-      return (
-        <>
-          {cols.map((item) => (
-            <el-tag class="bottom-tag">{item}</el-tag>
-          ))}
-        </>
-      )
-    } else {
-      return ''
-    }
-  },
-}
-
-const rightBottom: CardAreaProps<Job.ResJobList> = {
-  prop: 'publishTime',
-  fontSize: '16px',
-}
-
-/**
- * @description: 列表视图枚举
- * @argument TABLE    表格
- * @argument CARD     卡片
- */
-const ListViewEnum = {
-  TABLE: 1,
-  CARD: 2,
-}
-
-let element = null
-let isSelected: any = null
-let selectedList: any = null
-let selectedListIds: any = null
+// -------------------- 暴露TableBody的接口（开始） -----------------------
+let element: any = []
+let isSelected: any = false
+let selectedList: any = []
+let selectedListIds: any = []
 const clearSelection = () => tableBody?.value!.clearSelection()
-onMounted(() => {
-  element = computed(() => tableBody?.value.element)
-  isSelected = computed(() => tableBody?.value.isSelected)
-  selectedList = computed(() => tableBody?.value.selectedList)
-  selectedListIds = computed(() => tableBody?.value.selectedListIds)
-})
+
+function afterTableMounted() {
+  element = computed(() => tableBody?.value?.element)
+  isSelected = computed(() => tableBody?.value?.isSelected)
+  selectedList = computed(() => tableBody?.value?.selectedList)
+  selectedListIds = computed(() => tableBody?.value?.selectedListIds)
+}
+// -------------------- 暴露TableBody的接口（结束） -----------------------
 
 defineExpose({
   element,
