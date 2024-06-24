@@ -82,10 +82,34 @@ const computeStyle = (param: CardAreaProps | undefined) => {
   }
 }
 
+const renderByEnum = async (area: CardAreaProps) => {
+  if (typeof area.enum !== 'function') {
+    return area.enum!
+  }
+
+  const { data } = await area.enum()
+  return data
+}
+
 // 定义局部组件
-const renderCentent = (item: any, area: any) => {
-  const v = area.render ? area.render({ row: item }) : item[area.prop]
-  return <>{v}</>
+const renderCentent = (item: any, area: CardAreaProps) => {
+  if (area.render) {
+    const v = area.render({ row: item })
+    return <>{v}</>
+  }
+
+  if (area.enum) {
+    const key = item[area.prop]
+    renderByEnum(area).then((data) => {
+      const enumItem = data.find((item: any) => item.value == key)
+      console.log('enumItem=' + enumItem)
+      if (enumItem) {
+        return <>{enumItem.label}</>
+      }
+    })
+  }
+
+  return <>{item[area.prop]}</>
 }
 
 let leftTopStyle = computeStyle(props.leftTop)

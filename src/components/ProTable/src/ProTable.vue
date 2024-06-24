@@ -44,6 +44,19 @@
             <Setting />
           </el-icon>
         </el-tooltip>
+        <el-tooltip
+          content="卡片视图"
+          v-if="bodyViewType == ListViewEnum.TABLE"
+        >
+          <el-icon size="18" @click="handleOpenCardList">
+            <Postcard />
+          </el-icon>
+        </el-tooltip>
+        <el-tooltip content="表格视图" v-if="bodyViewType == ListViewEnum.CARD">
+          <el-icon size="18" @click="handleOpenTableList">
+            <Grid />
+          </el-icon>
+        </el-tooltip>
       </div>
     </div>
     <!-- 表格主体。表格视图 -->
@@ -63,6 +76,18 @@
         <slot :name="slot" :row="scope.row"></slot>
       </template>
     </TableBody>
+    <!-- 表格主体。卡片视图 -->
+    <CardList
+      v-if="bodyViewType == ListViewEnum.CARD"
+      ref="cardBody"
+      :width="'600px'"
+      :data="tableData"
+      :leftTop="leftTop"
+      :rightTop="rightTop"
+      :center="center"
+      :leftBottom="leftBottom"
+      :rightBottom="rightBottom"
+    ></CardList>
     <!-- 分页组件 -->
     <slot name="pagination">
       <Pagination
@@ -80,13 +105,15 @@
 import { computed, ref, provide, watch } from 'vue'
 import { useFullscreen } from '@vueuse/core'
 import { useTable } from './hooks/useTable'
+import { useCard } from './hooks/useCard'
 import { TableProps } from 'element-plus'
-import type { ColumnProps, BreakPoint } from './types'
+import type { ColumnProps, BreakPoint, CardProps } from './types'
 import { ListViewEnum } from './enums'
 import SearchForm from '@/components/SearchForm'
 import Pagination from './components/Pagination.vue'
 import ColSetting from './components/ColSetting.vue'
 import TableBody from './components/TableBody.vue'
+import CardList from './components/CardList.vue'
 
 /**
  * @description: props类型定义
@@ -120,6 +147,7 @@ interface ProTableProps extends Partial<Omit<TableProps<any>, 'data'>> {
   isShowSearch?: boolean
   onCollapse?: (collapsed: boolean) => void
   highlightCurrentRow?: boolean
+  cardProps?: CardProps
 }
 
 // 🌟组件props的ts定义必须在组件中声明
@@ -138,6 +166,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 // --------------------表格-----------------------
 const tableCard = ref()
 const tableBody = ref<InstanceType<typeof TableBody>>()
+const cardBody = ref()
 const bodyViewType = ref(ListViewEnum.TABLE)
 
 // 表格全屏
@@ -201,6 +230,7 @@ const flatColumnsFunc = (
   })
   return flatArr.filter((item) => !item._children?.length)
 }
+
 const flatColumns = ref<ColumnProps[]>()
 flatColumns.value = flatColumnsFunc(tableColumns.value)
 
@@ -218,6 +248,21 @@ const colSetting = tableColumns.value!.filter((item) => {
   )
 })
 const openColSetting = () => colRef.value.openColSetting()
+
+// --------------------卡片-----------------------
+const { leftTop, rightTop, center, leftBottom, rightBottom } = useCard(
+  props.cardProps,
+  flatColumns.value,
+)
+
+const handleOpenCardList = () => {
+  bodyViewType.value = ListViewEnum.CARD
+}
+
+const handleOpenTableList = () => {
+  bodyViewType.value = ListViewEnum.TABLE
+}
+// --------------------卡片(结束)-----------------------
 
 // -------------------- 暴露TableBody的接口（开始） -----------------------
 let element: any = []

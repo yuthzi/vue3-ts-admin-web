@@ -111,7 +111,19 @@ export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
  */
 export type CardAreaProps<T = any> = {
   prop: string // 属性名
+  enum?: EnumProps[] | ((params?: any) => Promise<any>) // 枚举类型（渲染值的字典）
   render?: (scope: { row: T }) => any // 自定义单元格内容渲染（tsx语法）
   color?: string
   fontSize?: string
+}
+
+/**
+ * 卡片属性
+ */
+export type CardProps<T = any> = {
+  leftTop?: CardAreaProps<T>
+  rightTop?: CardAreaProps<T>
+  center?: CardAreaProps<T>
+  leftBottom?: CardAreaProps<T>
+  rightBottom?: CardAreaProps<T>
 }

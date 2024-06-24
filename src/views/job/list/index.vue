@@ -7,6 +7,7 @@
       :columns="columns"
       :requestApi="getJobList"
       :dataCallback="dataCallback"
+      :cardProps="cardProps"
     >
       <!-- Expand -->
       <template #tableHeader>
@@ -53,7 +54,7 @@ import {
   deleteJobById,
 } from '@/api/job/list/api'
 import type { Job } from '@/api/job/list/type'
-import { ColumnProps } from '@/components/ProTable/src/types'
+import { ColumnProps, CardProps } from '@/components/ProTable/src/types'
 import { useHandleData } from '@/hooks/useHandleData'
 import { dataCallback } from '@/utils/pagination'
 import JobEditDialog from './components/JobEditDialog.vue'
@@ -148,6 +149,73 @@ const handleDelete = async (row: Job.ResJobList) => {
   await useHandleData(deleteJobById, row.jobId, `删除${row.title}`)
   proTable.value.getTableList()
 }
+
+const cardProps: CardProps = {
+  leftTop: {
+    prop: 'title',
+    // color: 'red',
+    fontSize: '16px',
+    render: ({ row }) => {
+      const title = row.title
+      if (row.location) {
+        return (
+          <>
+            <span title={title}>{title} </span>
+            <span class="left-top-right">[{row.location}] </span>
+          </>
+        )
+      } else {
+        return <>{title}</>
+      }
+    },
+  },
+  rightTop: {
+    prop: 'companyName',
+    fontSize: '16px',
+  },
+  center: {
+    prop: 'salary',
+    color: 'red',
+    fontSize: '16px',
+  },
+  leftBottom: {
+    prop: 'tag',
+    // color: 'red',
+    fontSize: '16px',
+    render: ({ row }) => {
+      // console.log(JSON.stringify(row))
+      let cols = row.tag?.split(',')
+      if (cols) {
+        // 只展示前5
+        if (cols.length > 5) {
+          cols = cols.slice(0, 5)
+        }
+
+        return (
+          <>
+            {cols.map((item: any) => (
+              <el-tag class="bottom-tag">{item}</el-tag>
+            ))}
+          </>
+        )
+      } else {
+        return ''
+      }
+    },
+  },
+  rightBottom: {
+    prop: 'publishTime',
+    fontSize: '16px',
+  },
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep .bottom-tag {
+  margin-right: 10px;
+}
+
+:deep .left-top-right {
+  margin-left: 12px;
+}
+</style>
