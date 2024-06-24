@@ -129,7 +129,6 @@ const props = withDefaults(defineProps<TableBodyProps>(), {
   tableData: () => [],
 })
 
-console.log('init table')
 // --------------------表格-----------------------
 
 // 表格 DOM 元素
@@ -152,7 +151,6 @@ const clearSelection = () => tableRef.value!.clearSelection()
 
 onMounted(() => {
   if (props.afterMounted) {
-    console.log('call props.afterMounted()')
     props.afterMounted()
   }
 })

@@ -130,7 +130,7 @@ const handleProp = (prop: string) => {
 
 // 判断是否是element-plus的组件。默认是true
 const isElementPlus = computed(() => {
-  console.log('searchParam=' + JSON.stringify(props.searchParam))
+  // console.log('searchParam=' + JSON.stringify(props.searchParam))
   const v = props.column.search?.isElement
   return v === undefined ? true : v
 })

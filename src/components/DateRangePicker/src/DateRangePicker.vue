@@ -106,7 +106,6 @@ const calendarMoveShortcuts = [
   {
     text: '‹ 往前一天 ',
     value: () => {
-      console.log('hasPickValue.value=' + JSON.stringify(hasPickValue.value))
       if (!hasPickValue.value || hasPickValue.value.length == 0) {
         // 昨天
         return [
