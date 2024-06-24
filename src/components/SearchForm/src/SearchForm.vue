@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts" name="SearchForm">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import type { ColumnProps } from '@/components/ProTable/src/types'
 import type { BreakPoint } from '@/components/Grid/src/types'
@@ -110,6 +110,20 @@ const showCollapse = computed(() => {
 function handleCollapsed() {
   collapsed.value = !collapsed.value
   props.onCollapse?.(collapsed.value)
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown)
+})
+
+function handleKeyDown(event: KeyboardEvent) {
+  if (event.code === 'Enter') {
+    props.search(props.searchParam)
+  }
 }
 </script>
 
