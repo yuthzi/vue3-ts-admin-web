@@ -1,7 +1,7 @@
 /**
  * 封装使用卡片的逻辑
  */
-import type { ColumnProps, CardAreaProps, CardProps, EnumProps } from '../types'
+import type { ColumnProps, CardAreaProps, CardProps } from '../types'
 
 export const useCard = (
   cardProps: CardProps | undefined,
