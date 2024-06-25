@@ -52,5 +52,14 @@ export function deleteJobDetailById(id: string) {
  * @returns {<PageRes<any>>}
  */
 export function batchDeleteJobDetail(ids: string[]) {
-  return http.delete<PageRes<any>>(`/admin/job/detail/batchRemove`, ids)
+  return http.delete<any>(`/admin/job/detail/batchRemove`, ids)
+}
+
+/**
+ * @description:   查询单个
+ * @param {string} jobId
+ * @returns {<PageRes<any>>}
+ */
+export function getSingleJobDetail(jobId: string) {
+  return http.get<JobDetail.ResJobDetail>(`/admin/job/detail/single/${jobId}`)
 }

@@ -60,4 +60,24 @@ export namespace JobDetail {
     gmtCreate?: string
     gmtModified?: string
   }
+
+  export interface ResJobDetail {
+    jobId?: string
+    tenantId?: string
+    companyId?: string
+    title?: string
+    welfare?: string
+    city?: string
+    location?: string
+    category?: string
+    keyword?: string
+    detail?: string
+    gmtCreate?: string
+    gmtModified?: string
+    jobYear?: string
+    jobDegree?: string
+    salary?: string
+    companyName?: string
+    companyIntroduction?: string
+  }
 }
