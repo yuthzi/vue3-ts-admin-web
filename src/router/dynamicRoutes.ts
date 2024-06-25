@@ -408,7 +408,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     component: LAYOUT,
     redirect: '/job/index',
     meta: {
-      title: '招聘',
+      title: '招聘管理',
       icon: 'User',
     },
     children: [
@@ -418,6 +418,15 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/job/list/index.vue'),
         meta: {
           title: '招聘列表',
+          icon: 'User',
+        },
+      },
+      {
+        name: 'JobCompanyList',
+        path: '/job/company/index',
+        component: () => import('@/views/job/company/index.vue'),
+        meta: {
+          title: '招聘公司列表',
           icon: 'User',
         },
       },
