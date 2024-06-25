@@ -430,6 +430,16 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           icon: 'User',
         },
       },
+      {
+        name: 'JobDetail',
+        path: '/job/detail/:id',
+        component: () => import('@/views/job/detail/components/JobView.vue'),
+        meta: {
+          title: '招聘详情',
+          isHide: true,
+          icon: 'User',
+        },
+      },
     ],
   },
 ]

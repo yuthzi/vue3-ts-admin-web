@@ -59,13 +59,27 @@ export const staticRoutes: RouteRecordRaw[] = [
     },
   },
   {
-    name: 'ViewJobList',
-    path: '/view/jobList',
-    component: () => import('@/views/client/job/index.vue'),
+    // 招聘管理
+    name: 'Tmp',
+    path: '/tmp',
+    component: LAYOUT,
+    redirect: '/job/index',
     meta: {
-      title: '招聘职位',
-      icon: 'Grid',
+      title: 'tmp',
+      icon: 'User',
+      isHide: true,
     },
+    children: [
+      {
+        name: 'JobDetail',
+        path: '/job/detail/:id',
+        component: () => import('@/views/job/detail/components/JobView.vue'),
+        meta: {
+          title: '招聘详情',
+          icon: 'User',
+        },
+      },
+    ],
   },
   // 此路由防止控制台出现No match found for location with path的警告
   {

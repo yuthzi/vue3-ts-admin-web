@@ -19,6 +19,9 @@
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
+        <el-button type="primary" link icon="View">
+          <router-link :to="'/job/detail/' + scope.row.jobId">详情</router-link>
+        </el-button>
         <Auth :value="['btn.Job.update']">
           <el-button
             type="primary"
@@ -126,7 +129,7 @@ const columns: ColumnProps[] = [
     sortable: true,
     search: { el: 'date-range-picker', isElement: false, key: 'publishTime' },
   },
-  { prop: 'operation', label: '操作', fixed: 'right', width: 200 },
+  { prop: 'operation', label: '操作', fixed: 'right', width: 260 },
 ]
 
 // 打开Dialog
@@ -140,6 +143,8 @@ const openDialog = (title: string, rowData: Partial<Job.ResJobList> = {}) => {
   }
   DialogRef.value.acceptParams(params)
 }
+
+// const openView = (rowData: Partial<Job.ResJobList> = {}) => {}
 
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
