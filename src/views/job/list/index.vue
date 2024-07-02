@@ -73,7 +73,6 @@ const onChangeStatus = async (val: boolean, row: Job.ResJobList) => {
 
 // *表格配置项
 const columns: ColumnProps[] = [
-  { type: 'index', label: '#', width: 80 },
   {
     prop: 'platformId',
     label: '平台',
@@ -90,7 +89,11 @@ const columns: ColumnProps[] = [
   { prop: 'tag', label: '标签' },
   { prop: 'salary', label: '薪酬' },
   { prop: 'companyName', label: '公司' },
-  { prop: 'location', label: '工作地点' },
+  {
+    prop: 'location',
+    label: '工作地点',
+    search: { el: 'input', key: 'location' },
+  },
   {
     prop: 'sourceUrl',
     label: '原网址',
@@ -108,6 +111,7 @@ const columns: ColumnProps[] = [
     type: 'switch',
     prop: 'status',
     label: '状态',
+    isShow: false,
     onChange: onChangeStatus,
     activeValue: 1,
     inactiveValue: 0,
